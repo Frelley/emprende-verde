@@ -33,6 +33,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050505;
 #main-frame{
   width:100%;height:100%;border:none;display:block;
   transition:opacity .22s ease;
+  -webkit-overflow-scrolling:touch;overflow-y:auto;
 }
 #main-frame.fade{opacity:0}
 
@@ -43,9 +44,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050505;
   background:#050505;
   font-family:'DM Mono',monospace;font-size:11px;
   letter-spacing:2.5px;color:rgba(0,255,136,0.35);
-  transition:opacity .4s;pointer-events:none;z-index:10;
+  opacity:0;transition:opacity .25s;pointer-events:none;z-index:10;
 }
-#loader.gone{opacity:0}
+#loader.active{opacity:1;pointer-events:all}
 
 /* ── EDGE SWIPE ZONES ────────────────────────── */
 .edge{
@@ -175,7 +176,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#050505;
 <div class="frame-wrap" id="wrap">
   <div id="loader">CARGANDO</div>
   <iframe id="main-frame" src="pitch1_solar_heater.html"
-          title="Propuesta" onload="onLoaded()"></iframe>
+          title="Propuesta" scrolling="yes" onload="onLoaded()"></iframe>
 
   <!-- Edge swipe zones with visible arrows -->
   <div class="edge edge-l" id="el"><span class="edge-icon">‹</span></div>
@@ -264,7 +265,7 @@ function go(i) {
   cur = i;
 
   frame.classList.add('fade');
-  loader.classList.remove('gone');
+  loader.classList.add('active');
 
   setTimeout(() => {
     frame.src = PITCHES[cur];
@@ -274,7 +275,7 @@ function go(i) {
 
 function onLoaded() {
   frame.classList.remove('fade');
-  loader.classList.add('gone');
+  loader.classList.remove('active');
   busy = false;
 }
 

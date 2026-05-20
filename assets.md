@@ -12,12 +12,12 @@
 - [x] Foto calentador solar en techo urbano → `solar_heater_1.jpg`
 - [x] Foto sistema múltiple calentadores en techo → `solar_heater_2.jpg`
 - [ ] Foto garrafa con precio escrito (30 Bs)
-- [ ] Foto factura de gas de empresa (lavandería, hotel)
+- [x] Foto factura de gas de empresa → `factura_gas.jpg`
 
 ## Pitch 2 — Agua del Aire
-- [ ] Foto unidad AC con manguera de drenaje visible
+- [x] Foto unidad AC exterior con drenaje visible → `ac_drenaje.jpg`
+- [x] Screenshot agua destilada 20L = 108 Bs → `agua_destilada_precio.jpg` ⚠️ ORO — valida precio B2B (5.4 Bs/L vs nuestros 2.5 Bs/L)
 - [ ] Foto botellón de agua con precio en tienda (8–12 Bs)
-- [ ] Foto agua limpia en envase
 
 ## Pitch 3 — Vermicompostaje
 - [ ] Foto lombrices rojas californianas

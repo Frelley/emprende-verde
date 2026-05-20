@@ -9,8 +9,9 @@
 
 ## Pitch 1 — Calentadores Solares
 - [x] Foto garrafas múltiples en emprendimiento → `garrafa_sistema.jpg` (sirve P1 + P6)
+- [x] Foto calentador solar en techo urbano → `solar_heater_1.jpg`
+- [x] Foto sistema múltiple calentadores en techo → `solar_heater_2.jpg`
 - [ ] Foto garrafa con precio escrito (30 Bs)
-- [ ] Foto hotel o hospital con calentador solar instalado
 - [ ] Foto factura de gas de empresa (lavandería, hotel)
 
 ## Pitch 2 — Agua del Aire

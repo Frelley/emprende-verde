@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emprende Verde Bolivia</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #1a2e1a 0%, #2d5a27 50%, #1a2e1a 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      color: #7dce6a;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .logo span { color: #fff; }
+
+    .progress-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: #7dce6a;
+      transform: scale(1.3);
+    }
+
+    .dot.visited {
+      background: rgba(125,206,106,0.5);
+    }
+
+    .counter {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Card stack */
+    .stack {
+      position: relative;
+      width: min(92vw, 680px);
+      height: min(78vh, 600px);
+      margin-top: 70px;
+    }
+
+    .card {
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      transition: transform 0.08s ease, box-shadow 0.3s ease;
+      cursor: grab;
+      touch-action: none;
+    }
+
+    .card:active { cursor: grabbing; }
+
+    .card.behind-1 {
+      transform: scale(0.95) translateY(12px);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .card.behind-2 {
+      transform: scale(0.90) translateY(24px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .card.top { z-index: 10; }
+
+    .card.flying-right {
+      transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.45s ease !important;
+      transform: translateX(150%) rotate(25deg) !important;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .card.flying-left {
+      transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.45s ease !important;
+      transform: translateX(-150%) rotate(-25deg) !important;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .card.entering-right {
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    }
+
+    .card.entering-left {
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    }
+
+    /* Like / Nope badges */
+    .badge {
+      position: absolute;
+      top: 24px;
+      font-size: 2rem;
+      font-weight: 900;
+      border: 4px solid;
+      border-radius: 8px;
+      padding: 6px 16px;
+      opacity: 0;
+      z-index: 20;
+      pointer-events: none;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: opacity 0.15s;
+    }
+
+    .badge-next { left: 20px; color: #7dce6a; border-color: #7dce6a; }
+    .badge-prev { right: 20px; color: #ff6b6b; border-color: #ff6b6b; }
+
+    /* Card label */
+    .card-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 16px 20px;
+      background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, transparent 100%);
+      color: #fff;
+      z-index: 15;
+      pointer-events: none;
+    }
+
+    .card-label h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .card-label p {
+      font-size: 0.8rem;
+      opacity: 0.75;
+      margin-top: 2px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none;
+    }
+
+    /* Buttons */
+    .actions {
+      display: flex;
+      gap: 24px;
+      margin-top: 24px;
+      z-index: 10;
+    }
+
+    .btn {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+
+    .btn:hover { transform: scale(1.1); }
+    .btn:active { transform: scale(0.95); }
+
+    .btn-prev { background: #fff; color: #e74c3c; }
+    .btn-next { background: #fff; color: #27ae60; }
+    .btn-open {
+      background: #7dce6a;
+      color: #fff;
+      font-size: 1.1rem;
+    }
+
+    .hint {
+      position: fixed;
+      bottom: 16px;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 480px) {
+      .stack { height: 70vh; }
+      .btn { width: 56px; height: 56px; font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Emprende <span>Verde</span> 🌿</div>
+  <div class="progress-dots" id="dots"></div>
+  <div class="counter" id="counter">1 / 6</div>
+</header>
+
+<div class="stack" id="stack"></div>
+
+<div class="actions">
+  <button class="btn btn-prev" id="btnPrev" title="Anterior (←)">&#8592;</button>
+  <button class="btn btn-open" id="btnOpen" title="Abrir en pestaña">&#9654;</button>
+  <button class="btn btn-next" id="btnNext" title="Siguiente (→)">&#8594;</button>
+</div>
+
+<div class="hint">Desliza · Flechas del teclado · Botones</div>
+
+<script>
+  const projects = [
+    { file: 'pitch1_solar_heater.html', title: 'Calentador Solar de Agua',     emoji: '☀️', desc: 'Energía solar para hogares rurales' },
+    { file: 'pitch2_ac_water.html',     title: 'Agua por Condensación',         emoji: '💧', desc: 'Captación atmosférica de agua' },
+    { file: 'pitch3_vermicompost.html', title: 'Vermicompost Comunitario',       emoji: '🪱', desc: 'Abono orgánico de alto valor' },
+    { file: 'pitch4_solar_dryer.html',  title: 'Deshidratador Solar',           emoji: '🌞', desc: 'Conservación de alimentos sin electricidad' },
+    { file: 'pitch5_aquaponics.html',   title: 'Acuaponía Integrada',           emoji: '🐟', desc: 'Peces y vegetales en simbiosis' },
+    { file: 'pitch6_biodigester.html',  title: 'Biodigestor Familiar',          emoji: '♻️', desc: 'Biogás y biofertilizante desde residuos' },
+  ];
+
+  let current = 0;
+  const stack  = document.getElementById('stack');
+  const dots   = document.getElementById('dots');
+  const counter= document.getElementById('counter');
+
+  // Build dots
+  projects.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dots.appendChild(d);
+  });
+
+  function buildCard(idx, zClass) {
+    const p = projects[idx];
+    const card = document.createElement('div');
+    card.className = `card ${zClass}`;
+    card.dataset.idx = idx;
+
+    const badge1 = document.createElement('div');
+    badge1.className = 'badge badge-next';
+    badge1.textContent = 'Siguiente →';
+
+    const badge2 = document.createElement('div');
+    badge2.className = 'badge badge-prev';
+    badge2.textContent = '← Anterior';
+
+    const iframe = document.createElement('iframe');
+    iframe.src = p.file;
+    iframe.title = p.title;
+    iframe.loading = 'lazy';
+
+    const label = document.createElement('div');
+    label.className = 'card-label';
+    label.innerHTML = `<h2>${p.emoji} ${p.title}</h2><p>${p.desc}</p>`;
+
+    card.append(badge1, badge2, iframe, label);
+    return card;
+  }
+
+  function renderStack() {
+    stack.innerHTML = '';
+    const indices = [
+      (current + 2) % projects.length,
+      (current + 1) % projects.length,
+      current,
+    ];
+    const classes = ['behind-2', 'behind-1', 'top'];
+    indices.forEach((idx, i) => stack.appendChild(buildCard(idx, classes[i])));
+
+    // Update dots
+    document.querySelectorAll('.dot').forEach((d, i) => {
+      d.className = 'dot' + (i === current ? ' active' : i < current ? ' visited' : '');
+    });
+    counter.textContent = `${current + 1} / ${projects.length}`;
+  }
+
+  function goTo(idx) {
+    if (idx === current) return;
+    const dir = idx > current ? 'right' : 'left';
+    current = idx;
+    animateTransition(dir);
+  }
+
+  function animateTransition(dir) {
+    const top = stack.querySelector('.card.top');
+    if (!top) { renderStack(); return; }
+    top.classList.add(dir === 'right' ? 'flying-right' : 'flying-left');
+    setTimeout(() => renderStack(), 420);
+  }
+
+  function next() {
+    if (current === projects.length - 1) return;
+    current++;
+    animateTransition('right');
+  }
+
+  function prev() {
+    if (current === 0) return;
+    current--;
+    animateTransition('left');
+  }
+
+  document.getElementById('btnNext').addEventListener('click', next);
+  document.getElementById('btnPrev').addEventListener('click', prev);
+  document.getElementById('btnOpen').addEventListener('click', () => {
+    window.open(projects[current].file, '_blank');
+  });
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft')  prev();
+  });
+
+  // Touch / Mouse drag
+  let dragStart = null, dragX = 0;
+  const THRESHOLD = 80;
+
+  function onPointerDown(e) {
+    dragStart = e.touches ? e.touches[0].clientX : e.clientX;
+    dragX = 0;
+  }
+
+  function onPointerMove(e) {
+    if (dragStart === null) return;
+    const x = (e.touches ? e.touches[0].clientX : e.clientX) - dragStart;
+    dragX = x;
+    const top = stack.querySelector('.card.top');
+    if (!top) return;
+    const rot = dragX / 12;
+    top.style.transform = `translateX(${dragX}px) rotate(${rot}deg)`;
+
+    const b1 = top.querySelector('.badge-next');
+    const b2 = top.querySelector('.badge-prev');
+    b1.style.opacity = dragX > 30 ? Math.min((dragX - 30) / 60, 1) : 0;
+    b2.style.opacity = dragX < -30 ? Math.min((-dragX - 30) / 60, 1) : 0;
+  }
+
+  function onPointerUp() {
+    if (dragStart === null) return;
+    dragStart = null;
+    const top = stack.querySelector('.card.top');
+    if (!top) return;
+    top.querySelector('.badge-next').style.opacity = 0;
+    top.querySelector('.badge-prev').style.opacity = 0;
+
+    if (dragX > THRESHOLD) { next(); }
+    else if (dragX < -THRESHOLD) { prev(); }
+    else {
+      top.style.transition = 'transform 0.35s cubic-bezier(0.34,1.56,0.64,1)';
+      top.style.transform = '';
+      setTimeout(() => { top.style.transition = ''; }, 350);
+    }
+  }
+
+  stack.addEventListener('mousedown',  onPointerDown);
+  stack.addEventListener('mousemove',  onPointerMove);
+  stack.addEventListener('mouseup',    onPointerUp);
+  stack.addEventListener('mouseleave', onPointerUp);
+  stack.addEventListener('touchstart', onPointerDown, { passive: true });
+  stack.addEventListener('touchmove',  onPointerMove, { passive: true });
+  stack.addEventListener('touchend',   onPointerUp);
+
+  renderStack();
+</script>
+</body>
+</html>

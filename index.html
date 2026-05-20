@@ -1,337 +1,281 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Propuestas para Emprende Verde</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=DM+Mono&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emprende Verde · Richard Cronm</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;height:100%;overflow:hidden;background:#050505;
-  font-family:'Space Grotesk','Segoe UI',sans-serif}
 
-/* ── TOP BAR ─────────────────────────────────── */
-.top{
-  position:fixed;top:0;left:0;right:0;height:48px;
-  background:rgba(5,5,5,0.96);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(255,255,255,0.06);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 18px;z-index:200;
-}
-.top-name{font-size:13px;font-weight:600;color:rgba(255,255,255,0.88);
-  letter-spacing:-.2px;transition:opacity .2s}
-.top-num{font-family:'DM Mono',monospace;font-size:11px;
-  color:rgba(255,255,255,0.28);letter-spacing:1.5px}
-
-/* ── FRAME AREA ──────────────────────────────── */
-.frame-wrap{
-  position:fixed;top:48px;bottom:52px;left:0;right:0;
-  overflow:hidden;background:#050505;
+:root{
+  --bg:#050a06;
+  --surface:rgba(255,255,255,0.03);
+  --border:rgba(255,255,255,0.07);
+  --text:#e8ede9;
+  --dim:rgba(255,255,255,0.38);
+  --accent:#00ff88;
+  --accent-dim:rgba(0,255,136,0.12);
 }
 
-#main-frame{
-  width:100%;height:100%;border:none;display:block;
-  transition:opacity .22s ease;
-  -webkit-overflow-scrolling:touch;overflow-y:auto;
-}
-#main-frame.fade{opacity:0}
-
-/* ── LOADER ──────────────────────────────────── */
-#loader{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  background:#050505;
-  font-family:'DM Mono',monospace;font-size:11px;
-  letter-spacing:2.5px;color:rgba(0,255,136,0.35);
-  opacity:0;transition:opacity .25s;pointer-events:none;z-index:10;
-}
-#loader.active{opacity:1;pointer-events:all}
-
-/* ── EDGE SWIPE ZONES ────────────────────────── */
-.edge{
-  position:absolute;top:0;bottom:0;width:22%;z-index:30;
-  display:flex;align-items:center;cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
-  transition:background .2s;
-}
-.edge-l{
-  left:0;justify-content:flex-start;padding-left:10px;
-  background:linear-gradient(90deg,rgba(5,5,5,.45) 0%,transparent 100%);
-}
-.edge-r{
-  right:0;justify-content:flex-end;padding-right:10px;
-  background:linear-gradient(-90deg,rgba(5,5,5,.45) 0%,transparent 100%);
-}
-.edge-l:active{background:linear-gradient(90deg,rgba(0,255,136,.08) 0%,transparent 100%)}
-.edge-r:active{background:linear-gradient(-90deg,rgba(0,255,136,.08) 0%,transparent 100%)}
-.edge-icon{
-  font-size:30px;color:rgba(255,255,255,0.18);
-  font-family:'DM Mono',monospace;
-  transition:color .2s;user-select:none;pointer-events:none;
-}
-.edge:active .edge-icon{color:rgba(255,255,255,0.55)}
-
-/* ── BOTTOM NAV ──────────────────────────────── */
-.bot{
-  position:fixed;bottom:0;left:0;right:0;height:52px;
-  background:rgba(5,5,5,0.96);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border-top:1px solid rgba(255,255,255,0.06);
-  display:flex;align-items:center;justify-content:center;
-  gap:10px;z-index:200;padding:0 14px;
-}
-.nbtn{
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.1);
-  color:rgba(255,255,255,0.38);
-  width:34px;height:34px;border-radius:50%;
-  font-size:18px;cursor:pointer;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  transition:all .2s;-webkit-tap-highlight-color:transparent;
-  line-height:1;
-}
-.nbtn:active,.nbtn:hover{
-  border-color:var(--accent,#00ff88);
-  color:var(--accent,#00ff88);
-  background:rgba(0,255,136,.07);
+html,body{
+  width:100%;min-height:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Space Grotesk','Segoe UI',sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
 }
 
-.dots{
-  display:flex;gap:7px;align-items:center;flex:1;justify-content:center;
+/* ── BACKGROUND TEXTURE ── */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,255,136,0.07) 0%, transparent 60%),
+    radial-gradient(circle at 15% 85%, rgba(0,255,136,0.04) 0%, transparent 40%);
+  pointer-events:none;z-index:0;
 }
-.dot{
-  width:6px;height:6px;border-radius:50%;
-  background:rgba(255,255,255,0.14);cursor:pointer;
-  transition:all .35s cubic-bezier(.25,.46,.45,.94);
-  -webkit-tap-highlight-color:transparent;
-}
-.dot.active{width:22px;border-radius:3px}
 
-/* ── QR BUTTON ───────────────────────────────── */
-.qr-btn{
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.1);
-  color:rgba(255,255,255,0.38);
-  width:34px;height:34px;border-radius:50%;
-  cursor:pointer;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  transition:all .2s;-webkit-tap-highlight-color:transparent;
+/* ── LAYOUT ── */
+.page{
+  position:relative;z-index:1;
+  max-width:560px;margin:0 auto;
+  padding:56px 24px 80px;
+  display:flex;flex-direction:column;gap:48px;
 }
-.qr-btn:active,.qr-btn:hover{
-  border-color:#00ff88;color:#00ff88;background:rgba(0,255,136,.07)
-}
-.qr-btn svg{width:16px;height:16px;fill:currentColor}
 
-/* ── QR MODAL ────────────────────────────────── */
-.modal{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,0.88);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  z-index:500;
-  align-items:center;justify-content:center;flex-direction:column;gap:18px;
-}
-.modal.open{display:flex;animation:fadeIn .22s ease}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-
-.qr-card{
-  background:#0a0a0a;
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:18px;padding:28px 28px 22px;
-  text-align:center;
-}
-.qr-card img{
-  width:190px;height:190px;border-radius:10px;display:block;
-  background:#111;
-}
-.qr-url{
+/* ── BADGE ── */
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
   font-family:'DM Mono',monospace;font-size:10px;
-  letter-spacing:.5px;color:rgba(255,255,255,0.25);
-  margin-top:14px;word-break:break-all;max-width:190px;line-height:1.5;
+  letter-spacing:2px;color:rgba(0,255,136,0.55);
+  border:1px solid rgba(0,255,136,0.2);
+  border-radius:100px;padding:5px 14px;
+  align-self:flex-start;
 }
-.qr-pitch-url{
+.badge-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 6px rgba(0,255,136,0.6);
+}
+
+/* ── HERO ── */
+.hero{display:flex;flex-direction:column;gap:16px}
+
+.name{
+  font-size:clamp(32px,8vw,48px);
+  font-weight:700;line-height:1.1;
+  letter-spacing:-1.5px;
+}
+
+.tagline{
+  font-size:15px;color:var(--dim);
+  font-weight:400;max-width:400px;
+  line-height:1.7;
+}
+
+.tagline strong{color:rgba(255,255,255,0.7);font-weight:500}
+
+/* ── DIVIDER ── */
+.divider{
+  height:1px;background:var(--border);
+  position:relative;
+}
+.divider::after{
+  content:'';position:absolute;
+  left:0;top:0;width:80px;height:1px;
+  background:linear-gradient(90deg,var(--accent),transparent);
+}
+
+/* ── PROPOSALS SECTION ── */
+.section-label{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:2px;color:var(--dim);
+  text-transform:uppercase;margin-bottom:16px;
+}
+
+.proposals{display:flex;flex-direction:column;gap:8px}
+
+.prop{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 16px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  transition:border-color .2s,background .2s;
+  cursor:default;
+}
+.prop:hover{
+  border-color:rgba(255,255,255,0.14);
+  background:rgba(255,255,255,0.05);
+}
+
+.prop-num{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:1px;color:var(--dim);
+  flex-shrink:0;width:20px;
+}
+
+.prop-icon{font-size:16px;flex-shrink:0}
+
+.prop-text{display:flex;flex-direction:column;gap:1px}
+.prop-name{font-size:14px;font-weight:500;color:var(--text)}
+.prop-sub{font-size:11px;color:var(--dim)}
+
+.prop-accent{
+  width:3px;height:100%;border-radius:2px;
+  flex-shrink:0;margin-left:auto;align-self:stretch;
+  min-height:20px;
+}
+
+/* ── CTA ── */
+.cta-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+
+.cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;max-width:320px;
+  padding:16px 32px;
+  background:var(--accent);
+  color:#050a06;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:15px;font-weight:700;
+  letter-spacing:.3px;
+  border:none;border-radius:12px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:transform .15s,box-shadow .15s,opacity .15s;
+}
+.cta:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(0,255,136,0.25);
+}
+.cta:active{transform:translateY(0);opacity:.9}
+
+.cta-arrow{font-size:18px;transition:transform .2s}
+.cta:hover .cta-arrow{transform:translateX(4px)}
+
+.cta-hint{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:1.5px;color:rgba(255,255,255,0.2);
+}
+
+/* ── FOOTER ── */
+.footer{
+  text-align:center;
   font-family:'DM Mono',monospace;font-size:9px;
-  letter-spacing:.5px;color:rgba(0,255,136,0.35);
-  margin-top:6px;word-break:break-all;max-width:190px;line-height:1.5;
+  letter-spacing:1.5px;color:rgba(255,255,255,0.12);
 }
-.close-btn{
-  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1.5px;
-  color:rgba(255,255,255,0.28);cursor:pointer;
-  padding:10px 24px;border:1px solid rgba(255,255,255,0.1);
-  border-radius:100px;transition:all .2s;
-  -webkit-tap-highlight-color:transparent;
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
 }
-.close-btn:active,.close-btn:hover{color:#00ff88;border-color:#00ff88}
+.badge{animation:fadeUp .5s ease both}
+.hero{animation:fadeUp .5s .08s ease both}
+.divider{animation:fadeUp .4s .15s ease both}
+.proposals-wrap{animation:fadeUp .5s .2s ease both}
+.cta-wrap{animation:fadeUp .5s .32s ease both}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important}
+}
 </style>
 </head>
 <body>
+<div class="page">
 
-<!-- TOP BAR -->
-<div class="top">
-  <span class="top-name" id="pname">Calentadores Solares</span>
-  <span class="top-num"  id="pnum">01 / 06</span>
-</div>
-
-<!-- FRAME AREA -->
-<div class="frame-wrap" id="wrap">
-  <div id="loader">CARGANDO</div>
-  <iframe id="main-frame" src="pitch1_solar_heater.html"
-          title="Propuesta" scrolling="yes" onload="onLoaded()"></iframe>
-
-  <!-- Edge swipe zones with visible arrows -->
-  <div class="edge edge-l" id="el"><span class="edge-icon">‹</span></div>
-  <div class="edge edge-r" id="er"><span class="edge-icon">›</span></div>
-</div>
-
-<!-- BOTTOM NAV -->
-<div class="bot" id="bot">
-  <button class="nbtn" id="bprev" aria-label="Anterior">‹</button>
-  <div class="dots" id="dots"></div>
-  <button class="nbtn" id="bnext" aria-label="Siguiente">›</button>
-
-  <!-- QR button -->
-  <button class="qr-btn" id="qr-btn" aria-label="Ver QR">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M3 3h7v7H3V3zm1 1v5h5V4H4zm1 1h3v3H5V5zM3 14h7v7H3v-7zm1 1v5h5v-5H4zm1 1h3v3H5v-3zM14 3h7v7h-7V3zm1 1v5h5V4h-5zm1 1h3v3h-3V5zm-1 9h2v2h-2v-2zm3 0h2v2h-2v-2zm-3 3h2v2h-2v-2zm3 0h2v2h-2v-2zm3-3h2v2h-2v-2zm0 3h2v2h-2v-2z"/>
-    </svg>
-  </button>
-</div>
-
-<!-- QR MODAL -->
-<div class="modal" id="modal">
-  <div class="qr-card">
-    <img id="qr-img" src="" alt="QR Code">
-    <div class="qr-url" id="qr-url"></div>
-    <div class="qr-pitch-url" id="qr-pitch-url"></div>
+  <!-- BADGE -->
+  <div class="badge">
+    <span class="badge-dot"></span>
+    EMPRENDE VERDE · CAINCO + INFOCAL
   </div>
-  <span class="close-btn" id="close-btn">CERRAR</span>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1 class="name">Richard<br>Cronm</h1>
+    <p class="tagline">
+      Estudiante de <strong>Electromecánica</strong> en Infocal Santa Cruz.<br>
+      Estas son mis 6 propuestas de negocio verde para el programa de incubación —
+      soluciones de <strong>economía circular</strong> adaptadas al mercado boliviano.
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PROPOSALS LIST -->
+  <div class="proposals-wrap">
+    <div class="section-label">6 propuestas</div>
+    <div class="proposals">
+      <div class="prop">
+        <span class="prop-num">01</span>
+        <span class="prop-icon">☀️</span>
+        <div class="prop-text">
+          <span class="prop-name">Calentadores Solares</span>
+          <span class="prop-sub">Energía solar para comercios y comunidades rurales</span>
+        </div>
+        <div class="prop-accent" style="background:#00ff88"></div>
+      </div>
+      <div class="prop">
+        <span class="prop-num">02</span>
+        <span class="prop-icon">💧</span>
+        <div class="prop-text">
+          <span class="prop-name">Agua del Aire</span>
+          <span class="prop-sub">Agua potable desde condensación de aires acondicionados</span>
+        </div>
+        <div class="prop-accent" style="background:#00d4aa"></div>
+      </div>
+      <div class="prop">
+        <span class="prop-num">03</span>
+        <span class="prop-icon">🪱</span>
+        <div class="prop-text">
+          <span class="prop-name">Vermicompostaje</span>
+          <span class="prop-sub">Humus orgánico y lixiviado para el agro boliviano</span>
+        </div>
+        <div class="prop-accent" style="background:#50dc3c"></div>
+      </div>
+      <div class="prop">
+        <span class="prop-num">04</span>
+        <span class="prop-icon">🌞</span>
+        <div class="prop-text">
+          <span class="prop-name">Secadores Solares</span>
+          <span class="prop-sub">Deshidratación de frutas y verduras sin electricidad</span>
+        </div>
+        <div class="prop-accent" style="background:#c8e600"></div>
+      </div>
+      <div class="prop">
+        <span class="prop-num">05</span>
+        <span class="prop-icon">🐟</span>
+        <div class="prop-text">
+          <span class="prop-name">Acuaponía</span>
+          <span class="prop-sub">Tilapia + vegetales frescos en sistema cerrado</span>
+        </div>
+        <div class="prop-accent" style="background:#00c8dc"></div>
+      </div>
+      <div class="prop">
+        <span class="prop-num">06</span>
+        <span class="prop-icon">🔥</span>
+        <div class="prop-text">
+          <span class="prop-name">Biodigestores</span>
+          <span class="prop-sub">Biogás y biol desde residuos orgánicos y ganaderos</span>
+        </div>
+        <div class="prop-accent" style="background:#f59e0b"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <a class="cta" href="pitch1_solar_heater.html">
+      Ver propuestas
+      <span class="cta-arrow">→</span>
+    </a>
+    <span class="cta-hint">DESLIZA PARA NAVEGAR</span>
+  </div>
+
+  <div class="footer">EMPRENDE VERDE BOLIVIA · 2026</div>
+
 </div>
-
-<script>
-// ── CONFIG ───────────────────────────────────────────
-const BASE = 'https://frelley.github.io/emprende-verde/';
-
-const PITCHES = [
-  'pitch1_solar_heater.html',
-  'pitch2_ac_water.html',
-  'pitch3_vermicompost.html',
-  'pitch4_solar_dryer.html',
-  'pitch5_aquaponics.html',
-  'pitch6_biodigester.html',
-];
-const NAMES  = [
-  'Calentadores Solares',
-  'Agua del Aire',
-  'Vermicompostaje',
-  'Secadores Solares',
-  'Acuaponía',
-  'Biodigestores',
-];
-const COLORS = ['#00ff88','#00d4aa','#50dc3c','#c8e600','#00c8dc','#f59e0b'];
-const N = PITCHES.length;
-
-// ── STATE ────────────────────────────────────────────
-let cur = 0;
-let busy = false;
-
-// ── ELEMENTS ─────────────────────────────────────────
-const frame   = document.getElementById('main-frame');
-const loader  = document.getElementById('loader');
-const pname   = document.getElementById('pname');
-const pnum    = document.getElementById('pnum');
-const dotsEl  = document.getElementById('dots');
-const modal   = document.getElementById('modal');
-const qrImg   = document.getElementById('qr-img');
-const qrUrl   = document.getElementById('qr-url');
-const qrPitch = document.getElementById('qr-pitch-url');
-
-// ── BUILD DOTS ───────────────────────────────────────
-for (let i = 0; i < N; i++) {
-  const d = document.createElement('span');
-  d.className = 'dot';
-  d.dataset.i = i;
-  d.addEventListener('click', () => go(+d.dataset.i));
-  dotsEl.appendChild(d);
-}
-refresh();
-
-// ── NAVIGATION ───────────────────────────────────────
-function go(i) {
-  if (busy) return;
-  if (i < 0) i = N - 1;   // loop back
-  if (i >= N) i = 0;       // loop forward
-  if (i === cur) return;
-  busy = true;
-  cur = i;
-
-  frame.classList.add('fade');
-  loader.classList.add('active');
-
-  setTimeout(() => {
-    frame.src = PITCHES[cur];
-    refresh();
-  }, 180);
-}
-
-function onLoaded() {
-  frame.classList.remove('fade');
-  loader.classList.remove('active');
-  busy = false;
-}
-
-function refresh() {
-  pname.textContent = NAMES[cur];
-  pnum.textContent  = String(cur + 1).padStart(2,'0') + ' / 0' + N;
-  dotsEl.querySelectorAll('.dot').forEach((d, j) => {
-    const on = j === cur;
-    d.classList.toggle('active', on);
-    d.style.background = on ? COLORS[cur] : '';
-  });
-}
-
-// ── BUTTON LISTENERS ─────────────────────────────────
-document.getElementById('bprev').addEventListener('click', () => go(cur - 1));
-document.getElementById('bnext').addEventListener('click', () => go(cur + 1));
-document.getElementById('el').addEventListener('click', () => go(cur - 1));
-document.getElementById('er').addEventListener('click', () => go(cur + 1));
-
-// ── KEYBOARD ─────────────────────────────────────────
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowLeft')  go(cur - 1);
-  if (e.key === 'ArrowRight') go(cur + 1);
-});
-
-// ── TOUCH SWIPE (edges + nav bar) ───────────────────
-let sx = 0, sy = 0;
-function ts(e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }
-function te(e) {
-  const dx = e.changedTouches[0].clientX - sx;
-  const dy = e.changedTouches[0].clientY - sy;
-  if (Math.abs(dx) > Math.abs(dy) * 1.2 && Math.abs(dx) > 38) {
-    go(cur + (dx < 0 ? 1 : -1));
-  }
-}
-['el','er','bot'].forEach(id => {
-  const el = document.getElementById(id);
-  el.addEventListener('touchstart', ts, { passive: true });
-  el.addEventListener('touchend',   te, { passive: true });
-});
-
-// ── QR CODE ───────────────────────────────────────────
-document.getElementById('qr-btn').addEventListener('click', openQR);
-document.getElementById('close-btn').addEventListener('click', closeQR);
-modal.addEventListener('click', e => { if (e.target === modal) closeQR(); });
-
-function openQR() {
-  const mainUrl  = BASE;
-  const pitchUrl = BASE + PITCHES[cur];
-  const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(mainUrl)}&bgcolor=0a0a0a&color=00ff88&margin=8&format=png`;
-  qrImg.src      = qrSrc;
-  qrUrl.textContent   = mainUrl;
-  qrPitch.textContent = '→ ahora: ' + NAMES[cur];
-  modal.classList.add('open');
-}
-function closeQR() { modal.classList.remove('open'); }
-</script>
 </body>
 </html>

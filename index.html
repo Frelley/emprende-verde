@@ -7,259 +7,330 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&family=DM+Mono&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;height:100%;overflow:hidden;background:#050505;font-family:'Space Grotesk',sans-serif}
+html,body{width:100%;height:100%;overflow:hidden;background:#050505;
+  font-family:'Space Grotesk','Segoe UI',sans-serif}
 
-/* TOP BAR */
-.top-bar{
+/* ── TOP BAR ─────────────────────────────────── */
+.top{
   position:fixed;top:0;left:0;right:0;height:48px;
-  background:rgba(5,5,5,0.94);
+  background:rgba(5,5,5,0.96);
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   border-bottom:1px solid rgba(255,255,255,0.06);
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 18px;z-index:300;
+  padding:0 18px;z-index:200;
 }
-.top-name{font-size:13px;font-weight:600;color:rgba(255,255,255,0.88);letter-spacing:-0.2px;transition:opacity .25s}
-.top-num{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.28);letter-spacing:1.5px}
+.top-name{font-size:13px;font-weight:600;color:rgba(255,255,255,0.88);
+  letter-spacing:-.2px;transition:opacity .2s}
+.top-num{font-family:'DM Mono',monospace;font-size:11px;
+  color:rgba(255,255,255,0.28);letter-spacing:1.5px}
 
-/* SWIPER */
-.swiper{position:fixed;top:48px;bottom:52px;left:0;right:0;overflow:hidden}
-
-.track{
-  display:flex;
-  width:600vw;
-  height:100%;
-  will-change:transform;
-  transition:transform .38s cubic-bezier(.25,.46,.45,.94);
+/* ── FRAME AREA ──────────────────────────────── */
+.frame-wrap{
+  position:fixed;top:48px;bottom:52px;left:0;right:0;
+  overflow:hidden;background:#050505;
 }
 
-.slide{width:100vw;height:100%;flex-shrink:0;position:relative}
-.slide iframe{width:100%;height:100%;border:none;display:block}
+#main-frame{
+  width:100%;height:100%;border:none;display:block;
+  transition:opacity .22s ease;
+}
+#main-frame.fade{opacity:0}
 
-/* Loader inside slide */
-.loader{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+/* ── LOADER ──────────────────────────────────── */
+#loader{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
   background:#050505;
-  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2.5px;
-  color:rgba(0,255,136,0.3);pointer-events:none;
-  transition:opacity .5s;z-index:2;
+  font-family:'DM Mono',monospace;font-size:11px;
+  letter-spacing:2.5px;color:rgba(0,255,136,0.35);
+  transition:opacity .4s;pointer-events:none;z-index:10;
 }
-.loader.gone{opacity:0;pointer-events:none}
+#loader.gone{opacity:0}
 
-/* BOTTOM NAV */
-.bot-nav{
+/* ── EDGE SWIPE ZONES ────────────────────────── */
+.edge{
+  position:absolute;top:0;bottom:0;width:22%;z-index:30;
+  display:flex;align-items:center;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:background .2s;
+}
+.edge-l{
+  left:0;justify-content:flex-start;padding-left:10px;
+  background:linear-gradient(90deg,rgba(5,5,5,.45) 0%,transparent 100%);
+}
+.edge-r{
+  right:0;justify-content:flex-end;padding-right:10px;
+  background:linear-gradient(-90deg,rgba(5,5,5,.45) 0%,transparent 100%);
+}
+.edge-l:active{background:linear-gradient(90deg,rgba(0,255,136,.08) 0%,transparent 100%)}
+.edge-r:active{background:linear-gradient(-90deg,rgba(0,255,136,.08) 0%,transparent 100%)}
+.edge-icon{
+  font-size:30px;color:rgba(255,255,255,0.18);
+  font-family:'DM Mono',monospace;
+  transition:color .2s;user-select:none;pointer-events:none;
+}
+.edge:active .edge-icon{color:rgba(255,255,255,0.55)}
+
+/* ── BOTTOM NAV ──────────────────────────────── */
+.bot{
   position:fixed;bottom:0;left:0;right:0;height:52px;
-  background:rgba(5,5,5,0.94);
+  background:rgba(5,5,5,0.96);
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   border-top:1px solid rgba(255,255,255,0.06);
   display:flex;align-items:center;justify-content:center;
-  gap:12px;z-index:300;padding:0 16px;
+  gap:10px;z-index:200;padding:0 14px;
 }
-
-.nav-btn{
+.nbtn{
   background:rgba(255,255,255,0.04);
   border:1px solid rgba(255,255,255,0.1);
-  color:rgba(255,255,255,0.35);
+  color:rgba(255,255,255,0.38);
   width:34px;height:34px;border-radius:50%;
   font-size:18px;cursor:pointer;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  transition:all .2s;user-select:none;-webkit-tap-highlight-color:transparent;
+  transition:all .2s;-webkit-tap-highlight-color:transparent;
+  line-height:1;
 }
-.nav-btn:hover,.nav-btn:active{border-color:var(--accent,#00ff88);color:var(--accent,#00ff88);background:rgba(0,255,136,.08)}
+.nbtn:active,.nbtn:hover{
+  border-color:var(--accent,#00ff88);
+  color:var(--accent,#00ff88);
+  background:rgba(0,255,136,.07);
+}
 
-.dots{display:flex;gap:7px;align-items:center;flex:1;justify-content:center}
+.dots{
+  display:flex;gap:7px;align-items:center;flex:1;justify-content:center;
+}
 .dot{
   width:6px;height:6px;border-radius:50%;
-  background:rgba(255,255,255,0.14);
-  cursor:pointer;transition:all .35s cubic-bezier(.25,.46,.45,.94);
+  background:rgba(255,255,255,0.14);cursor:pointer;
+  transition:all .35s cubic-bezier(.25,.46,.45,.94);
   -webkit-tap-highlight-color:transparent;
 }
-.dot.active{width:22px;border-radius:3px;background:#00ff88}
+.dot.active{width:22px;border-radius:3px}
 
-/* EDGE swipe zones */
-.edge{
-  position:fixed;top:48px;bottom:52px;width:16%;z-index:200;
-  /* completely transparent — only catches touch events */
+/* ── QR BUTTON ───────────────────────────────── */
+.qr-btn{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  color:rgba(255,255,255,0.38);
+  width:34px;height:34px;border-radius:50%;
+  cursor:pointer;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;-webkit-tap-highlight-color:transparent;
 }
-.edge-l{left:0}
-.edge-r{right:0}
+.qr-btn:active,.qr-btn:hover{
+  border-color:#00ff88;color:#00ff88;background:rgba(0,255,136,.07)
+}
+.qr-btn svg{width:16px;height:16px;fill:currentColor}
 
-/* Swipe hint arrows that fade out */
-.hint{
-  position:fixed;top:50%;transform:translateY(-50%);
-  font-size:28px;color:rgba(255,255,255,0.12);
-  pointer-events:none;z-index:150;transition:opacity 1s;
-  font-family:monospace;
+/* ── QR MODAL ────────────────────────────────── */
+.modal{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.88);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  z-index:500;
+  align-items:center;justify-content:center;flex-direction:column;gap:18px;
 }
-.hint-l{left:6px}
-.hint-r{right:6px}
-.hint.hidden{opacity:0}
+.modal.open{display:flex;animation:fadeIn .22s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.qr-card{
+  background:#0a0a0a;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:18px;padding:28px 28px 22px;
+  text-align:center;
+}
+.qr-card img{
+  width:190px;height:190px;border-radius:10px;display:block;
+  background:#111;
+}
+.qr-url{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:.5px;color:rgba(255,255,255,0.25);
+  margin-top:14px;word-break:break-all;max-width:190px;line-height:1.5;
+}
+.qr-pitch-url{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:.5px;color:rgba(0,255,136,0.35);
+  margin-top:6px;word-break:break-all;max-width:190px;line-height:1.5;
+}
+.close-btn{
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1.5px;
+  color:rgba(255,255,255,0.28);cursor:pointer;
+  padding:10px 24px;border:1px solid rgba(255,255,255,0.1);
+  border-radius:100px;transition:all .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.close-btn:active,.close-btn:hover{color:#00ff88;border-color:#00ff88}
 </style>
 </head>
 <body>
 
 <!-- TOP BAR -->
-<div class="top-bar">
+<div class="top">
   <span class="top-name" id="pname">Calentadores Solares</span>
-  <span class="top-num" id="pnum">01 / 06</span>
+  <span class="top-num"  id="pnum">01 / 06</span>
 </div>
 
-<!-- SWIPER -->
-<div class="swiper">
-  <div class="track" id="track">
+<!-- FRAME AREA -->
+<div class="frame-wrap" id="wrap">
+  <div id="loader">CARGANDO</div>
+  <iframe id="main-frame" src="pitch1_solar_heater.html"
+          title="Propuesta" onload="onLoaded()"></iframe>
 
-    <div class="slide">
-      <div class="loader" id="l0">CARGANDO</div>
-      <iframe src="pitch1_solar_heater.html" title="Calentadores Solares" onload="done(0)"></iframe>
-    </div>
-
-    <div class="slide">
-      <div class="loader" id="l1">CARGANDO</div>
-      <iframe src="pitch2_ac_water.html" title="Agua del Aire" loading="lazy" onload="done(1)"></iframe>
-    </div>
-
-    <div class="slide">
-      <div class="loader" id="l2">CARGANDO</div>
-      <iframe src="pitch3_vermicompost.html" title="Vermicompostaje" loading="lazy" onload="done(2)"></iframe>
-    </div>
-
-    <div class="slide">
-      <div class="loader" id="l3">CARGANDO</div>
-      <iframe src="pitch4_solar_dryer.html" title="Secadores Solares" loading="lazy" onload="done(3)"></iframe>
-    </div>
-
-    <div class="slide">
-      <div class="loader" id="l4">CARGANDO</div>
-      <iframe src="pitch5_aquaponics.html" title="Acuaponía" loading="lazy" onload="done(4)"></iframe>
-    </div>
-
-    <div class="slide">
-      <div class="loader" id="l5">CARGANDO</div>
-      <iframe src="pitch6_biodigester.html" title="Biodigestores" loading="lazy" onload="done(5)"></iframe>
-    </div>
-
-  </div>
-
-  <!-- Transparent edge swipe zones -->
-  <div class="edge edge-l" id="el"></div>
-  <div class="edge edge-r" id="er"></div>
-
-  <!-- Subtle swipe hints (fade after first swipe) -->
-  <div class="hint hint-l" id="hl">‹</div>
-  <div class="hint hint-r" id="hr">›</div>
+  <!-- Edge swipe zones with visible arrows -->
+  <div class="edge edge-l" id="el"><span class="edge-icon">‹</span></div>
+  <div class="edge edge-r" id="er"><span class="edge-icon">›</span></div>
 </div>
 
 <!-- BOTTOM NAV -->
-<div class="bot-nav" id="bot">
-  <button class="nav-btn" id="bprev" aria-label="Anterior">‹</button>
-  <div class="dots" id="dots-wrap"></div>
-  <button class="nav-btn" id="bnext" aria-label="Siguiente">›</button>
+<div class="bot" id="bot">
+  <button class="nbtn" id="bprev" aria-label="Anterior">‹</button>
+  <div class="dots" id="dots"></div>
+  <button class="nbtn" id="bnext" aria-label="Siguiente">›</button>
+
+  <!-- QR button -->
+  <button class="qr-btn" id="qr-btn" aria-label="Ver QR">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 3h7v7H3V3zm1 1v5h5V4H4zm1 1h3v3H5V5zM3 14h7v7H3v-7zm1 1v5h5v-5H4zm1 1h3v3H5v-3zM14 3h7v7h-7V3zm1 1v5h5V4h-5zm1 1h3v3h-3V5zm-1 9h2v2h-2v-2zm3 0h2v2h-2v-2zm-3 3h2v2h-2v-2zm3 0h2v2h-2v-2zm3-3h2v2h-2v-2zm0 3h2v2h-2v-2z"/>
+    </svg>
+  </button>
+</div>
+
+<!-- QR MODAL -->
+<div class="modal" id="modal">
+  <div class="qr-card">
+    <img id="qr-img" src="" alt="QR Code">
+    <div class="qr-url" id="qr-url"></div>
+    <div class="qr-pitch-url" id="qr-pitch-url"></div>
+  </div>
+  <span class="close-btn" id="close-btn">CERRAR</span>
 </div>
 
 <script>
-const N = 6;
-const NAMES  = ['Calentadores Solares','Agua del Aire','Vermicompostaje','Secadores Solares','Acuaponía','Biodigestores'];
-const NUMS   = ['01','02','03','04','05','06'];
+// ── CONFIG ───────────────────────────────────────────
+const BASE = 'https://frelley.github.io/emprende-verde/';
+
+const PITCHES = [
+  'pitch1_solar_heater.html',
+  'pitch2_ac_water.html',
+  'pitch3_vermicompost.html',
+  'pitch4_solar_dryer.html',
+  'pitch5_aquaponics.html',
+  'pitch6_biodigester.html',
+];
+const NAMES  = [
+  'Calentadores Solares',
+  'Agua del Aire',
+  'Vermicompostaje',
+  'Secadores Solares',
+  'Acuaponía',
+  'Biodigestores',
+];
 const COLORS = ['#00ff88','#00d4aa','#50dc3c','#c8e600','#00c8dc','#f59e0b'];
+const N = PITCHES.length;
 
+// ── STATE ────────────────────────────────────────────
 let cur = 0;
-let hinted = false;
+let busy = false;
 
-const track  = document.getElementById('track');
-const dotsW  = document.getElementById('dots-wrap');
-const pname  = document.getElementById('pname');
-const pnum   = document.getElementById('pnum');
-const hintL  = document.getElementById('hl');
-const hintR  = document.getElementById('hr');
+// ── ELEMENTS ─────────────────────────────────────────
+const frame   = document.getElementById('main-frame');
+const loader  = document.getElementById('loader');
+const pname   = document.getElementById('pname');
+const pnum    = document.getElementById('pnum');
+const dotsEl  = document.getElementById('dots');
+const modal   = document.getElementById('modal');
+const qrImg   = document.getElementById('qr-img');
+const qrUrl   = document.getElementById('qr-url');
+const qrPitch = document.getElementById('qr-pitch-url');
 
-// Build dots
+// ── BUILD DOTS ───────────────────────────────────────
 for (let i = 0; i < N; i++) {
   const d = document.createElement('span');
-  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.className = 'dot';
   d.dataset.i = i;
-  d.onclick = () => go(i);
-  dotsW.appendChild(d);
+  d.addEventListener('click', () => go(+d.dataset.i));
+  dotsEl.appendChild(d);
 }
+refresh();
 
+// ── NAVIGATION ───────────────────────────────────────
 function go(i) {
-  // Loop
-  if (i < 0) i = N - 1;
-  if (i >= N) i = 0;
+  if (busy) return;
+  if (i < 0) i = N - 1;   // loop back
+  if (i >= N) i = 0;       // loop forward
+  if (i === cur) return;
+  busy = true;
   cur = i;
 
-  track.style.transform = `translateX(-${cur * 100}vw)`;
+  frame.classList.add('fade');
+  loader.classList.remove('gone');
 
-  // Dots
-  const allDots = dotsW.querySelectorAll('.dot');
-  allDots.forEach((d, j) => {
-    d.classList.toggle('active', j === cur);
-    d.style.background = j === cur ? COLORS[cur] : '';
-  });
+  setTimeout(() => {
+    frame.src = PITCHES[cur];
+    refresh();
+  }, 180);
+}
 
-  // Labels
+function onLoaded() {
+  frame.classList.remove('fade');
+  loader.classList.add('gone');
+  busy = false;
+}
+
+function refresh() {
   pname.textContent = NAMES[cur];
-  pnum.textContent  = NUMS[cur] + ' / 06';
-
-  // Hide hints after first swipe
-  if (!hinted) {
-    hinted = true;
-    hintL.classList.add('hidden');
-    hintR.classList.add('hidden');
-  }
+  pnum.textContent  = String(cur + 1).padStart(2,'0') + ' / 0' + N;
+  dotsEl.querySelectorAll('.dot').forEach((d, j) => {
+    const on = j === cur;
+    d.classList.toggle('active', on);
+    d.style.background = on ? COLORS[cur] : '';
+  });
 }
 
-function done(i) {
-  const el = document.getElementById('l' + i);
-  if (el) el.classList.add('gone');
-}
+// ── BUTTON LISTENERS ─────────────────────────────────
+document.getElementById('bprev').addEventListener('click', () => go(cur - 1));
+document.getElementById('bnext').addEventListener('click', () => go(cur + 1));
+document.getElementById('el').addEventListener('click', () => go(cur - 1));
+document.getElementById('er').addEventListener('click', () => go(cur + 1));
 
-// Button nav
-document.getElementById('bprev').onclick = () => go(cur - 1);
-document.getElementById('bnext').onclick = () => go(cur + 1);
-
-// Dot nav already wired above
-
-// Keyboard
+// ── KEYBOARD ─────────────────────────────────────────
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft')  go(cur - 1);
   if (e.key === 'ArrowRight') go(cur + 1);
 });
 
-// Touch swipe detection
+// ── TOUCH SWIPE (edges + nav bar) ───────────────────
 let sx = 0, sy = 0;
-
-function onTS(e) {
-  sx = e.touches[0].clientX;
-  sy = e.touches[0].clientY;
-}
-
-function onTE(e) {
+function ts(e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }
+function te(e) {
   const dx = e.changedTouches[0].clientX - sx;
   const dy = e.changedTouches[0].clientY - sy;
-  // Only navigate if horizontal swipe dominates
-  if (Math.abs(dx) > Math.abs(dy) * 1.2 && Math.abs(dx) > 40) {
+  if (Math.abs(dx) > Math.abs(dy) * 1.2 && Math.abs(dx) > 38) {
     go(cur + (dx < 0 ? 1 : -1));
   }
 }
-
-// Listen on edges + nav bar + top bar (anything outside the iframe)
-[
-  document.getElementById('el'),
-  document.getElementById('er'),
-  document.getElementById('bot'),
-  document.querySelector('.top-bar')
-].forEach(el => {
-  el.addEventListener('touchstart', onTS, { passive: true });
-  el.addEventListener('touchend',   onTE, { passive: true });
+['el','er','bot'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('touchstart', ts, { passive: true });
+  el.addEventListener('touchend',   te, { passive: true });
 });
 
-// Hide hints after 4s if no swipe
-setTimeout(() => {
-  hintL.classList.add('hidden');
-  hintR.classList.add('hidden');
-}, 4000);
+// ── QR CODE ───────────────────────────────────────────
+document.getElementById('qr-btn').addEventListener('click', openQR);
+document.getElementById('close-btn').addEventListener('click', closeQR);
+modal.addEventListener('click', e => { if (e.target === modal) closeQR(); });
 
-// Init
-go(0);
+function openQR() {
+  const mainUrl  = BASE;
+  const pitchUrl = BASE + PITCHES[cur];
+  const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(mainUrl)}&bgcolor=0a0a0a&color=00ff88&margin=8&format=png`;
+  qrImg.src      = qrSrc;
+  qrUrl.textContent   = mainUrl;
+  qrPitch.textContent = '→ ahora: ' + NAMES[cur];
+  modal.classList.add('open');
+}
+function closeQR() { modal.classList.remove('open'); }
 </script>
 </body>
 </html>

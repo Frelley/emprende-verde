@@ -160,6 +160,25 @@ body::before{
   letter-spacing:1.5px;color:rgba(255,255,255,0.2);
 }
 
+/* ── QR SECTION ── */
+.qr-section{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  animation:fadeUp .5s .4s ease both;
+}
+.qr-label{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:2px;color:rgba(255,255,255,0.2);
+}
+.qr-img{
+  width:160px;height:160px;border-radius:12px;
+  border:1px solid rgba(0,255,136,0.15);
+  display:block;
+}
+.qr-url{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:.5px;color:rgba(0,255,136,0.4);
+}
+
 /* ── FOOTER ── */
 .footer{
   text-align:center;
@@ -272,6 +291,15 @@ body::before{
       <span class="cta-arrow">→</span>
     </a>
     <span class="cta-hint">DESLIZA PARA NAVEGAR</span>
+  </div>
+
+  <!-- QR -->
+  <div class="qr-section">
+    <div class="qr-label">COMPARTE ESTE LINK</div>
+    <img class="qr-img"
+         src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ffrelley.github.io%2Femprende-verde%2F&bgcolor=0a0f0b&color=00ff88&margin=12&format=png"
+         alt="QR frelley.github.io/emprende-verde">
+    <div class="qr-url">frelley.github.io/emprende-verde</div>
   </div>
 
   <div class="footer">EMPRENDE VERDE BOLIVIA · 2026</div>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biodigestores Rurales — Emprende Verde Bolivia</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#090600;--surface:#161000;--surface-2:#201800;
+  --border:rgba(245,158,11,0.15);--border-dim:rgba(245,158,11,0.07);
+  --text:#f5f0d8;--text-dim:#b08a30;--text-muted:#705818;
+  --green:#00ff88;--flame:#f59e0b;--ember:#dc6803;
+  --flame-dim:rgba(245,158,11,0.08);--green-dim:rgba(0,255,136,0.08);
+  --mono:'DM Mono','Courier New',monospace;--radius:12px;
+}
+body{font-family:'Space Grotesk','Segoe UI',sans-serif;background-color:var(--bg);
+  background-image:radial-gradient(circle at 1px 1px,rgba(245,158,11,0.06) 1px,transparent 0);
+  background-size:28px 28px;color:var(--text);min-height:100vh;line-height:1.6;}
+.container{max-width:860px;margin:0 auto;padding:0 24px}
+section{padding:48px 0}
+section+section{border-top:1px solid var(--border-dim)}
+.hero{padding:64px 24px 48px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(9,6,0,0.84) 0%,rgba(9,6,0,0.92) 100%),url('https://images.pexels.com/photos/20344373/pexels-photo-20344373.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750') center/cover no-repeat}
+.hero-tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--flame);text-transform:uppercase;border:1px solid var(--border);padding:4px 14px;border-radius:100px;margin-bottom:20px}
+.hero-icon{width:88px;height:88px;margin:0 auto 24px;display:block}
+.hero h1{font-size:clamp(24px,5vw,44px);font-weight:700;letter-spacing:-0.5px;margin-bottom:16px}
+.hero-tagline{font-size:16px;color:var(--text-dim);max-width:520px;margin:0 auto}
+.section-label{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--flame);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.section-label::before{content:'';display:block;width:18px;height:1px;background:var(--flame)}
+h2{font-size:clamp(18px,3vw,26px);font-weight:600;margin-bottom:20px}
+.card{background:var(--surface);border:1px solid var(--border-dim);border-radius:var(--radius);padding:24px}
+.card--accent{border-left:3px solid var(--flame)}
+.card--green{border-left:3px solid var(--green)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.kpi{text-align:center;padding:20px}
+.kpi-val{font-family:var(--mono);font-size:28px;font-weight:700;display:block;margin-bottom:4px}
+.kpi-lbl{font-size:12px;color:var(--text-muted)}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:20px;align-items:flex-start;padding:18px 0;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;left:18px;top:50px;width:2px;height:calc(100% - 30px);background:linear-gradient(to bottom,var(--border),transparent)}
+.step-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--flame);background:var(--flame-dim);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;color:var(--flame)}
+.step h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.step p{font-size:14px;color:var(--text-dim)}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);padding:10px 14px;border-bottom:1px solid var(--border-dim)}
+.tbl td{padding:11px 14px;border-bottom:1px solid var(--border-dim);color:var(--text-dim)}
+.tbl td:last-child{text-align:right;font-family:var(--mono);color:var(--text)}
+.tbl tr:last-child td{border-bottom:none;color:var(--flame);font-weight:600;font-size:15px}
+.tbl tr:hover td{background:rgba(245,158,11,0.02)}
+/* Output split */
+.output-split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.output-box{background:var(--surface-2);border:1px solid var(--border-dim);border-radius:10px;padding:20px;text-align:center}
+.output-box--gas{border-top:2px solid var(--flame)}
+.output-box--bio{border-top:2px solid var(--green)}
+.output-title{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.output-val{font-family:var(--mono);font-size:26px;font-weight:700;display:block;margin-bottom:4px}
+.output-desc{font-size:12px;color:var(--text-dim);line-height:1.5}
+/* Warning card */
+.warning{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.25);border-radius:var(--radius);padding:20px;margin-bottom:14px}
+.warning-label{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--flame);margin-bottom:10px}
+.bars{display:flex;align-items:flex-end;gap:10px;height:120px;padding:0 4px;margin-top:16px;border-bottom:1px solid var(--border-dim)}
+.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.bar{width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--flame),#92400e)}
+.bar-val{font-family:var(--mono);font-size:10px;color:var(--flame);white-space:nowrap}
+.bar-lbl{font-family:var(--mono);font-size:10px;color:var(--text-muted);text-align:center}
+.roi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:16px}
+.roi-card{background:var(--surface-2);border:1px solid var(--border-dim);border-radius:10px;padding:14px;text-align:center}
+.roi-val{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--flame);display:block;margin-bottom:3px}
+.roi-lbl{font-size:11px;color:var(--text-muted)}
+.env-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.env-card{background:var(--surface);border:1px solid var(--border-dim);border-top:2px solid var(--green);border-radius:var(--radius);padding:22px;text-align:center}
+.env-num{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--green);display:block;margin-bottom:6px}
+.env-desc{font-size:13px;color:var(--text-dim);line-height:1.4}
+footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border-dim);font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:1.5px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:fadeUp .5s ease both}.card,.step,.env-card{animation:fadeUp .4s ease both}
+@media(max-width:600px){section{padding:32px 0}.hero{padding:40px 16px 28px}.output-split{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <svg class="hero-icon" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Digester tank dome -->
+    <ellipse cx="40" cy="52" rx="26" ry="8" fill="rgba(245,158,11,0.06)" stroke="#f59e0b" stroke-width="1.5"/>
+    <path d="M14 52 L14 66 Q14 74 40 74 Q66 74 66 66 L66 52" stroke="#f59e0b" stroke-width="1.5" fill="rgba(245,158,11,0.04)"/>
+    <ellipse cx="40" cy="66" rx="26" ry="8" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3" fill="none"/>
+    <!-- Pipe out top -->
+    <line x1="40" y1="44" x2="40" y2="32" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+    <line x1="40" y1="32" x2="58" y2="32" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+    <!-- Flame at pipe end -->
+    <path d="M58 32 C58 32 54 26 57 22 C59 20 60 22 60 22 C60 22 62 18 64 20 C66 22 64 26 64 28 C66 26 67 22 65 20 C68 20 70 24 68 28 C66 32 62 34 58 32Z" fill="rgba(245,158,11,0.2)" stroke="#f59e0b" stroke-width="1.5" stroke-linejoin="round"/>
+    <!-- Biol output pipe -->
+    <line x1="14" y1="62" x2="6" y2="62" stroke="#00ff88" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M6 62 L6 74" stroke="#00ff88" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="3,2"/>
+    <!-- Waste input -->
+    <line x1="66" y1="58" x2="76" y2="58" stroke="#b08a30" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M76 50 L76 58" stroke="#b08a30" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2,2"/>
+    <!-- Labels suggestion: small circles -->
+    <circle cx="40" cy="44" r="3" fill="rgba(245,158,11,0.3)" stroke="#f59e0b" stroke-width="1"/>
+  </svg>
+  <div class="hero-tag">Propuesta 06 · Energía Rural</div>
+  <h1>Biodigestores para el Campo</h1>
+  <p class="hero-tagline">Los desechos del ganado ya producen gas y fertilizante. Solo falta captarlos.</p>
+</div>
+
+<main class="container">
+  <section>
+    <div class="section-label">El Problema</div>
+    <div class="card card--accent">
+      <p style="font-size:16px;line-height:1.75;color:var(--text-dim)">Las familias rurales pagan <strong style="color:var(--text)">50–80 Bs por garrafa de gas</strong> — el doble de la ciudad — porque el transporte encarece todo. Al mismo tiempo, toneladas de estiércol de ganado se acumulan sin uso, contaminando suelos y agua. El fertilizante químico les cuesta 25–35 Bs/kg. Los tres problemas tienen una sola solución.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">La Solución</div>
+    <h2>Un tanque sellado convierte basura en dos recursos</h2>
+    <p style="color:var(--text-dim);margin-bottom:16px">Estiércol + agua → tanque sellado sin oxígeno → bacterias anaeróbicas trabajan solas → dos salidas de valor simultáneas.</p>
+    <div class="output-split">
+      <div class="output-box output-box--gas">
+        <div class="output-title" style="color:var(--flame)">Salida 1 — Biogás</div>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin:0 auto 10px;display:block">
+          <path d="M20 38 C20 38 10 28 12 20 C13 16 16 14 18 16 C18 16 18 10 22 8 C26 6 28 12 26 16 C28 14 32 16 30 22 C28 28 20 38 20 38Z" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <span class="output-val" style="color:var(--flame)">2–4 hrs</span>
+        <div class="output-desc">gas de cocina por día con 3 cabezas de ganado. Reemplaza garrafa directamente.</div>
+      </div>
+      <div class="output-box output-box--bio">
+        <div class="output-title" style="color:var(--green)">Salida 2 — Biol</div>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin:0 auto 10px;display:block">
+          <path d="M20 6 C20 6 10 18 10 24 C10 30 14.5 34 20 34 C25.5 34 30 30 30 24 C30 18 20 6 20 6Z" fill="rgba(0,255,136,0.1)" stroke="#00ff88" stroke-width="1.5"/>
+          <path d="M16 24 C16 21.8 17.8 20 20 20" stroke="#00ff88" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="output-val" style="color:var(--green)">200–400 L</span>
+        <div class="output-desc">fertilizante líquido por mes. Reemplaza urea y NPK importado. No quema raíces.</div>
+      </div>
+    </div>
+    <div class="card-grid" style="margin-top:14px">
+      <div class="card"><div style="font-family:var(--mono);font-size:10px;color:var(--flame);letter-spacing:1.5px;margin-bottom:8px">MATERIA PRIMA</div><p style="font-size:14px;color:var(--text-dim)">Estiércol de vaca, cerdo o pollo — ya existe, ya es un problema</p></div>
+      <div class="card"><div style="font-family:var(--mono);font-size:10px;color:var(--flame);letter-spacing:1.5px;margin-bottom:8px">ENERGÍA REQUERIDA</div><p style="font-size:14px;color:var(--text-dim)">Cero. Las bacterias trabajan solas. Sin electricidad ni bomba.</p></div>
+      <div class="card"><div style="font-family:var(--mono);font-size:10px;color:var(--flame);letter-spacing:1.5px;margin-bottom:8px">ANIMALES COMPATIBLES</div><p style="font-size:14px;color:var(--text-dim)">Ganado bovino · Cerdos · Gallinas · Cuyes · Mezcla orgánica</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Flujo de Trabajo</div>
+    <h2>Instalación y operación</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div><h3>Excavar e instalar tanque de digestión</h3><p>Geomembrana plástica o ladrillo sellado. Volumen 6–10 m³ para familia con 3–5 animales. Cúpula flotante o fija que acumula gas.</p></div></div>
+      <div class="step"><div class="step-num">02</div><div><h3>Conectar corral al tanque</h3><p>Tubería de entrada de estiércol + agua (mezcla 1:1). El material fluye por gravedad hacia el digestor.</p></div></div>
+      <div class="step"><div class="step-num">03</div><div><h3>Esperar período de arranque — 15–21 días</h3><p>Las bacterias metanogénicas se establecen. Primer gas visible desde la semana 2.</p></div></div>
+      <div class="step"><div class="step-num">04</div><div><h3>Conectar gas a cocina</h3><p>Tubería de PVC + adaptador a cocina a gas estándar. Mismos quemadores de siempre. Cocción igual o mejor que garrafa.</p></div></div>
+      <div class="step"><div class="step-num">05</div><div><h3>Colectar biol del efluente</h3><p>El líquido que sale del otro extremo es biol listo. Almacenar en estanque o bidones. Aplicar directo al cultivo.</p></div></div>
+      <div class="step"><div class="step-num">06</div><div><h3>Vender excedente de biol a vecinos</h3><p>Una familia no usa todo el biol que produce. El excedente es ingreso adicional a 2–3 Bs/L.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Inversión Inicial</div>
+    <h2>Sistema familiar completo — 6 m³</h2>
+    <div class="card" style="margin-bottom:14px">
+      <table class="tbl">
+        <thead><tr><th>Ítem</th><th style="text-align:right">Costo (Bs)</th></tr></thead>
+        <tbody>
+          <tr><td>Geomembrana HDPE o ladrillo sellado (tanque)</td><td>2,200</td></tr>
+          <tr><td>Tubería PVC entrada/salida + conexiones</td><td>600</td></tr>
+          <tr><td>Cúpula de acumulación de gas (lona reforzada)</td><td>800</td></tr>
+          <tr><td>Manguera de gas + regulador + adaptador</td><td>500</td></tr>
+          <tr><td>Excavación y mano de obra</td><td>700</td></tr>
+          <tr><td><strong>INVERSIÓN TOTAL</strong></td><td><strong>4,800 Bs</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-grid">
+      <div class="card kpi"><span class="kpi-val" style="color:var(--flame)">4,800 Bs</span><span class="kpi-lbl">Inversión total sistema</span></div>
+      <div class="card kpi"><span class="kpi-val" style="color:var(--text)">~700 Bs</span><span class="kpi-lbl">Ahorro mensual cliente</span></div>
+      <div class="card kpi card--accent"><span class="kpi-val" style="color:var(--flame)">Mes 7</span><span class="kpi-lbl">Recuperación de inversión</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Proyección de Ingresos</div>
+    <h2>Modelo instalador — Año 1</h2>
+    <div class="card">
+      <table class="tbl">
+        <thead><tr><th>Período</th><th style="text-align:right">Sistemas</th><th style="text-align:right">Ingreso</th><th style="text-align:right">Ganancia neta</th></tr></thead>
+        <tbody>
+          <tr><td>Mes 1–3</td><td style="text-align:right;font-family:var(--mono)">1/mes</td><td style="text-align:right;font-family:var(--mono);color:var(--text-dim)">4,800 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--flame)">2,000 Bs</td></tr>
+          <tr><td>Mes 4–7</td><td style="text-align:right;font-family:var(--mono)">2/mes</td><td style="text-align:right;font-family:var(--mono);color:var(--text-dim)">9,600 Bs/mes</td><td style="text-align:right;font-family:var(--mono);color:var(--flame)">4,000 Bs/mes</td></tr>
+          <tr><td>Mes 8–12</td><td style="text-align:right;font-family:var(--mono)">3/mes</td><td style="text-align:right;font-family:var(--mono);color:var(--text-dim)">14,400 Bs/mes</td><td style="text-align:right;font-family:var(--mono);color:var(--flame)">6,000 Bs/mes</td></tr>
+          <tr><td colspan="3"><strong>Ganancia neta Año 1</strong></td><td><strong>~52,000 Bs</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="bars">
+        <div class="bar-wrap"><span class="bar-val">2.0K</span><div class="bar" style="height:33%"></div><span class="bar-lbl">M1</span></div>
+        <div class="bar-wrap"><span class="bar-val">2.0K</span><div class="bar" style="height:33%"></div><span class="bar-lbl">M2</span></div>
+        <div class="bar-wrap"><span class="bar-val">2.0K</span><div class="bar" style="height:33%"></div><span class="bar-lbl">M3</span></div>
+        <div class="bar-wrap"><span class="bar-val">4.0K</span><div class="bar" style="height:66%"></div><span class="bar-lbl">M4</span></div>
+        <div class="bar-wrap"><span class="bar-val">4.0K</span><div class="bar" style="height:66%"></div><span class="bar-lbl">M6</span></div>
+        <div class="bar-wrap"><span class="bar-val">6.0K</span><div class="bar" style="height:100%;background:linear-gradient(180deg,var(--flame),var(--green))"></div><span class="bar-lbl">M8</span></div>
+        <div class="bar-wrap"><span class="bar-val">6.0K</span><div class="bar" style="height:100%;background:linear-gradient(180deg,var(--flame),var(--green))"></div><span class="bar-lbl">M10</span></div>
+        <div class="bar-wrap"><span class="bar-val">6.0K</span><div class="bar" style="height:100%;background:linear-gradient(180deg,var(--flame),var(--green))"></div><span class="bar-lbl">M12</span></div>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);margin-top:12px;font-family:var(--mono)">Margen ~42% · No incluye ingresos por venta de biol excedente</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Caso Económico para el Cliente</div>
+    <h2>Lo que cambia para el productor rural</h2>
+    <div class="card card--accent" style="margin-bottom:14px">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--flame);letter-spacing:1.5px;margin-bottom:14px">CLIENTE A: PRODUCTOR CON 3–5 CABEZAS DE GANADO</div>
+      <p style="font-size:14px;color:var(--text-dim);margin-bottom:14px">Hoy gasta en gas + fertilizante. Con el biodigestor elimina ambos gastos desde el mes 1, y genera biol para vender al vecino.</p>
+      <div class="roi-grid">
+        <div class="roi-card"><span class="roi-val">240 Bs</span><span class="roi-lbl">Ahorro gas/mes (3–4 garrafas rurales)</span></div>
+        <div class="roi-card"><span class="roi-val">400 Bs</span><span class="roi-lbl">Valor biol producido/mes</span></div>
+        <div class="roi-card"><span class="roi-val">Mes 7</span><span class="roi-lbl">Inversión recuperada</span></div>
+      </div>
+    </div>
+    <div class="card card--green">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:1.5px;margin-bottom:14px">CLIENTE B: AGRICULTOR QUE COMPRA BIOL</div>
+      <table class="tbl">
+        <thead><tr><th>Comparativa</th><th style="text-align:right">Fertilizante químico</th><th style="text-align:right">Biol nuestro</th><th style="text-align:right">Ventaja</th></tr></thead>
+        <tbody>
+          <tr><td>Precio por litro/kg</td><td style="text-align:right;font-family:var(--mono)">25–35 Bs/kg</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">2–3 Bs/L</td><td style="text-align:right;font-family:var(--mono);color:var(--flame)">90% menos</td></tr>
+          <tr><td>Daño a raíces</td><td style="text-align:right;font-family:var(--mono);color:#ff6b6b">Sí (quema)</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">Nunca</td><td style="text-align:right;font-family:var(--mono);color:var(--flame)">Seguro</td></tr>
+          <tr><td>Certificación orgánica</td><td style="text-align:right;font-family:var(--mono);color:#ff6b6b">No</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">Compatible</td><td style="text-align:right;font-family:var(--mono);color:var(--flame)">Exportable</td></tr>
+          <tr><td colspan="3"><strong>Ahorro por hectárea por temporada</strong></td><td><strong>500–800 Bs</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Impacto Ambiental</div>
+    <h2>Menos metano. Menos deforestación. Suelo vivo.</h2>
+    <div class="env-grid">
+      <div class="env-card">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 12px;display:block">
+          <path d="M4 28 L4 8 Q4 4 8 4 L28 4" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M4 28 Q8 16 20 14 Q28 12 32 4" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="20" cy="14" r="2.5" fill="rgba(0,212,170,0.3)"/>
+        </svg>
+        <span class="env-num">CH₄↓</span>
+        <span class="env-desc">metano capturado antes de escapar a la atmósfera — 25× más dañino que CO₂</span>
+      </div>
+      <div class="env-card">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 12px;display:block">
+          <path d="M18 30 L18 12" stroke="#00ff88" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M18 18 Q12 14 10 8" stroke="#00ff88" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M18 14 Q24 10 26 4" stroke="#00ff88" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M8 32 Q18 28 28 32" stroke="#00ff88" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="env-num">0</span>
+        <span class="env-desc">árboles talados para leña — la familia deja de cortar bosque para cocinar</span>
+      </div>
+      <div class="env-card">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 12px;display:block">
+          <rect x="6" y="22" width="24" height="8" rx="2" fill="rgba(0,212,170,0.1)" stroke="#00d4aa" stroke-width="1.5"/>
+          <circle cx="12" cy="16" r="4" fill="rgba(0,212,170,0.08)" stroke="#00d4aa" stroke-width="1.5"/>
+          <circle cx="24" cy="14" r="5" fill="rgba(0,212,170,0.1)" stroke="#00d4aa" stroke-width="1.5"/>
+          <path d="M12 20 L12 22 M24 19 L24 22" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="env-num">100%</span>
+        <span class="env-desc">orgánico — suelo mejorado, sin residuos de agroquímicos importados</span>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>Emprende Verde Bolivia &nbsp;·&nbsp; CAINCO &nbsp;·&nbsp; INFOCAL</footer>
+</body>
+</html>

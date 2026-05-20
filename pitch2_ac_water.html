@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agua del Aire — Emprende Verde Bolivia</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#060c10;--surface:#0d1a1f;--surface-2:#122028;
+  --border:rgba(0,212,170,0.15);--border-dim:rgba(0,212,170,0.07);
+  --text:#d8f5f0;--text-dim:#5aab98;--text-muted:#30705e;
+  --green:#00ff88;--teal:#00d4aa;
+  --green-dim:rgba(0,255,136,0.08);--teal-dim:rgba(0,212,170,0.08);
+  --mono:'DM Mono','Courier New',monospace;--radius:12px;
+}
+body{font-family:'Space Grotesk','Segoe UI',sans-serif;background-color:var(--bg);
+  background-image:radial-gradient(circle at 1px 1px,rgba(0,212,170,0.06) 1px,transparent 0);
+  background-size:28px 28px;color:var(--text);min-height:100vh;line-height:1.6;}
+.container{max-width:860px;margin:0 auto;padding:0 24px}
+section{padding:48px 0}
+section+section{border-top:1px solid var(--border-dim)}
+.hero{padding:64px 24px 48px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(6,12,16,0.84) 0%,rgba(6,12,16,0.92) 100%),url('https://images.pexels.com/photos/34554962/pexels-photo-34554962.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750') center/cover no-repeat}
+.hero-tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;border:1px solid var(--border);padding:4px 14px;border-radius:100px;margin-bottom:20px}
+.hero-icon{width:88px;height:88px;margin:0 auto 24px;display:block}
+.hero h1{font-size:clamp(24px,5vw,44px);font-weight:700;letter-spacing:-0.5px;margin-bottom:16px}
+.hero-tagline{font-size:16px;color:var(--text-dim);max-width:500px;margin:0 auto}
+.section-label{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.section-label::before{content:'';display:block;width:18px;height:1px;background:var(--teal)}
+h2{font-size:clamp(18px,3vw,26px);font-weight:600;margin-bottom:20px}
+.card{background:var(--surface);border:1px solid var(--border-dim);border-radius:var(--radius);padding:24px}
+.card--accent{border-left:3px solid var(--teal)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.kpi{text-align:center;padding:20px}
+.kpi-val{font-family:var(--mono);font-size:28px;font-weight:700;display:block;margin-bottom:4px}
+.kpi-lbl{font-size:12px;color:var(--text-muted)}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:20px;align-items:flex-start;padding:18px 0;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;left:18px;top:50px;width:2px;height:calc(100% - 30px);background:linear-gradient(to bottom,var(--border),transparent)}
+.step-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--teal);background:var(--teal-dim);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;color:var(--teal)}
+.step h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.step p{font-size:14px;color:var(--text-dim)}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);padding:10px 14px;border-bottom:1px solid var(--border-dim)}
+.tbl td{padding:11px 14px;border-bottom:1px solid var(--border-dim);color:var(--text-dim)}
+.tbl td:last-child{text-align:right;font-family:var(--mono);color:var(--text)}
+.tbl tr:last-child td{border-bottom:none;color:var(--teal);font-weight:600;font-size:15px}
+.tbl tr:hover td{background:rgba(0,212,170,0.02)}
+.bars{display:flex;align-items:flex-end;gap:10px;height:130px;padding:0 4px;margin-top:16px;border-bottom:1px solid var(--border-dim)}
+.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.bar{width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--teal),#006655)}
+.bar-val{font-family:var(--mono);font-size:10px;color:var(--teal);white-space:nowrap}
+.bar-lbl{font-family:var(--mono);font-size:10px;color:var(--text-muted);text-align:center}
+.roi-bar-wrap{background:var(--surface-2);border-radius:100px;height:14px;overflow:hidden;margin:10px 0}
+.roi-bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--green),var(--teal))}
+.roi-labels{display:flex;justify-content:space-between;font-size:11px;font-family:var(--mono);color:var(--text-muted)}
+.roi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:16px}
+.roi-card{background:var(--surface-2);border:1px solid var(--border-dim);border-radius:10px;padding:14px;text-align:center}
+.roi-val{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--teal);display:block;margin-bottom:3px}
+.roi-lbl{font-size:11px;color:var(--text-muted)}
+.env-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.env-card{background:var(--surface);border:1px solid var(--border-dim);border-top:2px solid var(--green);border-radius:var(--radius);padding:22px;text-align:center}
+.env-num{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--green);display:block;margin-bottom:6px}
+.env-desc{font-size:13px;color:var(--text-dim);line-height:1.4}
+.flow-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:16px 0}
+.flow-node{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:500;white-space:nowrap}
+.flow-arrow{color:var(--teal);font-family:var(--mono);font-size:16px}
+footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border-dim);font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:1.5px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:fadeUp .5s ease both}.card,.step,.env-card{animation:fadeUp .4s ease both}
+@media(max-width:600px){section{padding:32px 0}.hero{padding:40px 16px 28px}.flow-row{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <svg class="hero-icon" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- AC unit body -->
+    <rect x="10" y="18" width="68" height="32" rx="6" stroke="#00d4aa" stroke-width="1.8" fill="rgba(0,212,170,0.07)"/>
+    <line x1="10" y1="30" x2="78" y2="30" stroke="#00d4aa" stroke-width="1" stroke-dasharray="3,3"/>
+    <rect x="16" y="22" width="12" height="4" rx="2" fill="rgba(0,212,170,0.3)"/>
+    <rect x="32" y="22" width="24" height="4" rx="2" fill="rgba(0,212,170,0.15)"/>
+    <!-- Water drops falling -->
+    <path d="M28 56 C28 56 24 62 24 64.5 C24 67 25.8 69 28 69 C30.2 69 32 67 32 64.5 C32 62 28 56 28 56Z" fill="rgba(0,212,170,0.15)" stroke="#00d4aa" stroke-width="1.5"/>
+    <path d="M44 60 C44 60 40 66 40 68.5 C40 71 41.8 73 44 73 C46.2 73 48 71 48 68.5 C48 66 44 60 44 60Z" fill="rgba(0,212,170,0.2)" stroke="#00d4aa" stroke-width="1.5"/>
+    <path d="M60 56 C60 56 56 62 56 64.5 C56 67 57.8 69 60 69 C62.2 69 64 67 64 64.5 C64 62 60 56 60 56Z" fill="rgba(0,212,170,0.15)" stroke="#00d4aa" stroke-width="1.5"/>
+    <!-- Circuit lines -->
+    <line x1="20" y1="50" x2="20" y2="56" stroke="#00d4aa" stroke-width="1" stroke-dasharray="2,2" stroke-linecap="round"/>
+    <line x1="44" y1="50" x2="44" y2="60" stroke="#00d4aa" stroke-width="1" stroke-dasharray="2,2" stroke-linecap="round"/>
+    <line x1="68" y1="50" x2="68" y2="56" stroke="#00d4aa" stroke-width="1" stroke-dasharray="2,2" stroke-linecap="round"/>
+  </svg>
+  <div class="hero-tag">Propuesta 02 · Agua</div>
+  <h1>Agua del Aire</h1>
+  <p class="hero-tagline">Santa Cruz tira miles de litros de agua pura cada día. Nosotros los recuperamos.</p>
+</div>
+
+<main class="container">
+  <section>
+    <div class="section-label">El Problema</div>
+    <div class="card card--accent">
+      <p style="font-size:16px;line-height:1.75;color:var(--text-dim)">Los aires acondicionados de oficinas y hoteles en Santa Cruz drenan <strong style="color:var(--text)">agua destilada al suelo</strong> cada día — literalmente gratis. Al mismo tiempo, las familias compran botellones caros generando residuos plásticos masivos. Agua limpia se tira mientras agua cara se compra.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">La Solución</div>
+    <h2>Captación, purificación y venta</h2>
+    <p style="color:var(--text-dim);margin-bottom:16px">El agua de condensación de AC es química y estructuralmente similar al agua destilada — muy baja en minerales. Se capta, se filtra y se esteriliza con UV. Luego se vende o usa como insumo de alto valor.</p>
+    <div class="flow-row">
+      <div class="flow-node">AC Condensación</div><span class="flow-arrow">→</span>
+      <div class="flow-node">Filtro Carbón</div><span class="flow-arrow">→</span>
+      <div class="flow-node">UV Estéril</div><span class="flow-arrow">→</span>
+      <div class="flow-node">Agua Purificada</div><span class="flow-arrow">→</span>
+      <div class="flow-node" style="border-color:var(--teal);color:var(--teal)">Venta / Cosmética / B2B</div>
+    </div>
+    <div class="card-grid" style="margin-top:14px">
+      <div class="card"><div style="font-family:var(--mono);font-size:10px;color:var(--teal);letter-spacing:1.5px;margin-bottom:8px">MATERIA PRIMA</div><p style="font-size:14px;color:var(--text-dim)">Completamente gratuita — el AC ya la produce</p></div>
+      <div class="card"><div style="font-family:var(--mono);font-size:10px;color:var(--teal);letter-spacing:1.5px;margin-bottom:8px">MERCADOS</div><p style="font-size:14px;color:var(--text-dim)">Agua purificada · Labs · Farmacias · Cosmética · Baterías</p></div>
+      <div class="card"><div style="font-family:var(--mono);font-size:10px;color:var(--teal);letter-spacing:1.5px;margin-bottom:8px">CONTEXTO IDEAL</div><p style="font-size:14px;color:var(--text-dim)">Santa Cruz: caliente, húmeda, AC corriendo todo el año</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Flujo de Trabajo</div>
+    <h2>De la condensación al producto</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div><h3>Identificar edificio con 10+ unidades AC</h3><p>Hoteles, oficinas, centros comerciales. Negociar acceso a las líneas de drenaje.</p></div></div>
+      <div class="step"><div class="step-num">02</div><div><h3>Instalar red de tuberías PVC</h3><p>Conectar drenajes de AC hacia tanque central de recolección. Sin interrumpir operación del edificio.</p></div></div>
+      <div class="step"><div class="step-num">03</div><div><h3>Filtrar por carbón activado</h3><p>Elimina impurezas orgánicas, polvo y micropartículas del sistema de AC.</p></div></div>
+      <div class="step"><div class="step-num">04</div><div><h3>Esterilizar con lámpara UV</h3><p>Elimina bacterias y virus. Agua lista para consumo o uso industrial.</p></div></div>
+      <div class="step"><div class="step-num">05</div><div><h3>Distribuir y vender</h3><p>Agua purificada por litro · Agua desmineralizada B2B · Insumo para cosmética propia.</p></div></div>
+      <div class="step"><div class="step-num">06</div><div><h3>Expandir al siguiente edificio</h3><p>Con las ganancias del primero, instalar el segundo sistema. Modelo de crecimiento orgánico.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Inversión Inicial</div>
+    <h2>Sistema piloto — 1 edificio</h2>
+    <div class="card" style="margin-bottom:14px">
+      <table class="tbl">
+        <thead><tr><th>Ítem</th><th style="text-align:right">Costo (Bs)</th></tr></thead>
+        <tbody>
+          <tr><td>Tubería PVC y conexiones</td><td>500</td></tr>
+          <tr><td>Tanque de almacenamiento 500L</td><td>800</td></tr>
+          <tr><td>Filtro de carbón activado</td><td>400</td></tr>
+          <tr><td>Lámpara UV esterilizadora</td><td>600</td></tr>
+          <tr><td>Instalación y mano de obra</td><td>700</td></tr>
+          <tr><td><strong>INVERSIÓN TOTAL (1 edificio)</strong></td><td><strong>3,000 Bs</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-grid">
+      <div class="card kpi"><span class="kpi-val" style="color:var(--teal)">3,000 L</span><span class="kpi-lbl">Producción mensual estimada</span></div>
+      <div class="card kpi"><span class="kpi-val" style="color:var(--text)">1.5–2.5 Bs</span><span class="kpi-lbl">Precio por litro vendido</span></div>
+      <div class="card kpi card--accent"><span class="kpi-val" style="color:var(--teal)">4,050 Bs</span><span class="kpi-lbl">Ganancia neta mensual</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Proyección de Ingresos</div>
+    <h2>Crecimiento por edificios</h2>
+    <div class="card">
+      <table class="tbl">
+        <thead><tr><th>Canal</th><th style="text-align:right">Precio/L</th><th style="text-align:right">Volumen/mes</th><th style="text-align:right">Ingreso/mes</th></tr></thead>
+        <tbody>
+          <tr><td>Agua purificada (consumo)</td><td style="text-align:right;font-family:var(--mono)">1.5 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--text-dim)">1,500 L</td><td style="text-align:right;font-family:var(--mono);color:var(--teal)">2,250</td></tr>
+          <tr><td>Agua desmineralizada B2B</td><td style="text-align:right;font-family:var(--mono)">3 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--text-dim)">1,000 L</td><td style="text-align:right;font-family:var(--mono);color:var(--teal)">3,000</td></tr>
+          <tr><td colspan="2">Costos operativos (filtros, energía)</td><td style="text-align:right;font-family:var(--mono);color:var(--text-muted)">—</td><td style="text-align:right;font-family:var(--mono);color:#ff6b6b">−1,200</td></tr>
+          <tr><td colspan="3"><strong>Ganancia neta por edificio/mes</strong></td><td><strong>4,050 Bs</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="bars">
+        <div class="bar-wrap"><span class="bar-val">4.1K</span><div class="bar" style="height:40%"></div><span class="bar-lbl">1 edif.</span></div>
+        <div class="bar-wrap"><span class="bar-val">8.1K</span><div class="bar" style="height:66%"></div><span class="bar-lbl">2 edif.</span></div>
+        <div class="bar-wrap"><span class="bar-val" style="color:var(--green)">12.2K</span><div class="bar" style="height:100%;background:linear-gradient(180deg,var(--teal),var(--green))"></div><span class="bar-lbl" style="color:var(--teal)">3 edif.</span></div>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);margin-top:12px;font-family:var(--mono)">3 edificios = 12,150 Bs/mes neto · sin incluir línea de cosmética</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Caso Económico para el Cliente</div>
+    <h2>Por qué le conviene aceptar la instalación</h2>
+    <div class="card card--accent" style="margin-bottom:14px">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--teal);letter-spacing:1.5px;margin-bottom:14px">CLIENTE A: EDIFICIO / HOTEL QUE CEDE SUS AC</div>
+      <p style="font-size:14px;color:var(--text-dim);margin-bottom:14px">Inversión del edificio: <strong style="color:var(--text)">Cero bolivianos.</strong> Instalación gratuita. El agua que hoy se tira al suelo genera ingresos pasivos mensuales por acuerdo de revenue sharing.</p>
+      <div class="roi-grid">
+        <div class="roi-card"><span class="roi-val">0 Bs</span><span class="roi-lbl">Inversión del edificio</span></div>
+        <div class="roi-card"><span class="roi-val">810 Bs</span><span class="roi-lbl">Ingreso pasivo mensual (20%)</span></div>
+        <div class="roi-card"><span class="roi-val">Día 1</span><span class="roi-lbl">Inicio de beneficio</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:1.5px;margin-bottom:14px">CLIENTE B: COMPRADOR DE AGUA PURIFICADA</div>
+      <table class="tbl">
+        <thead><tr><th>Producto</th><th style="text-align:right">Precio mercado</th><th style="text-align:right">Nuestro precio</th><th style="text-align:right">Ahorro</th></tr></thead>
+        <tbody>
+          <tr><td>Botellón 20L agua purificada</td><td style="text-align:right;font-family:var(--mono)">8–12 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--teal)">6 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">30–50%</td></tr>
+          <tr><td>Agua desmineralizada 1L (batería)</td><td style="text-align:right;font-family:var(--mono)">8–12 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--teal)">5 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">38–58%</td></tr>
+          <tr><td>Agua para laboratorio 1L</td><td style="text-align:right;font-family:var(--mono)">15–25 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--teal)">8 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">47–68%</td></tr>
+          <tr><td colspan="3"><strong>Ahorro familiar anual (3 botellones/mes)</strong></td><td><strong>60–120 Bs</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Impacto Ambiental</div>
+    <h2>Triple beneficio en un solo sistema</h2>
+    <div class="env-grid">
+      <div class="env-card">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 12px;display:block">
+          <path d="M18 4C18 4 8 16 8 22a10 10 0 0020 0C28 16 18 4 18 4Z" fill="rgba(0,255,136,0.1)" stroke="#00ff88" stroke-width="1.5"/>
+          <path d="M14 22a4 4 0 008 0" stroke="#00ff88" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="env-num">100%</span>
+        <span class="env-desc">agua recuperada que antes se tiraba al suelo o alcantarilla</span>
+      </div>
+      <div class="env-card">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 12px;display:block">
+          <rect x="4" y="8" width="10" height="20" rx="3" stroke="#00ff88" stroke-width="1.5" fill="rgba(0,255,136,0.08)"/>
+          <line x1="9" y1="8" x2="9" y2="28" stroke="#00ff88" stroke-width="1" stroke-dasharray="2,2"/>
+          <path d="M18 18 L32 18 M28 14 L32 18 L28 22" stroke="#00ff88" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="4" y="12" width="10" height="4" rx="1" fill="rgba(0,255,136,0.2)"/>
+        </svg>
+        <span class="env-num">0</span>
+        <span class="env-desc">botellas plásticas generadas por cada litro de agua vendido</span>
+      </div>
+      <div class="env-card">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 12px;display:block">
+          <circle cx="18" cy="18" r="14" stroke="#00ff88" stroke-width="1.5" fill="rgba(0,255,136,0.06)"/>
+          <path d="M12 18 C12 14 15 11 18 11 C21 11 24 14 24 18" stroke="#00ff88" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M12 18 C12 22 15 25 18 25 C21 25 24 22 24 18" stroke="#00ff88" stroke-width="1" stroke-linecap="round" stroke-dasharray="2,2"/>
+          <circle cx="18" cy="18" r="2" fill="#00ff88"/>
+        </svg>
+        <span class="env-num">Sin</span>
+        <span class="env-desc">extracción de agua subterránea — cero presión sobre acuíferos</span>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>Emprende Verde Bolivia &nbsp;·&nbsp; CAINCO &nbsp;·&nbsp; INFOCAL</footer>
+</body>
+</html>

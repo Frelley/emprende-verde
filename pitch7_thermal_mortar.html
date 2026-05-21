@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mortero Aislante Térmico — Emprende Verde Bolivia</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#0c0a04;--surface:#1a1608;--surface-2:#22200e;
+  --border:rgba(224,120,64,0.15);--border-dim:rgba(224,120,64,0.07);
+  --text:#f5f0d0;--text-dim:#aaaa60;--text-muted:#666630;
+  --green:#00ff88;--solar:#e07840;--teal:#00d4aa;
+  --solar-dim:rgba(224,120,64,0.08);--green-dim:rgba(0,255,136,0.08);
+  --mono:'DM Mono','Courier New',monospace;--radius:12px;
+}
+body{font-family:'Space Grotesk','Segoe UI',sans-serif;background-color:var(--bg);
+  background-image:radial-gradient(circle at 1px 1px,rgba(224,120,64,0.06) 1px,transparent 0);
+  background-size:28px 28px;color:var(--text);min-height:100vh;line-height:1.6;}
+.container{max-width:860px;margin:0 auto;padding:0 24px}
+section{padding:48px 0}
+section+section{border-top:1px solid var(--border-dim)}
+.hero{padding:64px 24px 48px;text-align:center;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,rgba(40,20,10,0.95) 0%,rgba(12,10,4,0.98) 100%),
+  radial-gradient(ellipse at top,rgba(224,120,64,0.12) 0%,transparent 60%)}
+.hero-tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--solar);text-transform:uppercase;border:1px solid var(--border);padding:4px 14px;border-radius:100px;margin-bottom:20px}
+.hero-icon{width:88px;height:88px;margin:0 auto 24px;display:block}
+.hero h1{font-size:clamp(24px,5vw,44px);font-weight:700;letter-spacing:-0.5px;margin-bottom:16px}
+.hero-tagline{font-size:16px;color:var(--text-dim);max-width:500px;margin:0 auto}
+.section-label{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--solar);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.section-label::before{content:'';display:block;width:18px;height:1px;background:var(--solar)}
+h2{font-size:clamp(18px,3vw,26px);font-weight:600;margin-bottom:20px}
+.card{background:var(--surface);border:1px solid var(--border-dim);border-radius:var(--radius);padding:24px}
+.card--accent{border-left:3px solid var(--solar)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:20px;align-items:flex-start;padding:18px 0;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;left:18px;top:50px;width:2px;height:calc(100% - 30px);background:linear-gradient(to bottom,var(--border),transparent)}
+.step-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--solar);background:var(--solar-dim);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;color:var(--solar)}
+.step h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.step p{font-size:14px;color:var(--text-dim)}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);padding:10px 14px;border-bottom:1px solid var(--border-dim)}
+.tbl td{padding:11px 14px;border-bottom:1px solid var(--border-dim);color:var(--text-dim)}
+.tbl td:last-child{text-align:right;font-family:var(--mono);color:var(--text)}
+.tbl tr:last-child td{border-bottom:none;color:var(--solar);font-weight:600;font-size:15px}
+.tbl tr:hover td{background:rgba(224,120,64,0.02)}
+.bars{display:flex;align-items:flex-end;gap:10px;height:120px;padding:0 4px;margin-top:16px;border-bottom:1px solid var(--border-dim)}
+.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.bar{width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--solar),#804020)}
+.bar-val{font-family:var(--mono);font-size:10px;color:var(--solar);white-space:nowrap}
+.bar-lbl{font-family:var(--mono);font-size:10px;color:var(--text-muted);text-align:center}
+.roi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:16px}
+.roi-card{background:var(--surface-2);border:1px solid var(--border-dim);border-radius:10px;padding:14px;text-align:center}
+.roi-val{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--solar);display:block;margin-bottom:3px}
+.roi-lbl{font-size:11px;color:var(--text-muted)}
+.env-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.env-card{background:var(--surface);border:1px solid var(--border-dim);border-top:2px solid var(--teal);border-radius:var(--radius);padding:22px;text-align:center}
+.env-num{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--teal);display:block;margin-bottom:6px}
+.env-desc{font-size:13px;color:var(--text-dim);line-height:1.4}
+footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border-dim);font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:1.5px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:fadeUp .5s ease both}.card,.step,.env-card{animation:fadeUp .4s ease both}
+@media(max-width:600px){section{padding:32px 0}.hero{padding:40px 16px 28px}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <svg class="hero-icon" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Insulation layer (left) -->
+    <rect x="14" y="14" width="20" height="60" rx="2" stroke="#e07840" stroke-width="1.5" fill="rgba(224,120,64,0.18)" stroke-dasharray="3,2"/>
+    <line x1="16" y1="22" x2="32" y2="22" stroke="#e07840" stroke-width="0.8" stroke-dasharray="2,3"/>
+    <line x1="16" y1="30" x2="32" y2="30" stroke="#e07840" stroke-width="0.8" stroke-dasharray="2,3"/>
+    <line x1="16" y1="38" x2="32" y2="38" stroke="#e07840" stroke-width="0.8" stroke-dasharray="2,3"/>
+    <line x1="16" y1="46" x2="32" y2="46" stroke="#e07840" stroke-width="0.8" stroke-dasharray="2,3"/>
+    <line x1="16" y1="54" x2="32" y2="54" stroke="#e07840" stroke-width="0.8" stroke-dasharray="2,3"/>
+    <line x1="16" y1="62" x2="32" y2="62" stroke="#e07840" stroke-width="0.8" stroke-dasharray="2,3"/>
+    <line x1="16" y1="70" x2="32" y2="70" stroke="#e07840" stroke-width="0.8" stroke-dasharray="2,3"/>
+    <!-- Wall block (right) -->
+    <rect x="34" y="14" width="20" height="60" rx="2" stroke="#e07840" stroke-width="1.5" fill="rgba(224,120,64,0.06)"/>
+    <!-- Heat waves (outside left) -->
+    <path d="M4 26 Q9 22 4 18" stroke="#e07840" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M8 40 Q13 36 8 32" stroke="#e07840" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M4 58 Q9 54 4 50" stroke="#e07840" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M8 72 Q13 68 8 64" stroke="#e07840" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- Cool room (right side) -->
+    <circle cx="68" cy="44" r="12" fill="rgba(0,212,170,0.08)" stroke="#00d4aa" stroke-width="1.2"/>
+    <line x1="68" y1="36" x2="68" y2="52" stroke="#00d4aa" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="60" y1="44" x2="76" y2="44" stroke="#00d4aa" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="62.3" y1="38.3" x2="73.7" y2="49.7" stroke="#00d4aa" stroke-width="1.2" stroke-linecap="round"/>
+    <line x1="73.7" y1="38.3" x2="62.3" y2="49.7" stroke="#00d4aa" stroke-width="1.2" stroke-linecap="round"/>
+  </svg>
+  <div class="hero-tag">Propuesta 07 · Vivienda</div>
+  <h1>Mortero Aislante Térmico</h1>
+  <p class="hero-tagline">Transforma paredes existentes. Sin demoler. Sin obra mayor. 70% más aislamiento.</p>
+</div>
+
+<main class="container">
+  <section>
+    <div class="section-label">El Problema</div>
+    <div class="card card--accent">
+      <p style="font-size:16px;line-height:1.75;color:var(--text-dim)">Santa Cruz alcanza <strong style="color:var(--text)">40°C en verano y 5°C en los surazos</strong>. Las casas de ladrillo y bloque convencional no tienen aislamiento térmico — el calor entra y sale sin resistencia. El resultado: aires acondicionados encendidos 8+ horas al día, facturas eléctricas de 400–600 Bs/mes, y paredes con moho por condensación. La única solución conocida —el doble muro— requiere demoler y reconstruir: cara, lenta, invasiva.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">La Solución</div>
+    <h2>Dos modelos de negocio, una mezcla inteligente</h2>
+    <div class="card-grid">
+      <div class="card card--accent">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--solar);letter-spacing:1.5px;margin-bottom:10px">MODELO A — SERVICIO DE APLICACIÓN</div>
+        <p style="font-size:14px;color:var(--text-dim)">Empresa que aplica mortero aislante sobre paredes existentes. Sin demolición. 3 cm equivalen a hasta 70% de mejora en aislamiento. Precio por proyecto: 8,000–12,000 Bs.</p>
+      </div>
+      <div class="card card--accent">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:1.5px;margin-bottom:10px">MODELO B — VENTA DE MEZCLA</div>
+        <p style="font-size:14px;color:var(--text-dim)">Comercializar mortero aislante premezclado a ferreterías, constructoras y albañiles. Mercado de obra nueva y renovación. Margen 40–80%.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Flujo de Trabajo</div>
+    <h2>Del diagnóstico a la pared lista en 3 días</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div><h3>Diagnóstico térmico</h3><p>Medir temperatura interior y exterior, identificar paredes críticas, calcular m² a tratar y presupuesto exacto.</p></div></div>
+      <div class="step"><div class="step-num">02</div><div><h3>Preparación de superficie</h3><p>Limpiar y humedecer la pared. Retirar pintura suelta. Aplicar puente de adherencia si es necesario.</p></div></div>
+      <div class="step"><div class="step-num">03</div><div><h3>Primera capa — 1.5 cm</h3><p>Aplicar mortero aislante mezclado in situ. Superficie rugosa para garantizar adhesión de segunda capa.</p></div></div>
+      <div class="step"><div class="step-num">04</div><div><h3>Segunda capa — 1.5 cm más</h3><p>Total 3 cm de mortero aislante. Fratasado y nivelado. Tiempo de secado: 24 horas.</p></div></div>
+      <div class="step"><div class="step-num">05</div><div><h3>Acabado y entrega</h3><p>Pintura o textura a elección del cliente. Pared lista para uso normal. Vida útil: 20+ años sin mantenimiento.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Inversión Inicial</div>
+    <h2>Capital mínimo para comenzar el servicio</h2>
+    <div class="card" style="margin-bottom:14px">
+      <table class="tbl">
+        <thead><tr><th>Ítem</th><th style="text-align:right">Costo (Bs)</th></tr></thead>
+        <tbody>
+          <tr><td>Herramientas (llanas, fratás, mezcladora manual)</td><td>2,100</td></tr>
+          <tr><td>Andamio plegable + equipos de seguridad</td><td>1,400</td></tr>
+          <tr><td>Stock inicial mortero (10 bolsas × 30 kg)</td><td>2,100</td></tr>
+          <tr><td>Demo + fotografías de resultado</td><td>700</td></tr>
+          <tr><td>Branding + tarjetas profesionales</td><td>600</td></tr>
+          <tr><td>Imprevistos (10%)</td><td>690</td></tr>
+          <tr><td><strong>INVERSIÓN TOTAL</strong></td><td><strong>7,590 Bs</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:14px">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--solar);letter-spacing:1.5px;margin-bottom:10px">MORTERO VS. SOLUCIÓN TRADICIONAL</div>
+      <div class="card">
+        <table class="tbl">
+          <thead><tr><th>Solución</th><th style="text-align:right">Costo al cliente</th><th style="text-align:right">Demolición</th></tr></thead>
+          <tbody>
+            <tr><td>Doble muro (obra tradicional)</td><td style="text-align:right;font-family:var(--mono)">40,000–70,000 Bs</td><td style="text-align:right;font-family:var(--mono);color:#ff6b6b">Sí — semanas de obra</td></tr>
+            <tr><td>Mortero aislante 3 cm (nuestro)</td><td style="text-align:right;font-family:var(--mono)">8,000–12,000 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">No — 3 días</td></tr>
+            <tr><td colspan="2"><strong>Ahorro vs. solución tradicional</strong></td><td><strong>Hasta 58,000 Bs</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Proyección de Ingresos</div>
+    <h2>Modelo A — Año 1 (conservador)</h2>
+    <div class="card">
+      <table class="tbl">
+        <thead><tr><th>Período</th><th style="text-align:right">Proyectos</th><th style="text-align:right">Ingresos</th><th style="text-align:right">Ganancia neta</th></tr></thead>
+        <tbody>
+          <tr><td>Mes 1–2</td><td style="text-align:right;font-family:var(--mono)">0</td><td style="text-align:right;font-family:var(--mono);color:var(--text-dim)">—</td><td style="text-align:right;font-family:var(--mono);color:var(--solar)">–1,400 Bs</td></tr>
+          <tr><td>Mes 3–6</td><td style="text-align:right;font-family:var(--mono)">1/mes</td><td style="text-align:right;font-family:var(--mono);color:var(--text-dim)">9,000 Bs/mes</td><td style="text-align:right;font-family:var(--mono);color:var(--solar)">2,700 Bs/mes</td></tr>
+          <tr><td>Mes 7–12</td><td style="text-align:right;font-family:var(--mono)">2/mes</td><td style="text-align:right;font-family:var(--mono);color:var(--text-dim)">18,000 Bs/mes</td><td style="text-align:right;font-family:var(--mono);color:var(--solar)">5,400 Bs/mes</td></tr>
+          <tr><td colspan="3"><strong>Ganancia neta Año 1</strong></td><td><strong>~41,000 Bs</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="bars">
+        <div class="bar-wrap"><span class="bar-val">—</span><div class="bar" style="height:5%;opacity:.3"></div><span class="bar-lbl">M1-2</span></div>
+        <div class="bar-wrap"><span class="bar-val">2.7K</span><div class="bar" style="height:50%"></div><span class="bar-lbl">M3</span></div>
+        <div class="bar-wrap"><span class="bar-val">2.7K</span><div class="bar" style="height:50%"></div><span class="bar-lbl">M4</span></div>
+        <div class="bar-wrap"><span class="bar-val">2.7K</span><div class="bar" style="height:50%"></div><span class="bar-lbl">M5</span></div>
+        <div class="bar-wrap"><span class="bar-val">2.7K</span><div class="bar" style="height:50%"></div><span class="bar-lbl">M6</span></div>
+        <div class="bar-wrap"><span class="bar-val">5.4K</span><div class="bar" style="height:100%;background:linear-gradient(180deg,var(--solar),var(--green))"></div><span class="bar-lbl">M7</span></div>
+        <div class="bar-wrap"><span class="bar-val">5.4K</span><div class="bar" style="height:100%;background:linear-gradient(180deg,var(--solar),var(--green))"></div><span class="bar-lbl">M10</span></div>
+        <div class="bar-wrap"><span class="bar-val">5.4K</span><div class="bar" style="height:100%;background:linear-gradient(180deg,var(--solar),var(--green))"></div><span class="bar-lbl">M12</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Caso Económico para el Cliente</div>
+    <h2>Por qué le conviene al propietario y al constructor</h2>
+    <div class="card card--accent" style="margin-bottom:14px">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--solar);letter-spacing:1.5px;margin-bottom:14px">CLIENTE A: PROPIETARIO DE VIVIENDA</div>
+      <p style="font-size:14px;color:var(--text-dim);margin-bottom:14px">Sin aislamiento: AC encendido 8+ hrs/día en verano = 350–450 Bs/mes en electricidad. Con mortero: reducción del 40–70% en uso de AC = <strong style="color:var(--text)">140–315 Bs/mes ahorrados</strong>. La inversión se recupera en 3–5 años. El aislamiento dura 20+ años.</p>
+      <div class="roi-grid">
+        <div class="roi-card"><span class="roi-val">10,000 Bs</span><span class="roi-lbl">Inversión típica (60 m² exterior)</span></div>
+        <div class="roi-card"><span class="roi-val">200 Bs</span><span class="roi-lbl">Ahorro promedio mensual</span></div>
+        <div class="roi-card"><span class="roi-val">4 años</span><span class="roi-lbl">Punto de equilibrio</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:1.5px;margin-bottom:14px">CLIENTE B: EMPRESA CONSTRUCTORA</div>
+      <table class="tbl">
+        <thead><tr><th>Beneficio</th><th style="text-align:right">Impacto</th></tr></thead>
+        <tbody>
+          <tr><td>Sin demolición — menor costo de obra</td><td style="text-align:right;font-family:var(--mono);color:var(--solar)">–40% vs. doble muro</td></tr>
+          <tr><td>Aplicación en 3 días (vs. semanas)</td><td style="text-align:right;font-family:var(--mono);color:var(--solar)">+velocidad en obra</td></tr>
+          <tr><td>Sello verde en el proyecto</td><td style="text-align:right;font-family:var(--mono);color:var(--solar)">Diferenciación de mercado</td></tr>
+          <tr><td colspan="1"><strong>Eleva el valor de la propiedad</strong></td><td><strong>+8–15%</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Impacto Ambiental</div>
+    <h2>Menos energía. Cero escombros. Más confort.</h2>
+    <div class="env-grid">
+      <div class="env-card">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 12px;display:block">
+          <rect x="6" y="8" width="10" height="20" rx="2" fill="rgba(0,212,170,0.15)" stroke="#00d4aa" stroke-width="1.5"/>
+          <rect x="16" y="8" width="14" height="20" rx="2" fill="rgba(0,212,170,0.05)" stroke="#00d4aa" stroke-width="1.2"/>
+          <line x1="7" y1="13" x2="15" y2="13" stroke="#00d4aa" stroke-width="0.8" stroke-dasharray="1.5,2"/>
+          <line x1="7" y1="18" x2="15" y2="18" stroke="#00d4aa" stroke-width="0.8" stroke-dasharray="1.5,2"/>
+          <line x1="7" y1="23" x2="15" y2="23" stroke="#00d4aa" stroke-width="0.8" stroke-dasharray="1.5,2"/>
+        </svg>
+        <span class="env-num">70%</span>
+        <span class="env-desc">mejora en aislamiento térmico de la pared existente</span>
+      </div>
+      <div class="env-card">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 12px;display:block">
+          <rect x="6" y="10" width="24" height="18" rx="3" fill="rgba(0,212,170,0.06)" stroke="#00d4aa" stroke-width="1.5"/>
+          <line x1="6" y1="16" x2="30" y2="16" stroke="#00d4aa" stroke-width="0.8" stroke-dasharray="2,2"/>
+          <path d="M12 28 L12 32" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M24 28 L24 32" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M8 32 L28 32" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="18" y1="4" x2="18" y2="10" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M14 4 L22 4" stroke="#00d4aa" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+        <span class="env-num">0 kg</span>
+        <span class="env-desc">escombros generados — aplica directo sobre muro existente</span>
+      </div>
+      <div class="env-card">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 12px;display:block">
+          <path d="M6 28 L12 16 L18 22 L24 10 L30 28 Z" fill="rgba(0,212,170,0.08)" stroke="#00d4aa" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <span class="env-num">–40%</span>
+        <span class="env-desc">reducción en consumo eléctrico por climatización</span>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>Emprende Verde Bolivia &nbsp;·&nbsp; CAINCO &nbsp;·&nbsp; INFOCAL</footer>
+
+<!-- ── PITCH NAV ── -->
+<style id="_navs">
+#_nav{position:fixed;bottom:0;left:0;right:0;height:52px;background:rgba(5,5,5,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;gap:10px;z-index:9999;padding:0 14px;font-family:'Space Grotesk','Segoe UI',sans-serif}
+._nb{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.38);width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;line-height:1}
+._nb:hover,._nb:active{border-color:var(--_ac,#00ff88);color:var(--_ac,#00ff88);background:rgba(0,255,136,.07)}
+._ds{display:flex;gap:7px;align-items:center;flex:1;justify-content:center}
+._d{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.14);cursor:pointer;transition:all .35s cubic-bezier(.25,.46,.45,.94)}
+._d._on{width:22px;border-radius:3px}
+._qb{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.38);width:34px;height:34px;border-radius:50%;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
+._qb:hover,._qb:active{border-color:#00ff88;color:#00ff88;background:rgba(0,255,136,.07)}
+._qb svg{width:16px;height:16px;fill:currentColor}
+._mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:10000;align-items:center;justify-content:center;flex-direction:column;gap:18px}
+._mo._op{display:flex}
+._qc{background:#0a0a0a;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:28px 28px 22px;text-align:center}
+._qc img{width:190px;height:190px;border-radius:10px;display:block;background:#111}
+._qu{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.5px;color:rgba(255,255,255,.25);margin-top:14px;word-break:break-all;max-width:190px;line-height:1.5}
+._cb{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1.5px;color:rgba(255,255,255,.28);cursor:pointer;padding:10px 24px;border:1px solid rgba(255,255,255,.1);border-radius:100px;transition:all .2s}
+._cb:hover{color:#00ff88;border-color:#00ff88}
+body{padding-bottom:60px!important}
+</style>
+<div id="_nav">
+  <button class="_nb" id="_pv">&#8249;</button>
+  <div class="_ds" id="_ds"></div>
+  <button class="_nb" id="_nx">&#8250;</button>
+  <button class="_qb" id="_qr"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 3h7v7H3V3zm1 1v5h5V4H4zm1 1h3v3H5V5zM3 14h7v7H3v-7zm1 1v5h5v-5H4zm1 1h3v3H5v-3zM14 3h7v7h-7V3zm1 1v5h5V4h-5zm1 1h3v3h-3V5zm-1 9h2v2h-2v-2zm3 0h2v2h-2v-2zm-3 3h2v2h-2v-2zm3 0h2v2h-2v-2zm3-3h2v2h-2v-2zm0 3h2v2h-2v-2z"/></svg></button>
+</div>
+<div class="_mo" id="_mo">
+  <div class="_qc"><img id="_qi" src="" alt="QR"><div class="_qu" id="_qu"></div></div>
+  <span class="_cb" id="_cl">CERRAR</span>
+</div>
+<script>
+(function(){
+var B='https://frelley.github.io/emprende-verde/';
+var P=['pitch1_solar_heater.html','pitch2_ac_water.html','pitch3_vermicompost.html','pitch4_solar_dryer.html','pitch5_aquaponics.html','pitch6_biodigester.html','pitch7_thermal_mortar.html'];
+var C=['#00ff88','#00d4aa','#50dc3c','#c8e600','#00c8dc','#f59e0b','#e07840'];
+var f=location.pathname.split('/').pop()||P[0];
+var cur=P.indexOf(f);if(cur<0)cur=0;
+document.documentElement.style.setProperty('--_ac',C[cur]);
+var ds=document.getElementById('_ds');
+P.forEach(function(x,i){var d=document.createElement('span');d.className='_d'+(i===cur?' _on':'');d.style.background=i===cur?C[cur]:'';d.onclick=function(){go(i);};ds.appendChild(d);});
+function go(i){if(i<0)i=P.length-1;if(i>=P.length)i=0;if(i===cur)return;location.href=P[i];}
+document.getElementById('_pv').onclick=function(){go(cur-1);};
+document.getElementById('_nx').onclick=function(){go(cur+1);};
+document.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')go(cur-1);if(e.key==='ArrowRight')go(cur+1);});
+var sx=0,sy=0;
+document.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
+document.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>Math.abs(dy)*1.2&&Math.abs(dx)>38)go(cur+(dx<0?1:-1));},{passive:true});
+var mo=document.getElementById('_mo');
+document.getElementById('_qr').onclick=function(){document.getElementById('_qi').src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(B)+'&bgcolor=0a0a0a&color=00ff88&margin=8&format=png';document.getElementById('_qu').textContent=B;mo.classList.add('_op');};
+document.getElementById('_cl').onclick=function(){mo.classList.remove('_op');};
+mo.onclick=function(e){if(e.target===mo)mo.classList.remove('_op');};
+})();
+</script>
+</body>
+</html>

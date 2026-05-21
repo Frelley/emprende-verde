@@ -1585,6 +1585,27 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
 }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.section').forEach(s => observer.observe(s));
+(function(){
+var B='https://frelley.github.io/emprende-verde/';
+var P=['pitch1_solar_heater.html','pitch2_ac_water.html','pitch3_vermicompost.html','pitch4_solar_dryer.html','pitch5_aquaponics.html','pitch6_biodigester.html','pitch7_thermal_mortar.html'];
+var C=['#00ff88','#00d4aa','#50dc3c','#c8e600','#00c8dc','#f59e0b','#e07840'];
+var f=location.pathname.split('/').pop()||P[0];
+var cur=P.indexOf(f);if(cur<0)cur=0;
+document.documentElement.style.setProperty('--_ac',C[cur]);
+var ds=document.getElementById('_ds');
+P.forEach(function(x,i){var d=document.createElement('span');d.className='_d'+(i===cur?' _on':'');d.style.background=i===cur?C[cur]:'';d.onclick=function(){go(i);};ds.appendChild(d);});
+function go(i){if(i<0)i=P.length-1;if(i>=P.length)i=0;if(i===cur)return;location.href=P[i];}
+document.getElementById('_pv').onclick=function(){go(cur-1);};
+document.getElementById('_nx').onclick=function(){go(cur+1);};
+document.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')go(cur-1);if(e.key==='ArrowRight')go(cur+1);});
+var sx=0,sy=0;
+document.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
+document.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>Math.abs(dy)*1.2&&Math.abs(dx)>38)go(cur+(dx<0?1:-1));},{passive:true});
+var mo=document.getElementById('_mo');
+document.getElementById('_qr').onclick=function(){document.getElementById('_qi').src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(B)+'&bgcolor=0a0a0a&color=00ff88&margin=8&format=png';document.getElementById('_qu').textContent=B;mo.classList.add('_op');};
+document.getElementById('_cl').onclick=function(){mo.classList.remove('_op');};
+mo.onclick=function(e){if(e.target===mo)mo.classList.remove('_op');};
+})();
 </script>
 </body>
 </html>

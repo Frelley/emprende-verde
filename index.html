@@ -103,12 +103,15 @@ body::before{
   background:var(--surface);
   border:1px solid var(--border);
   border-radius:10px;
-  transition:border-color .2s,background .2s;
-  cursor:default;
+  transition:border-color .2s,background .2s,transform .15s;
+  cursor:pointer;
+  text-decoration:none;
+  color:inherit;
 }
 .prop:hover{
   border-color:rgba(255,255,255,0.14);
   background:rgba(255,255,255,0.05);
+  transform:translateX(3px);
 }
 
 .prop-num{
@@ -227,7 +230,7 @@ body::before{
   <div class="proposals-wrap">
     <div class="section-label">7 propuestas</div>
     <div class="proposals">
-      <div class="prop">
+      <a class="prop" href="pitch1_solar_heater.html">
         <span class="prop-num">01</span>
         <span class="prop-icon">☀️</span>
         <div class="prop-text">
@@ -235,8 +238,8 @@ body::before{
           <span class="prop-sub">Energía solar para comercios y comunidades rurales</span>
         </div>
         <div class="prop-accent" style="background:#00ff88"></div>
-      </div>
-      <div class="prop">
+      </a>
+      <a class="prop" href="pitch2_ac_water.html">
         <span class="prop-num">02</span>
         <span class="prop-icon">💧</span>
         <div class="prop-text">
@@ -244,8 +247,8 @@ body::before{
           <span class="prop-sub">Agua potable desde condensación de aires acondicionados</span>
         </div>
         <div class="prop-accent" style="background:#00d4aa"></div>
-      </div>
-      <div class="prop">
+      </a>
+      <a class="prop" href="pitch3_vermicompost.html">
         <span class="prop-num">03</span>
         <span class="prop-icon">🪱</span>
         <div class="prop-text">
@@ -253,8 +256,8 @@ body::before{
           <span class="prop-sub">Humus orgánico y lixiviado para el agro boliviano</span>
         </div>
         <div class="prop-accent" style="background:#50dc3c"></div>
-      </div>
-      <div class="prop">
+      </a>
+      <a class="prop" href="pitch4_solar_dryer.html">
         <span class="prop-num">04</span>
         <span class="prop-icon">🌞</span>
         <div class="prop-text">
@@ -262,8 +265,8 @@ body::before{
           <span class="prop-sub">Deshidratación de frutas y verduras sin electricidad</span>
         </div>
         <div class="prop-accent" style="background:#c8e600"></div>
-      </div>
-      <div class="prop">
+      </a>
+      <a class="prop" href="pitch5_aquaponics.html">
         <span class="prop-num">05</span>
         <span class="prop-icon">🐟</span>
         <div class="prop-text">
@@ -271,8 +274,8 @@ body::before{
           <span class="prop-sub">Tilapia + vegetales frescos en sistema cerrado</span>
         </div>
         <div class="prop-accent" style="background:#00c8dc"></div>
-      </div>
-      <div class="prop">
+      </a>
+      <a class="prop" href="pitch6_biodigester.html">
         <span class="prop-num">06</span>
         <span class="prop-icon">🔥</span>
         <div class="prop-text">
@@ -280,8 +283,8 @@ body::before{
           <span class="prop-sub">Biogás y biol desde residuos orgánicos y ganaderos</span>
         </div>
         <div class="prop-accent" style="background:#f59e0b"></div>
-      </div>
-      <div class="prop">
+      </a>
+      <a class="prop" href="pitch7_thermal_mortar.html">
         <span class="prop-num">07</span>
         <span class="prop-icon">🧱</span>
         <div class="prop-text">
@@ -289,7 +292,7 @@ body::before{
           <span class="prop-sub">Aislamiento sin demolición para viviendas en Santa Cruz</span>
         </div>
         <div class="prop-accent" style="background:#e07840"></div>
-      </div>
+      </a>
     </div>
   </div>
 

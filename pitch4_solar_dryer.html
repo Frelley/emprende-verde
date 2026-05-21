@@ -1,334 +1,1590 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Secadores Solares — Emprende Verde Bolivia</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Secador Solar — EmprendeVerde Bolivia</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-:root{
-  --bg:#0c0a04;--surface:#1a1608;--surface-2:#22200e;
-  --border:rgba(200,230,0,0.15);--border-dim:rgba(200,230,0,0.07);
-  --text:#f5f0d0;--text-dim:#aaaa60;--text-muted:#666630;
-  --green:#00ff88;--solar:#c8e600;--teal:#00d4aa;
-  --solar-dim:rgba(200,230,0,0.08);--green-dim:rgba(0,255,136,0.08);
-  --mono:'DM Mono','Courier New',monospace;--radius:12px;
+:root {
+  --bg:          oklch(93.5% 0.022 88);
+  --surface:     oklch(98.5% 0.010 88);
+  --surface-2:   oklch(91.0% 0.030 88);
+  --surface-3:   oklch(96.0% 0.016 88);
+  --border:      oklch(60% 0.010 88 / 0.14);
+  --border-strong: oklch(50% 0.015 88 / 0.22);
+  --text:        oklch(18% 0.020 88);
+  --text-dim:    oklch(44% 0.030 88);
+  --text-muted:  oklch(62% 0.018 88);
+
+  --green:       oklch(38% 0.110 155);
+  --green-mid:   oklch(52% 0.120 155);
+  --green-light: oklch(72% 0.110 155);
+  --green-dim:   oklch(92% 0.040 155);
+  --green-deep:  oklch(24% 0.090 155);
+
+  --gold:        oklch(58% 0.120 72);
+  --gold-mid:    oklch(68% 0.130 72);
+  --gold-light:  oklch(82% 0.120 72);
+  --gold-dim:    oklch(94% 0.050 72);
+
+  --earth:       oklch(48% 0.090 48);
+  --earth-dim:   oklch(93% 0.035 48);
+
+  --red:         oklch(46% 0.180 25);
+  --red-dim:     oklch(94% 0.040 25);
+
+  --blue:        oklch(34% 0.090 240);
+  --blue-dim:    oklch(92% 0.040 240);
+
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-body:  'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono:  'Fira Code', monospace;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --shadow:    0 1px 4px oklch(30% 0.04 88 / 0.08), 0 3px 10px oklch(30% 0.04 88 / 0.07);
+  --shadow-lg: 0 4px 12px oklch(30% 0.04 88 / 0.10), 0 10px 30px oklch(30% 0.04 88 / 0.10);
+  --shadow-xl: 0 8px 24px oklch(30% 0.04 88 / 0.13), 0 20px 50px oklch(30% 0.04 88 / 0.12);
 }
-body{font-family:'Space Grotesk','Segoe UI',sans-serif;background-color:var(--bg);
-  background-image:radial-gradient(circle at 1px 1px,rgba(200,230,0,0.06) 1px,transparent 0);
-  background-size:28px 28px;color:var(--text);min-height:100vh;line-height:1.6;}
-.container{max-width:860px;margin:0 auto;padding:0 24px}
-section{padding:48px 0}
-section+section{border-top:1px solid var(--border-dim)}
-.hero{padding:64px 24px 48px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(12,10,4,0.45) 0%,rgba(12,10,4,0.80) 100%),url('https://images.pexels.com/photos/36326589/pexels-photo-36326589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750') center/cover no-repeat}
-.hero-tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--solar);text-transform:uppercase;border:1px solid var(--border);padding:4px 14px;border-radius:100px;margin-bottom:20px}
-.hero-icon{width:88px;height:88px;margin:0 auto 24px;display:block}
-.hero h1{font-size:clamp(24px,5vw,44px);font-weight:700;letter-spacing:-0.5px;margin-bottom:16px}
-.hero-tagline{font-size:16px;color:var(--text-dim);max-width:500px;margin:0 auto}
-.section-label{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--solar);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
-.section-label::before{content:'';display:block;width:18px;height:1px;background:var(--solar)}
-h2{font-size:clamp(18px,3vw,26px);font-weight:600;margin-bottom:20px}
-.card{background:var(--surface);border:1px solid var(--border-dim);border-radius:var(--radius);padding:24px}
-.card--accent{border-left:3px solid var(--solar)}
-.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
-.kpi{text-align:center;padding:20px}
-.kpi-val{font-family:var(--mono);font-size:28px;font-weight:700;display:block;margin-bottom:4px}
-.kpi-lbl{font-size:12px;color:var(--text-muted)}
-.steps{display:flex;flex-direction:column}
-.step{display:flex;gap:20px;align-items:flex-start;padding:18px 0;position:relative}
-.step:not(:last-child)::after{content:'';position:absolute;left:18px;top:50px;width:2px;height:calc(100% - 30px);background:linear-gradient(to bottom,var(--border),transparent)}
-.step-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--solar);background:var(--solar-dim);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;color:var(--solar)}
-.step h3{font-size:15px;font-weight:600;margin-bottom:4px}
-.step p{font-size:14px;color:var(--text-dim)}
-.tbl{width:100%;border-collapse:collapse;font-size:14px}
-.tbl th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);padding:10px 14px;border-bottom:1px solid var(--border-dim)}
-.tbl td{padding:11px 14px;border-bottom:1px solid var(--border-dim);color:var(--text-dim)}
-.tbl td:last-child{text-align:right;font-family:var(--mono);color:var(--text)}
-.tbl tr:last-child td{border-bottom:none;color:var(--solar);font-weight:600;font-size:15px}
-.tbl tr:hover td{background:rgba(200,230,0,0.02)}
-.transform-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:14px}
-.transform-card{background:var(--surface-2);border:1px solid var(--border-dim);border-radius:10px;padding:14px;text-align:center}
-.tc-fruit{font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px}
-.tc-row{display:flex;justify-content:space-between;font-size:12px;font-family:var(--mono);margin-bottom:3px}
-.tc-row span:first-child{color:var(--text-muted)}
-.tc-row span:last-child{color:var(--solar)}
-.tc-margin{font-size:14px;font-weight:700;color:var(--green);font-family:var(--mono);margin-top:8px}
-.roi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:16px}
-.roi-card{background:var(--surface-2);border:1px solid var(--border-dim);border-radius:10px;padding:14px;text-align:center}
-.roi-val{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--solar);display:block;margin-bottom:3px}
-.roi-lbl{font-size:11px;color:var(--text-muted)}
-.bars{display:flex;align-items:flex-end;gap:10px;height:120px;padding:0 4px;margin-top:16px;border-bottom:1px solid var(--border-dim)}
-.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
-.bar{width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--solar),#806600)}
-.bar-val{font-family:var(--mono);font-size:10px;color:var(--solar);white-space:nowrap}
-.bar-lbl{font-family:var(--mono);font-size:10px;color:var(--text-muted);text-align:center}
-.env-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
-.env-card{background:var(--surface);border:1px solid var(--border-dim);border-top:2px solid var(--teal);border-radius:var(--radius);padding:22px;text-align:center}
-.env-num{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--teal);display:block;margin-bottom:6px}
-.env-desc{font-size:13px;color:var(--text-dim);line-height:1.4}
-footer{text-align:center;padding:28px 20px;border-top:1px solid var(--border-dim);font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:1.5px}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.hero{animation:fadeUp .5s ease both}.card,.step,.env-card{animation:fadeUp .4s ease both}
-@media(max-width:600px){section{padding:32px 0}.hero{padding:40px 16px 28px}}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse 120% 60% at 50% -10%, oklch(88% 0.06 155 / 0.18) 0%, transparent 65%),
+    radial-gradient(ellipse 80% 40% at 90% 80%, oklch(90% 0.05 72 / 0.12) 0%, transparent 60%);
+  background-attachment: fixed;
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 15px;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--green-deep);
+  padding: 0 2rem;
+  display: flex; align-items: center; gap: 0;
+  box-shadow: 0 1px 0 oklch(100% 0 0 / 0.06), 0 4px 20px oklch(10% 0.05 155 / 0.35);
+  overflow-x: auto;
+}
+nav a {
+  color: oklch(100% 0 0 / 0.65);
+  text-decoration: none;
+  font-size: 11.5px; font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 15px 13px;
+  white-space: nowrap;
+  transition: color 0.18s cubic-bezier(0.16,1,0.3,1), background 0.18s cubic-bezier(0.16,1,0.3,1);
+  text-transform: uppercase;
+  position: relative;
+}
+nav a::after {
+  content: '';
+  position: absolute; bottom: 0; left: 13px; right: 13px; height: 2px;
+  background: var(--gold-light); border-radius: 1px;
+  transform: scaleX(0); transition: transform 0.2s cubic-bezier(0.16,1,0.3,1);
+}
+nav a:hover { color: oklch(100% 0 0 / 0.95); background: oklch(100% 0 0 / 0.07); }
+nav a:hover::after { transform: scaleX(1); }
+nav .nav-brand {
+  font-family: var(--font-serif);
+  font-size: 15px; color: oklch(100% 0 0 / 0.92);
+  margin-right: 1.2rem; padding: 15px 0;
+  white-space: nowrap; font-style: italic;
+  border-right: 1px solid oklch(100% 0 0 / 0.12);
+  padding-right: 1.2rem;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--green-deep);
+  background-image:
+    radial-gradient(ellipse 100% 80% at 50% -20%, oklch(55% 0.13 155 / 0.6) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 110%, oklch(58% 0.12 72 / 0.25) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 60% at 10% 90%, oklch(35% 0.08 155 / 0.4) 0%, transparent 60%);
+  padding: 6rem 2rem 5rem;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px; letter-spacing: 0.18em;
+  color: var(--gold-light); text-transform: uppercase;
+  margin-bottom: 1.2rem; opacity: 0.9;
+}
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 7vw, 4.4rem);
+  color: oklch(98% 0.01 88); font-weight: 400; line-height: 1.08;
+  margin-bottom: 0.7rem;
+  text-shadow: 0 2px 20px oklch(10% 0.05 155 / 0.5);
+}
+.hero h1 span { color: var(--gold-light); font-style: italic; }
+.hero-sub {
+  font-size: 1.05rem; color: oklch(100% 0 0 / 0.62);
+  max-width: 560px; margin: 0 auto 2.4rem; line-height: 1.7;
+}
+.hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+.tag {
+  background: oklch(100% 0 0 / 0.09);
+  border: 1px solid oklch(100% 0 0 / 0.18);
+  color: oklch(100% 0 0 / 0.82);
+  padding: 5px 14px; border-radius: 20px;
+  font-size: 11.5px; font-weight: 500; letter-spacing: 0.02em;
+}
+
+/* ── LAYOUT ── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 1.75rem; }
+.section { padding: 4.5rem 0; border-bottom: 1px solid var(--border); }
+.section:last-child { border-bottom: none; }
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--green-mid); margin-bottom: 0.5rem;
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.section-label::before {
+  content: '';
+  display: inline-block; width: 5px; height: 5px;
+  background: var(--green-mid); border-radius: 50%;
+}
+.section h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 400; color: var(--text);
+  margin-bottom: 0.5rem; line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.section-desc {
+  color: var(--text-dim); margin-bottom: 2.2rem;
+  max-width: 640px; line-height: 1.7; font-size: 0.95rem;
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.7rem;
+  box-shadow: var(--shadow);
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
+.card-grid-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.18rem; margin-bottom: 0.55rem; color: var(--green);
+  line-height: 1.25;
+}
+.card p { color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
+.card ul { padding-left: 1.1rem; color: var(--text-dim); font-size: 0.88rem; }
+.card ul li { margin-bottom: 0.32rem; }
+
+/* Tinted surface variants — no side stripes */
+.card--green  { background: var(--green-dim);  border-color: var(--green-light); }
+.card--gold   { background: var(--gold-dim);   border-color: oklch(78% 0.100 72); }
+.card--earth  { background: var(--earth-dim);  border-color: oklch(72% 0.080 48); }
+.card--red    { background: var(--red-dim);    border-color: oklch(72% 0.120 25); }
+.card--blue   { background: var(--blue-dim);   border-color: oklch(68% 0.070 240); }
+.card--green h3  { color: var(--green); }
+.card--gold  h3  { color: var(--gold); }
+.card--earth h3  { color: var(--earth); }
+.card--red   h3  { color: var(--red); }
+.card--blue  h3  { color: var(--blue); }
+
+/* ── TABLES ── */
+.table-wrap { overflow-x: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow); border: 1px solid var(--border); }
+table {
+  width: 100%; border-collapse: collapse;
+  background: var(--surface);
+  font-size: 0.875rem;
+}
+thead tr { background: var(--green); }
+thead th {
+  padding: 11px 15px; text-align: left;
+  font-size: 10.5px; letter-spacing: 0.07em; text-transform: uppercase;
+  font-weight: 600; color: oklch(95% 0.02 155);
+}
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.14s cubic-bezier(0.16,1,0.3,1); }
+tbody tr:hover { background: var(--green-dim); }
+tbody tr:last-child { border-bottom: none; }
+td { padding: 10px 15px; color: var(--text); vertical-align: top; line-height: 1.5; }
+td.num { font-family: var(--font-mono); font-size: 0.84rem; font-variant-numeric: tabular-nums; }
+td.green { color: var(--green); font-weight: 600; }
+td.gold  { color: var(--gold);  font-weight: 600; }
+td.mult  { font-family: var(--font-mono); font-weight: 700; color: var(--earth); font-size: 0.92rem; }
+.badge {
+  display: inline-block;
+  padding: 2px 9px; border-radius: 99px;
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.02em;
+}
+.badge-green { background: var(--green-dim);  color: var(--green); }
+.badge-gold  { background: var(--gold-dim);   color: var(--gold); }
+.badge-red   { background: var(--red-dim);    color: var(--red); }
+.badge-blue  { background: var(--blue-dim);   color: var(--blue); }
+.badge-earth { background: var(--earth-dim);  color: var(--earth); }
+
+/* ── STAT STRIP — replaces hero-metric kpi row ── */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0;
+  background: var(--green);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 2.4rem;
+  box-shadow: var(--shadow-lg);
+}
+.kpi {
+  padding: 1.4rem 1.6rem;
+  border-right: 1px solid oklch(100% 0 0 / 0.10);
+  position: relative;
+}
+.kpi:last-child { border-right: none; }
+.kpi-val {
+  font-family: var(--font-serif);
+  font-size: 1.75rem; font-weight: 400;
+  color: oklch(98% 0.015 88); line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.kpi-val.gold  { color: var(--gold-light); }
+.kpi-val.earth { color: oklch(82% 0.080 48); }
+.kpi-label {
+  font-size: 10px; color: oklch(100% 0 0 / 0.55);
+  text-transform: uppercase; letter-spacing: 0.10em; line-height: 1.35;
+}
+
+/* ── FODA ── */
+.foda-base { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2.4rem; }
+.foda-cell {
+  border-radius: var(--radius-lg);
+  padding: 1.3rem 1.5rem;
+  border: 1px solid var(--border);
+}
+.foda-cell h4 {
+  font-family: var(--font-mono);
+  font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 0.65rem; font-weight: 700;
+}
+.foda-cell.f { background: var(--green-dim);  border-color: var(--green-light); }
+.foda-cell.f h4 { color: var(--green); }
+.foda-cell.d { background: var(--red-dim);    border-color: oklch(72% 0.100 25); }
+.foda-cell.d h4 { color: var(--red); }
+.foda-cell.o { background: var(--gold-dim);   border-color: oklch(78% 0.100 72); }
+.foda-cell.o h4 { color: var(--gold); }
+.foda-cell.a { background: var(--earth-dim);  border-color: oklch(72% 0.075 48); }
+.foda-cell.a h4 { color: var(--earth); }
+.foda-cell ul { padding-left: 1rem; font-size: 0.85rem; color: var(--text-dim); }
+.foda-cell ul li { margin-bottom: 0.28rem; }
+
+.foda-matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.foda-q {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.foda-q-header {
+  padding: 1rem 1.3rem;
+  font-family: var(--font-mono);
+  font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+  font-weight: 700;
+}
+.foda-q.mm .foda-q-header { background: var(--green);      color: oklch(96% 0.02 155); }
+.foda-q.mn .foda-q-header { background: var(--gold-dim);   color: var(--gold); border-bottom: 1px solid oklch(78% 0.100 72); }
+.foda-q.mM .foda-q-header { background: var(--blue);       color: oklch(96% 0.02 240); }
+.foda-q.mm2 .foda-q-header{ background: var(--earth);      color: oklch(96% 0.02 48); }
+.foda-strategies { padding: 0.9rem 1.2rem; }
+
+details { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 0.7rem; overflow: hidden; background: var(--surface-3); }
+details:last-child { margin-bottom: 0; }
+summary {
+  padding: 0.85rem 1.1rem;
+  cursor: pointer; font-weight: 600; font-size: 0.875rem;
+  list-style: none;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;
+  transition: background 0.15s cubic-bezier(0.16,1,0.3,1);
+  line-height: 1.4;
+}
+summary:hover { background: var(--surface-2); }
+summary::after { content: '+'; color: var(--text-muted); font-size: 1rem; font-weight: 400; flex-shrink: 0; margin-top: 1px; }
+details[open] summary::after { content: '−'; }
+details[open] { background: var(--surface); }
+.details-body { padding: 1rem 1.2rem 1.2rem; font-size: 0.875rem; color: var(--text-dim); line-height: 1.65; border-top: 1px solid var(--border); }
+.details-body ol { padding-left: 1.3rem; }
+.details-body ol li { margin-bottom: 0.45rem; }
+.details-body p { margin-bottom: 0.6rem; }
+.details-body p:last-child { margin-bottom: 0; }
+.details-body strong { color: var(--text); font-weight: 600; }
+
+/* ── FLUJO FÍSICA ── */
+.flow-row {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+  background: var(--green-dim); border-radius: var(--radius);
+  padding: 1rem 1.4rem; margin-bottom: 1.5rem;
+  border: 1px solid var(--green-light);
+}
+.flow-step {
+  background: var(--green); color: #fff;
+  padding: 6px 14px; border-radius: 20px;
+  font-size: 0.82rem; font-weight: 500;
+}
+.flow-arrow { color: var(--green-mid); font-weight: 700; font-size: 1.1rem; }
+
+/* ── PRODUCTS ── */
+.product-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+.product-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem 1.2rem 1.2rem;
+  display: flex; flex-direction: column; align-items: flex-start;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); }
+.product-card .price {
+  font-family: var(--font-serif); font-size: 2rem; color: var(--green);
+  line-height: 1; margin-top: auto;
+}
+.product-card .model { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; }
+.product-card .name { font-weight: 700; color: var(--text); font-size: 0.95rem; margin-bottom: 0.2rem; }
+.product-card .cap { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 1rem; }
+.product-card .currency { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.5rem; font-family: var(--font-mono); }
+.product-card.plus { border: 1.5px solid oklch(78% 0.100 72); background: var(--gold-dim); }
+.product-card.plus .price { color: var(--gold); }
+
+/* ── TIMELINE ── */
+.timeline { position: relative; padding-left: 2.2rem; }
+.timeline::before {
+  content: ''; position: absolute; left: 8px; top: 6px; bottom: 6px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--green-light), var(--gold-light), oklch(72% 0.080 48));
+}
+.tl-item { position: relative; margin-bottom: 1.8rem; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-dot {
+  position: absolute; left: -2.2rem; top: 2px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--green); border: 2.5px solid var(--bg);
+  box-shadow: 0 0 0 3px var(--green-dim);
+  display: flex; align-items: center; justify-content: center;
+}
+.tl-dot span { color: oklch(97% 0.01 155); font-size: 7.5px; font-weight: 700; font-family: var(--font-mono); }
+.tl-title { font-weight: 700; color: var(--text); font-size: 0.92rem; line-height: 1.3; }
+.tl-date {
+  font-family: var(--font-mono); font-size: 9.5px;
+  color: var(--green-mid); letter-spacing: 0.08em;
+  margin-bottom: 0.2rem; text-transform: uppercase;
+}
+.tl-body { font-size: 0.85rem; color: var(--text-dim); margin-top: 0.25rem; line-height: 1.55; }
+
+/* ── IMPACTO ── */
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.impact-card {
+  background: var(--surface-3);
+  padding: 1.4rem 1.2rem;
+  display: flex; flex-direction: column; align-items: flex-start;
+  transition: background 0.2s cubic-bezier(0.16,1,0.3,1);
+}
+.impact-card:hover { background: var(--green-dim); }
+.impact-val {
+  font-family: var(--font-serif);
+  font-size: 2rem; color: var(--green); line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.impact-val.gold { color: var(--gold); }
+.impact-label { font-size: 0.78rem; color: var(--text-dim); line-height: 1.4; font-weight: 500; }
+.impact-sub {
+  font-family: var(--font-mono); font-size: 9.5px;
+  color: var(--text-muted); margin-top: 0.25rem; letter-spacing: 0.04em;
+}
+@media (max-width: 720px) { .impact-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 400px) { .impact-grid { grid-template-columns: 1fr; } }
+
+/* ── PESTEL / PORTER ── */
+.pestel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.9rem; }
+.pestel-card {
+  background: var(--surface); border-radius: var(--radius);
+  border: 1px solid var(--border); padding: 1rem 1.2rem;
+}
+.pestel-letter {
+  font-family: var(--font-serif); font-size: 1.8rem;
+  color: var(--green-mid); line-height: 1; margin-bottom: 0.1rem;
+}
+.pestel-name { font-weight: 600; font-size: 0.85rem; color: var(--text); margin-bottom: 0.4rem; }
+.pestel-body { font-size: 0.82rem; color: var(--text-dim); line-height: 1.5; }
+
+.porter-center {
+  background: var(--green); color: #fff;
+  border-radius: var(--radius); padding: 1.4rem;
+  text-align: center;
+  grid-column: 2; grid-row: 2;
+}
+.porter-center h4 { font-family: var(--font-serif); font-size: 1rem; color: #fff; margin-bottom: 0.3rem; }
+.porter-center p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
+.porter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 0.8rem; align-items: start;
+}
+.porter-cell {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem 1.1rem;
+}
+.porter-cell h4 { font-weight: 700; font-size: 0.82rem; color: var(--text); margin-bottom: 0.3rem; }
+.porter-cell .nivel {
+  font-family: var(--font-mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 0.3rem;
+}
+.nivel-bajo { color: var(--green); } .nivel-medio { color: var(--gold); } .nivel-alto { color: var(--red); }
+.porter-cell p { font-size: 0.8rem; color: var(--text-dim); line-height: 1.45; }
+
+/* ── TWO COL ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media (max-width: 700px) {
+  .two-col, .foda-base, .foda-matrix, .porter-grid, .kpi-row { grid-template-columns: 1fr; }
+  .porter-center { grid-column: 1; grid-row: auto; }
+  .kpi { border-right: none; border-bottom: 1px solid oklch(100% 0 0 / 0.10); }
+  .kpi:last-child { border-bottom: none; }
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--green-deep);
+  color: oklch(100% 0 0 / 0.42);
+  text-align: center; padding: 2.5rem 2rem;
+  font-size: 0.8rem; letter-spacing: 0.02em; line-height: 1.7;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeScale {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.anim       { animation: fadeUp    0.65s cubic-bezier(0.16,1,0.3,1) both; }
+.anim-scale { animation: fadeScale 0.55s cubic-bezier(0.16,1,0.3,1) both; }
+.anim-1 { animation-delay: 0.04s; } .anim-2 { animation-delay: 0.10s; }
+.anim-3 { animation-delay: 0.17s; } .anim-4 { animation-delay: 0.24s; }
+
+/* Scroll-reveal: sections fade up as they enter */
+.section { opacity: 0; transform: translateY(16px); transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+.section.visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim, .anim-scale { animation: none; }
+  .section { opacity: 1; transform: none; transition: none; }
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--green-light); border-radius: 3px; }
 </style>
 </head>
 <body>
-<div class="hero">
-  <svg class="hero-icon" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- Sun -->
-    <circle cx="44" cy="26" r="12" stroke="#c8e600" stroke-width="2" fill="rgba(200,230,0,0.08)"/>
-    <line x1="44" y1="6" x2="44" y2="10" stroke="#c8e600" stroke-width="2" stroke-linecap="round"/>
-    <line x1="62" y1="12" x2="59.5" y2="14.5" stroke="#c8e600" stroke-width="2" stroke-linecap="round"/>
-    <line x1="68" y1="26" x2="64" y2="26" stroke="#c8e600" stroke-width="2" stroke-linecap="round"/>
-    <line x1="26" y1="12" x2="28.5" y2="14.5" stroke="#c8e600" stroke-width="2" stroke-linecap="round"/>
-    <line x1="20" y1="26" x2="24" y2="26" stroke="#c8e600" stroke-width="2" stroke-linecap="round"/>
-    <!-- Dryer frame -->
-    <rect x="10" y="50" width="68" height="28" rx="4" stroke="#c8e600" stroke-width="1.5" fill="rgba(200,230,0,0.04)"/>
-    <!-- Shelves with items -->
-    <line x1="14" y1="62" x2="74" y2="62" stroke="#c8e600" stroke-width="1" stroke-dasharray="3,3"/>
-    <line x1="14" y1="70" x2="74" y2="70" stroke="#c8e600" stroke-width="1" stroke-dasharray="3,3"/>
-    <!-- Items on shelves -->
-    <circle cx="22" cy="57" r="3" fill="rgba(200,230,0,0.2)" stroke="#c8e600" stroke-width="1"/>
-    <circle cx="34" cy="57" r="3" fill="rgba(200,230,0,0.2)" stroke="#c8e600" stroke-width="1"/>
-    <circle cx="46" cy="57" r="3" fill="rgba(200,230,0,0.2)" stroke="#c8e600" stroke-width="1"/>
-    <circle cx="58" cy="57" r="3" fill="rgba(200,230,0,0.2)" stroke="#c8e600" stroke-width="1"/>
-    <circle cx="28" cy="66" r="2.5" fill="rgba(200,230,0,0.15)" stroke="#c8e600" stroke-width="1"/>
-    <circle cx="44" cy="66" r="2.5" fill="rgba(200,230,0,0.15)" stroke="#c8e600" stroke-width="1"/>
-    <circle cx="60" cy="66" r="2.5" fill="rgba(200,230,0,0.15)" stroke="#c8e600" stroke-width="1"/>
-    <!-- Sun rays to dryer -->
-    <line x1="44" y1="38" x2="44" y2="46" stroke="#c8e600" stroke-width="1" stroke-dasharray="2,2"/>
-    <line x1="36" y1="40" x2="32" y2="46" stroke="#c8e600" stroke-width="1" stroke-dasharray="2,2"/>
-    <line x1="52" y1="40" x2="56" y2="46" stroke="#c8e600" stroke-width="1" stroke-dasharray="2,2"/>
-  </svg>
-  <div class="hero-tag">Propuesta 04 · Alimentación</div>
-  <h1>Secadores Solares para Alimentos</h1>
-  <p class="hero-tagline">Convierte pérdidas de cosecha en productos premium. Con el sol.</p>
+
+<nav>
+  <span class="nav-brand">EmprendeVerde</span>
+  <a href="#ficha">Ficha</a>
+  <a href="#output">Output</a>
+  <a href="#humedad">Humedad</a>
+  <a href="#modificaciones">Modificaciones</a>
+  <a href="#impacto">Impacto</a>
+  <a href="#productos">Productos</a>
+  <a href="#swot">FODA</a>
+  <a href="#financiero">Financiero</a>
+  <a href="#pestel">PESTEL</a>
+  <a href="#metas">Metas</a>
+  <a href="#pasos">Pasos</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-label">Plan de Negocios · Santa Cruz, Bolivia · Mayo 2026</div>
+  <h1>Secador Solar<br><span>EmprendeVerde</span></h1>
+  <p class="hero-sub">Tecnología solar accesible para productores rurales bolivianos. Sin electricidad, sin pérdidas, con impacto.</p>
+  <div class="hero-tags">
+    <span class="tag">Agroindustria</span>
+    <span class="tag">Energía Renovable</span>
+    <span class="tag">Santa Cruz → Bolivia</span>
+    <span class="tag">Moneda: BOB</span>
+    <span class="tag">Ref. 1 USD ≈ 7 BOB</span>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     SECCIÓN 1 — FICHA DEL PROYECTO
+═══════════════════════════════════════════ -->
+<section class="section" id="ficha">
+<div class="container">
+  <div class="section-label">Sección 1</div>
+  <h2>Ficha del Proyecto</h2>
+  <p class="section-desc">Identificación, propuesta de valor, mercado objetivo y estructura de riesgos del emprendimiento.</p>
+
+  <div class="kpi-row anim anim-1">
+    <div class="kpi"><div class="kpi-val">13,420</div><div class="kpi-label">BOB Inversión inicial</div></div>
+    <div class="kpi"><div class="kpi-val gold">34%</div><div class="kpi-label">Margen bruto Modelo M+</div></div>
+    <div class="kpi"><div class="kpi-val">23</div><div class="kpi-label">Unidades meta año 1</div></div>
+    <div class="kpi"><div class="kpi-val earth">6</div><div class="kpi-label">Departamentos Bolivia</div></div>
+    <div class="kpi"><div class="kpi-val">20×</div><div class="kpi-label">Multiplicador precio mango</div></div>
+  </div>
+
+  <div class="card-grid anim anim-2">
+    <div class="card card--green">
+      <h3>Descripción de la Idea</h3>
+      <p>Diseño, construcción y comercialización de secadores solares de bajo costo para pequeños productores agrícolas de Bolivia. Deshidrata frutas, vegetales, hierbas y granos <strong>sin electricidad</strong>, reduciendo pérdidas post-cosecha y multiplicando hasta 20× el valor del producto final. Inicio en Santa Cruz con expansión gradual a todo el país.</p>
+    </div>
+    <div class="card card--red">
+      <h3>Problema que Resuelve</h3>
+      <ul>
+        <li>Pérdida post-cosecha estimada 30–40% en frutas tropicales bolivianas</li>
+        <li>Dependencia de energía eléctrica costosa o inexistente en comunidades rurales</li>
+        <li>Brecha de precio entre producto fresco (3–5 BOB/kg) y deshidratado (60–100 BOB/kg)</li>
+        <li>Escasez de tecnología asequible para conservación periurbana y rural</li>
+      </ul>
+    </div>
+    <div class="card card--gold">
+      <h3>Ventaja Competitiva</h3>
+      <ul>
+        <li><strong>Costo:</strong> cero combustible, cero electricidad en versión estándar</li>
+        <li><strong>Simplicidad:</strong> madera local, aluminio, plástico UV — mantenimiento mínimo</li>
+        <li><strong>Adaptabilidad:</strong> diseño ajustable por cultivo, volumen y clima regional</li>
+        <li><strong>Marca:</strong> posicionamiento verde alineado con Bolivia Productiva</li>
+        <li><strong>Know-how local:</strong> optimizado para clima tropical y altiplano boliviano</li>
+      </ul>
+    </div>
+    <div class="card card--blue">
+      <h3>Oportunidad de Mercado</h3>
+      <ul>
+        <li>Bolivia: irradiación 5.5–7 kWh/m²/día — entre las más altas de Sudamérica</li>
+        <li>Demanda creciente deshidratados naturales local y exportación</li>
+        <li>Fondos disponibles: BDP, PROBOLIVIA, COSUDE, FAO Bolivia</li>
+        <li>Alineado con ODS 2, 7, 8, 13 — acceso a cooperación internacional</li>
+        <li>Escasez de divisas favorece tecnología 100% producida en Bolivia</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--font-serif);font-size:1.3rem;margin:2rem 0 1rem;color:var(--green)">Mercado Objetivo por Región</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Región</th><th>Cultivos Prioritarios</th><th>Productores Potenciales</th><th>Meta Año 1</th><th>Meta Año 3</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Santa Cruz</strong> <span class="badge badge-green">Inicio</span></td><td>Mango, papaya, locoto, tomate, hierbas</td><td class="num">800–2,000</td><td class="num green">23 unidades M+</td><td class="num">80 unidades</td></tr>
+        <tr><td>Cochabamba</td><td>Durazno, manzana, maíz, tomate, hierbas</td><td class="num">500–1,200</td><td class="num">—</td><td class="num">30 unidades</td></tr>
+        <tr><td>Tarija</td><td>Uva, higo, durazno, tomate, pimiento</td><td class="num">200–500</td><td class="num">—</td><td class="num">15 unidades</td></tr>
+        <tr><td>La Paz / Yungas</td><td>Café, cacao, banana, frutas tropicales</td><td class="num">300–700</td><td class="num">—</td><td class="num">20 unidades</td></tr>
+        <tr><td>Beni</td><td>Mango, plátano, camu-camu, pescado</td><td class="num">200–500</td><td class="num">—</td><td class="num">15 unidades</td></tr>
+        <tr><td>Oruro / Potosí</td><td>Quinua, habas, chuño artesanal</td><td class="num">200–600</td><td class="num">—</td><td class="num">20 unidades</td></tr>
+        <tr style="background:var(--green-dim);font-weight:700"><td>TOTAL</td><td></td><td class="num">2,200–5,500</td><td class="num green">20</td><td class="num green">180</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-family:var(--font-serif);font-size:1.3rem;margin:2rem 0 1rem;color:var(--green)">Riesgos Principales</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Riesgo</th><th>Mitigación</th></tr></thead>
+      <tbody>
+        <tr><td>Temporada lluviosa (Nov–Mar en Santa Cruz)</td><td>Diseño con techo inclinado; operar preferentemente Abr–Oct; ofrecer Modelo M+ en zonas húmedas</td></tr>
+        <tr><td>Resistencia al cambio del productor</td><td>Demostración en campo obligatoria antes de venta; testimonios de vecinos; kit de demo portátil</td></tr>
+        <tr><td>Copia informal del diseño</td><td>Registro SENAPI; talleres DIY que consolidan marca; servicio post-venta inimitable</td></tr>
+        <tr><td>Escasez de divisas / plástico UV importado</td><td>Stock 2 meses adelantado; 2–3 proveedores identificados; alternativa plástico UV agrícola</td></tr>
+        <tr><td>Variabilidad climática entre regiones</td><td>Diseños diferenciados por altitud y humedad; capacitación técnica por región</td></tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+</section>
 
-<main class="container">
-  <section>
-    <div class="section-label">El Problema</div>
-    <div class="card card--accent">
-      <p style="font-size:16px;line-height:1.75;color:var(--text-dim)">Bolivia pierde entre <strong style="color:var(--text)">30 y 40% de su producción agrícola</strong> por pudrición antes de llegar al mercado. Los agricultores pierden miles de bolivianos cada temporada. Los alimentos deshidratados importados son caros y escasos, mientras la materia prima local se pudre.</p>
-    </div>
-  </section>
+<!-- ══════════════════════════════════════════
+     SECCIÓN 2 — OUTPUT DE LA MÁQUINA
+═══════════════════════════════════════════ -->
+<section class="section" id="output">
+<div class="container">
+  <div class="section-label">Sección 2</div>
+  <h2>Output de la Máquina</h2>
+  <p class="section-desc">El secador produce alimento deshidratado. El precio se multiplica hasta 20× respecto al producto fresco.</p>
 
-  <section>
-    <div class="section-label">La Solución</div>
-    <h2>Dos modelos de negocio, un solo equipo</h2>
-    <div class="card-grid">
-      <div class="card card--accent">
-        <div style="font-family:var(--mono);font-size:10px;color:var(--solar);letter-spacing:1.5px;margin-bottom:10px">MODELO A — VENTA DE EQUIPOS</div>
-        <p style="font-size:14px;color:var(--text-dim)">Fabricar y vender secadores a cooperativas agrícolas. Precio 2,800 Bs. Capacitación incluida. Margen: 1,725 Bs por unidad.</p>
-      </div>
-      <div class="card card--accent">
-        <div style="font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:1.5px;margin-bottom:10px">MODELO B — TRANSFORMACIÓN</div>
-        <p style="font-size:14px;color:var(--text-dim)">Comprar fruta barata en cosecha pico → deshidratar → vender empacada en ciudades a precio premium.</p>
-      </div>
-    </div>
-  </section>
+  <div class="table-wrap" style="margin-bottom:2rem">
+    <table>
+      <thead><tr><th>Producto</th><th>Input (fresco)</th><th>Output</th><th>Precio fresco (BOB/kg)</th><th>Precio seco (BOB/kg)</th><th>Multiplicador</th><th>Reducción peso</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Mango</strong></td><td>Mango fresco</td><td>Mango deshidratado / snack</td><td class="num">3–5</td><td class="num green">60–100</td><td class="mult">~20×</td><td class="num">80%</td></tr>
+        <tr><td><strong>Locoto / Ají</strong></td><td>Locoto fresco</td><td>Ají seco molido / en tiras</td><td class="num">8–12</td><td class="num green">80–150</td><td class="mult">~12×</td><td class="num">85%</td></tr>
+        <tr><td><strong>Tomate</strong></td><td>Tomate fresco</td><td>Tomate deshidratado / semiseco</td><td class="num">3–5</td><td class="num green">50–80</td><td class="mult">~16×</td><td class="num">90%</td></tr>
+        <tr><td><strong>Hierbas</strong></td><td>Orégano, menta, albahaca</td><td>Hierba seca / condimento / té</td><td class="num">5–8</td><td class="num green">60–120</td><td class="mult">~15×</td><td class="num">75%</td></tr>
+        <tr><td><strong>Papaya</strong></td><td>Papaya fresca</td><td>Papaya deshidratada / snack</td><td class="num">3–6</td><td class="num green">55–90</td><td class="mult">~15×</td><td class="num">80%</td></tr>
+        <tr><td><strong>Piña</strong></td><td>Piña fresca</td><td>Piña deshidratada / snack</td><td class="num">4–7</td><td class="num green">60–100</td><td class="mult">~14×</td><td class="num">80%</td></tr>
+        <tr><td><strong>Banana</strong></td><td>Banana madura</td><td>Banana chips / pasas</td><td class="num">2–4</td><td class="num green">40–70</td><td class="mult">~18×</td><td class="num">75%</td></tr>
+        <tr><td><strong>Cacao</strong></td><td>Cacao fermentado (Yungas)</td><td>Cacao seco listo para procesar</td><td class="num">15–25</td><td class="num green">80–150</td><td class="mult">~6×</td><td class="num">50%</td></tr>
+        <tr><td><strong>Café</strong></td><td>Café lavado (Caranavi)</td><td>Café verde seco listo para tostar</td><td class="num">20–35</td><td class="num green">90–180</td><td class="mult">~5×</td><td class="num">50%</td></tr>
+        <tr><td><strong>Pescado</strong></td><td>Pescado fresco (Beni)</td><td>Pescado seco / charque</td><td class="num">10–18</td><td class="num green">60–120</td><td class="mult">~7×</td><td class="num">70%</td></tr>
+        <tr><td><strong>Quinua</strong></td><td>Quinua húmeda (Altiplano)</td><td>Quinua seca limpia lista para venta</td><td class="num">25–40</td><td class="num green">35–55</td><td class="mult">~1.5×</td><td class="num">20%</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-  <section>
-    <div class="section-label">Flujo de Trabajo</div>
-    <h2>Del campo al producto de valor</h2>
-    <div class="steps">
-      <div class="step"><div class="step-num">01</div><div><h3>Fabricar secador solar</h3><p>Marco metálico + cubierta plástica UV + bandejas de malla inoxidable. 100% fabricación local.</p></div></div>
-      <div class="step"><div class="step-num">02</div><div><h3>Comprar fruta en pico de cosecha</h3><p>Precio mínimo cuando hay exceso — mango, plátano, tomate, pimentón, hierbas medicinales.</p></div></div>
-      <div class="step"><div class="step-num">03</div><div><h3>Deshidratar sin electricidad</h3><p>El sol boliviano hace el trabajo. 6–8 horas según producto. Sin conservantes ni químicos.</p></div></div>
-      <div class="step"><div class="step-num">04</div><div><h3>Empacar con marca propia</h3><p>Bolsas selladas con etiqueta profesional. Presentación de 50g, 100g y 200g según producto.</p></div></div>
-      <div class="step"><div class="step-num">05</div><div><h3>Vender en ciudades</h3><p>Supermercados, tiendas naturales, ferias, redes sociales, restaurantes gourmet.</p></div></div>
+  <h3 style="font-family:var(--font-serif);font-size:1.3rem;margin:0 0 1rem;color:var(--green)">Triple Modelo de Negocio</h3>
+  <div class="card-grid">
+    <div class="card card--green">
+      <h3>A — Vender la Máquina</h3>
+      <p>EmprendeVerde fabrica y vende secadores. Ingreso directo por venta de equipos a productores, cooperativas y municipios. Precio 700–7,000 BOB según modelo.</p>
     </div>
-  </section>
-
-  <section>
-    <div class="section-label">Inversión Inicial</div>
-    <h2>Equipos fabricados localmente</h2>
-    <div class="card" style="margin-bottom:14px">
-      <table class="tbl">
-        <thead><tr><th>Ítem</th><th style="text-align:right">Costo (Bs)</th></tr></thead>
-        <tbody>
-          <tr><td>Marco metálico — 4 unidades</td><td>1,600</td></tr>
-          <tr><td>Plástico UV transparente</td><td>1,200</td></tr>
-          <tr><td>Malla inoxidable para bandejas</td><td>600</td></tr>
-          <tr><td>Pintura negra absorbente de calor</td><td>400</td></tr>
-          <tr><td>Empaques y etiquetas iniciales</td><td>500</td></tr>
-          <tr><td><strong>INVERSIÓN TOTAL</strong></td><td><strong>4,300 Bs</strong></td></tr>
-        </tbody>
-      </table>
+    <div class="card card--gold">
+      <h3>B — Usar la Máquina</h3>
+      <p>EmprendeVerde opera secadores propios, procesa cosecha de productores vecinos y vende el producto deshidratado. Ingreso por diferencial de precio fresco→seco (hasta 20×).</p>
     </div>
-    <div style="margin-top:14px">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--solar);letter-spacing:1.5px;margin-bottom:10px">MULTIPLICADOR DE VALOR — MODELO B</div>
-      <div class="transform-grid">
-        <div class="transform-card">
-          <div class="tc-fruit">Mango</div>
-          <div class="tc-row"><span>Fresco</span><span>3 Bs/kg</span></div>
-          <div class="tc-row"><span>Ratio</span><span>7:1</span></div>
-          <div class="tc-row"><span>Deshid.</span><span>38 Bs/kg</span></div>
-          <div class="tc-margin">+17 Bs/kg</div>
-        </div>
-        <div class="transform-card">
-          <div class="tc-fruit">Plátano</div>
-          <div class="tc-row"><span>Fresco</span><span>2 Bs/kg</span></div>
-          <div class="tc-row"><span>Ratio</span><span>6:1</span></div>
-          <div class="tc-row"><span>Deshid.</span><span>28 Bs/kg</span></div>
-          <div class="tc-margin">+16 Bs/kg</div>
-        </div>
-        <div class="transform-card">
-          <div class="tc-fruit">Tomate</div>
-          <div class="tc-row"><span>Fresco</span><span>4 Bs/kg</span></div>
-          <div class="tc-row"><span>Ratio</span><span>8:1</span></div>
-          <div class="tc-row"><span>Deshid.</span><span>45 Bs/kg</span></div>
-          <div class="tc-margin">+13 Bs/kg</div>
-        </div>
-      </div>
+    <div class="card card--earth">
+      <h3>C — Ambos (Recomendado)</h3>
+      <p>Fabricar + operar en paralelo. El producto deshidratado es la mejor demostración de venta. Genera ingresos inmediatos mientras escala la venta de máquinas. Modelo B valida y financia a modelo A.</p>
     </div>
-  </section>
-
-  <section>
-    <div class="section-label">Proyección de Ingresos</div>
-    <h2>Modelo B — Año 1 (conservador)</h2>
-    <div class="card">
-      <table class="tbl">
-        <thead><tr><th>Período</th><th style="text-align:right">Producción final</th><th style="text-align:right">Ingreso</th><th style="text-align:right">Ganancia neta</th></tr></thead>
-        <tbody>
-          <tr><td>Mes 1–2</td><td style="text-align:right;font-family:var(--mono)">20 kg</td><td style="text-align:right;font-family:var(--mono);color:var(--text-dim)">600 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--solar)">250 Bs</td></tr>
-          <tr><td>Mes 3–6</td><td style="text-align:right;font-family:var(--mono)">60 kg/mes</td><td style="text-align:right;font-family:var(--mono);color:var(--text-dim)">1,800 Bs/mes</td><td style="text-align:right;font-family:var(--mono);color:var(--solar)">1,100 Bs/mes</td></tr>
-          <tr><td>Mes 7–12</td><td style="text-align:right;font-family:var(--mono)">100 kg/mes</td><td style="text-align:right;font-family:var(--mono);color:var(--text-dim)">3,600 Bs/mes</td><td style="text-align:right;font-family:var(--mono);color:var(--solar)">2,000 Bs/mes</td></tr>
-          <tr><td colspan="3"><strong>Ganancia neta Año 1</strong></td><td><strong>~14,000 Bs</strong></td></tr>
-        </tbody>
-      </table>
-      <div class="bars">
-        <div class="bar-wrap"><span class="bar-val">250</span><div class="bar" style="height:12%"></div><span class="bar-lbl">M1-2</span></div>
-        <div class="bar-wrap"><span class="bar-val">1.1K</span><div class="bar" style="height:55%"></div><span class="bar-lbl">M3</span></div>
-        <div class="bar-wrap"><span class="bar-val">1.1K</span><div class="bar" style="height:55%"></div><span class="bar-lbl">M4</span></div>
-        <div class="bar-wrap"><span class="bar-val">1.1K</span><div class="bar" style="height:55%"></div><span class="bar-lbl">M5</span></div>
-        <div class="bar-wrap"><span class="bar-val">1.1K</span><div class="bar" style="height:55%"></div><span class="bar-lbl">M6</span></div>
-        <div class="bar-wrap"><span class="bar-val">2.0K</span><div class="bar" style="height:100%;background:linear-gradient(180deg,var(--solar),var(--green))"></div><span class="bar-lbl">M7</span></div>
-        <div class="bar-wrap"><span class="bar-val">2.0K</span><div class="bar" style="height:100%;background:linear-gradient(180deg,var(--solar),var(--green))"></div><span class="bar-lbl">M10</span></div>
-        <div class="bar-wrap"><span class="bar-val">2.0K</span><div class="bar" style="height:100%;background:linear-gradient(180deg,var(--solar),var(--green))"></div><span class="bar-lbl">M12</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-label">Caso Económico para el Cliente</div>
-    <h2>Por qué le conviene al agricultor y al consumidor</h2>
-    <div class="card card--accent" style="margin-bottom:14px">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--solar);letter-spacing:1.5px;margin-bottom:14px">CLIENTE A: AGRICULTOR QUE COMPRA EL EQUIPO</div>
-      <p style="font-size:14px;color:var(--text-dim);margin-bottom:14px">Sin secador: pierde 350 kg de cada 1,000 kg cosechados = <strong style="color:#ff6b6b">1,050 Bs perdidos</strong> en pudrición. Con secador: esos 350 kg → 50 kg deshidratado → 2,250 Bs recuperados.</p>
-      <div class="roi-grid">
-        <div class="roi-card"><span class="roi-val">2,800 Bs</span><span class="roi-lbl">Inversión en equipo</span></div>
-        <div class="roi-card"><span class="roi-val">1,900 Bs</span><span class="roi-lbl">Recuperado 1ra cosecha</span></div>
-        <div class="roi-card"><span class="roi-val">1 temporada</span><span class="roi-lbl">Punto de equilibrio</span></div>
-      </div>
-    </div>
-    <div class="card">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:1.5px;margin-bottom:14px">CLIENTE B: CONSUMIDOR FINAL</div>
-      <table class="tbl">
-        <thead><tr><th>Producto</th><th style="text-align:right">Importado</th><th style="text-align:right">Local nuestro</th><th style="text-align:right">Ahorro</th></tr></thead>
-        <tbody>
-          <tr><td>Mango deshidratado 100g</td><td style="text-align:right;font-family:var(--mono)">35–50 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--solar)">20–25 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">40–50%</td></tr>
-          <tr><td>Plátano deshidratado 100g</td><td style="text-align:right;font-family:var(--mono)">25–35 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--solar)">15–18 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">40–46%</td></tr>
-          <tr><td>Hierbas medicinales 50g</td><td style="text-align:right;font-family:var(--mono)">20–30 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--solar)">12–15 Bs</td><td style="text-align:right;font-family:var(--mono);color:var(--green)">40–50%</td></tr>
-          <tr><td colspan="3"><strong>Más fresco · Local · Sin conservantes</strong></td><td><strong>Garantizado</strong></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-label">Impacto Ambiental</div>
-    <h2>Menos desperdicio. Más valor. Cero energía.</h2>
-    <div class="env-grid">
-      <div class="env-card">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 12px;display:block">
-          <path d="M6 30 L30 30 L20 8 Z" fill="rgba(0,212,170,0.08)" stroke="#00d4aa" stroke-width="1.5" stroke-linejoin="round"/>
-          <path d="M6 30 L16 14 L30 30" stroke="#00d4aa" stroke-width="1" stroke-linejoin="round" fill="rgba(0,212,170,0.1)"/>
-        </svg>
-        <span class="env-num">80%</span>
-        <span class="env-desc">reducción en pérdida de alimentos por cosecha</span>
-      </div>
-      <div class="env-card">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 12px;display:block">
-          <circle cx="18" cy="12" r="8" stroke="#00d4aa" stroke-width="1.5" fill="rgba(0,212,170,0.08)"/>
-          <line x1="18" y1="2" x2="18" y2="5" stroke="#00d4aa" stroke-width="2" stroke-linecap="round"/>
-          <line x1="28" y1="6" x2="26" y2="8" stroke="#00d4aa" stroke-width="2" stroke-linecap="round"/>
-          <line x1="8" y1="6" x2="10" y2="8" stroke="#00d4aa" stroke-width="2" stroke-linecap="round"/>
-          <path d="M8 26 Q18 22 28 26" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M4 32 Q18 26 32 32" stroke="#00d4aa" stroke-width="1" stroke-linecap="round" stroke-dasharray="2,2"/>
-        </svg>
-        <span class="env-num">0 kWh</span>
-        <span class="env-desc">energía eléctrica consumida — 100% solar pasivo</span>
-      </div>
-      <div class="env-card">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" style="margin:0 auto 12px;display:block">
-          <rect x="6" y="14" width="24" height="16" rx="3" stroke="#00d4aa" stroke-width="1.5" fill="rgba(0,212,170,0.06)"/>
-          <path d="M10 14 L10 10 Q10 6 14 6 L22 6 Q26 6 26 10 L26 14" stroke="#00d4aa" stroke-width="1.5"/>
-          <line x1="12" y1="22" x2="24" y2="22" stroke="#00d4aa" stroke-width="1" stroke-linecap="round"/>
-          <line x1="12" y1="25" x2="20" y2="25" stroke="#00d4aa" stroke-width="1" stroke-linecap="round"/>
-        </svg>
-        <span class="env-num">Sin</span>
-        <span class="env-desc">conservantes químicos — producto 100% natural y certificable</span>
-      </div>
-    </div>
-  </section>
-</main>
-<footer>Emprende Verde Bolivia &nbsp;·&nbsp; CAINCO &nbsp;·&nbsp; INFOCAL</footer>
-
-<!-- ── PITCH NAV ── -->
-<style id="_navs">
-#_nav{position:fixed;bottom:0;left:0;right:0;height:52px;background:rgba(5,5,5,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;gap:10px;z-index:9999;padding:0 14px;font-family:'Space Grotesk','Segoe UI',sans-serif}
-._nb{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.38);width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;line-height:1}
-._nb:hover,._nb:active{border-color:var(--_ac,#00ff88);color:var(--_ac,#00ff88);background:rgba(0,255,136,.07)}
-._ds{display:flex;gap:7px;align-items:center;flex:1;justify-content:center}
-._d{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.14);cursor:pointer;transition:all .35s cubic-bezier(.25,.46,.45,.94)}
-._d._on{width:22px;border-radius:3px}
-._qb{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.38);width:34px;height:34px;border-radius:50%;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
-._qb:hover,._qb:active{border-color:#00ff88;color:#00ff88;background:rgba(0,255,136,.07)}
-._qb svg{width:16px;height:16px;fill:currentColor}
-._mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);z-index:10000;align-items:center;justify-content:center;flex-direction:column;gap:18px}
-._mo._op{display:flex}
-._qc{background:#0a0a0a;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:28px 28px 22px;text-align:center}
-._qc img{width:190px;height:190px;border-radius:10px;display:block;background:#111}
-._qu{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.5px;color:rgba(255,255,255,.25);margin-top:14px;word-break:break-all;max-width:190px;line-height:1.5}
-._cb{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1.5px;color:rgba(255,255,255,.28);cursor:pointer;padding:10px 24px;border:1px solid rgba(255,255,255,.1);border-radius:100px;transition:all .2s}
-._cb:hover{color:#00ff88;border-color:#00ff88}
-body{padding-bottom:60px!important}
-</style>
-<div id="_nav">
-  <button class="_nb" id="_pv">&#8249;</button>
-  <div class="_ds" id="_ds"></div>
-  <button class="_nb" id="_nx">&#8250;</button>
-  <button class="_qb" id="_qr"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 3h7v7H3V3zm1 1v5h5V4H4zm1 1h3v3H5V5zM3 14h7v7H3v-7zm1 1v5h5v-5H4zm1 1h3v3H5v-3zM14 3h7v7h-7V3zm1 1v5h5V4h-5zm1 1h3v3h-3V5zm-1 9h2v2h-2v-2zm3 0h2v2h-2v-2zm-3 3h2v2h-2v-2zm3 0h2v2h-2v-2zm3-3h2v2h-2v-2zm0 3h2v2h-2v-2z"/></svg></button>
+  </div>
 </div>
-<div class="_mo" id="_mo">
-  <div class="_qc"><img id="_qi" src="" alt="QR"><div class="_qu" id="_qu"></div></div>
-  <span class="_cb" id="_cl">CERRAR</span>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECCIÓN 3 — MANEJO DE HUMEDAD
+═══════════════════════════════════════════ -->
+<section class="section" id="humedad">
+<div class="container">
+  <div class="section-label">Sección 3</div>
+  <h2>Manejo de Humedad</h2>
+  <p class="section-desc">Cómo el secador extrae la humedad del alimento mediante convección natural y efecto invernadero.</p>
+
+  <div class="flow-row">
+    <span class="flow-step">Sol calienta aire interior</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Aire caliente = baja HR</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Absorbe humedad del alimento</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Sale por vents superiores</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Entra aire fresco por abajo</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Ciclo continuo</span>
+  </div>
+
+  <div class="two-col" style="margin-bottom:1.5rem">
+    <div>
+      <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:0.8rem;color:var(--green)">Componentes Anti-Humedad</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Componente</th><th>Función</th></tr></thead>
+          <tbody>
+            <tr><td>Cubierta plástico UV</td><td>Efecto invernadero — sube temperatura interior</td></tr>
+            <tr><td>Vent inferior (entrada)</td><td>Entrada de aire fresco relativamente seco</td></tr>
+            <tr><td>Vent superior (salida)</td><td>Salida de aire caliente cargado de humedad</td></tr>
+            <tr><td>Interior pintado negro</td><td>Mayor absorción de calor solar</td></tr>
+            <tr><td>Estructura elevada del suelo</td><td>Evita humedad del suelo, mejora circulación</td></tr>
+            <tr><td>Malla en vents</td><td>Bloquea insectos sin restringir flujo de aire</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:0.8rem;color:var(--green)">Eficiencia por Nivel de Humedad</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Condición HR</th><th>Eficiencia</th><th>Tiempo secado</th><th>Dónde ocurre</th></tr></thead>
+          <tbody>
+            <tr><td>HR &lt; 50%</td><td><span class="badge badge-green">Excelente</span></td><td class="num">1–2 días</td><td>Altiplano (Oruro/Potosí) — no en SC</td></tr>
+            <tr><td>HR 50–70% <span class="badge badge-gold" style="font-size:9px">SC Mayo–Sep</span></td><td><span class="badge badge-gold">Buena</span></td><td class="num">2–4 días</td><td>SC en temporada seca (máx. 5 meses)</td></tr>
+            <tr><td>HR 70–80% <span class="badge badge-earth" style="font-size:9px">SC Abr/Oct</span></td><td><span class="badge badge-earth">Limitada</span></td><td class="num">4–6 días</td><td>SC transición — requiere M+</td></tr>
+            <tr><td>HR &gt; 80% <span class="badge badge-red" style="font-size:9px">SC Nov–Mar</span></td><td><span class="badge badge-red">Deficiente</span></td><td class="num">Riesgo moho</td><td>7 meses del año en SC — solo M+</td></tr>
+            <tr><td>Noche (temperatura baja)</td><td><span class="badge badge-red">Cerrar vents</span></td><td>—</td><td>Toda región</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-muted);margin-top:0.6rem;font-family:var(--font-mono)">⚠ Santa Cruz nunca baja de 58–60% HR. La categoría "Excelente" no aplica en SC.</p>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:0.5rem;color:var(--green)">Santa Cruz — Humedad Relativa por Mes</h3>
+  <p style="font-size:0.82rem;color:var(--text-dim);margin-bottom:0.8rem">SC nunca baja de 60% HR. Solo 5 meses operan en rango "Buena" con Modelo estándar. El resto del año requiere M+.</p>
+  <div class="table-wrap" style="margin-bottom:1.5rem">
+    <table>
+      <thead><tr><th>Mes</th><th>HR Promedio</th><th>Eficiencia Modelo Estándar</th><th>Recomendación</th></tr></thead>
+      <tbody>
+        <tr><td>Enero</td><td class="num" style="color:var(--red)">83%</td><td><span class="badge badge-red">Deficiente</span></td><td>Solo M+</td></tr>
+        <tr><td>Febrero</td><td class="num" style="color:var(--red)">82%</td><td><span class="badge badge-red">Deficiente</span></td><td>Solo M+</td></tr>
+        <tr><td>Marzo</td><td class="num" style="color:var(--red)">80%</td><td><span class="badge badge-red">Deficiente</span></td><td>Solo M+</td></tr>
+        <tr><td>Abril</td><td class="num" style="color:var(--earth)">75%</td><td><span class="badge badge-earth">Limitada</span></td><td>M+ recomendado</td></tr>
+        <tr style="background:var(--green-dim)"><td><strong>Mayo</strong></td><td class="num green"><strong>68%</strong></td><td><span class="badge badge-gold">Buena</span></td><td>Modelo estándar OK</td></tr>
+        <tr style="background:var(--green-dim)"><td><strong>Junio</strong></td><td class="num green"><strong>62%</strong></td><td><span class="badge badge-gold">Buena</span></td><td>Modelo estándar OK</td></tr>
+        <tr style="background:var(--green-dim)"><td><strong>Julio</strong></td><td class="num green"><strong>60%</strong></td><td><span class="badge badge-green">Mejor mes</span></td><td>Modelo estándar OK</td></tr>
+        <tr style="background:var(--green-dim)"><td><strong>Agosto</strong></td><td class="num green"><strong>61%</strong></td><td><span class="badge badge-gold">Buena</span></td><td>Modelo estándar OK</td></tr>
+        <tr style="background:var(--green-dim)"><td><strong>Septiembre</strong></td><td class="num green"><strong>67%</strong></td><td><span class="badge badge-gold">Buena</span></td><td>Modelo estándar OK</td></tr>
+        <tr><td>Octubre</td><td class="num" style="color:var(--earth)">72%</td><td><span class="badge badge-earth">Limitada</span></td><td>M+ recomendado</td></tr>
+        <tr><td>Noviembre</td><td class="num" style="color:var(--red)">77%</td><td><span class="badge badge-red">Deficiente</span></td><td>Solo M+</td></tr>
+        <tr><td>Diciembre</td><td class="num" style="color:var(--red)">82%</td><td><span class="badge badge-red">Deficiente</span></td><td>Solo M+</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:0.8rem;color:var(--green)">Temporalidad por Región Bolivia</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Región</th><th>Meses operación estándar</th><th>HR mín. temporada seca</th><th>Irradiación Solar</th><th>Modelo recomendado</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Santa Cruz</strong></td><td>Mayo – Septiembre <span style="color:var(--text-muted);font-size:0.8rem">(5 meses)</span></td><td class="num">60–68%</td><td class="num">5.5–6 kWh/m²/día</td><td><span class="badge badge-gold">M+ como base</span></td></tr>
+        <tr><td>Cochabamba</td><td>Mayo – Noviembre <span style="color:var(--text-muted);font-size:0.8rem">(7 meses)</span></td><td class="num">52–58%</td><td class="num">5.5–6 kWh/m²/día</td><td><span class="badge badge-green">M estándar viable</span></td></tr>
+        <tr><td>Tarija</td><td>Abril – Noviembre <span style="color:var(--text-muted);font-size:0.8rem">(8 meses)</span></td><td class="num">48–55%</td><td class="num">5.5–6 kWh/m²/día</td><td><span class="badge badge-green">M estándar viable</span></td></tr>
+        <tr><td><strong>Altiplano (Oruro/Potosí)</strong></td><td>Todo el año</td><td class="num green"><strong>30–45%</strong></td><td class="num green">6–7 kWh/m²/día</td><td><span class="badge badge-green">M estándar — ideal</span></td></tr>
+        <tr><td>Yungas / Beni</td><td>Junio – Septiembre <span style="color:var(--text-muted);font-size:0.8rem">(4 meses)</span></td><td class="num">65–72%</td><td class="num">5–5.5 kWh/m²/día</td><td><span class="badge badge-red">Solo M+</span></td></tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECCIÓN 4 — MODIFICACIONES TEMPORADA HÚMEDA
+═══════════════════════════════════════════ -->
+<section class="section" id="modificaciones">
+<div class="container">
+  <div class="section-label">Sección 4</div>
+  <h2>Modificaciones para Temporada Húmeda</h2>
+  <p class="section-desc">Santa Cruz tiene HR promedio de 72% anual. El Modelo M+ no es un upgrade opcional — es el producto base recomendado para SC. Estas cinco modificaciones lo componen.</p>
+
+  <div class="card-grid" style="margin-bottom:1.5rem">
+    <div class="card card--green">
+      <h3>1. Ventilador DC Solar</h3>
+      <p><strong>Costo: 230–450 BOB</strong><br>Panel solar 10–20W + ventilador DC 12V. Fuerza extracción de aire húmedo. Opera solo cuando hay sol — se apaga automáticamente de noche. Impacto: +40% velocidad de secado en días nublados.</p>
+    </div>
+    <div class="card card--gold">
+      <h3>2. Bandeja de Silica Gel</h3>
+      <p><strong>Costo: 80–150 BOB</strong><br>1–2 kg de silica gel dentro de la cámara absorbe humedad del aire interno. Regenerar al sol cada 2–3 días. Reduce humedad relativa interna 15–25%.</p>
+    </div>
+    <div class="card card--blue">
+      <h3>3. Doble Cubierta UV</h3>
+      <p><strong>Costo: 130–170 BOB</strong><br>Dos capas de plástico UV con cámara de aire 3–5 cm. Mejor retención de calor en días nublados. Sube temperatura interior +8–12°C respecto al estándar.</p>
+    </div>
+    <div class="card card--earth">
+      <h3>4. Quemador Biomasa</h3>
+      <p><strong>Costo: 300–500 BOB</strong><br>Cámara de combustión con cáscara de arroz (subproducto abundante y casi gratuito en Santa Cruz). Opera 100% sin sol. Seca en 12–24 hrs cualquier día.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--green-light)">
+      <h3>5. Masa Térmica</h3>
+      <p><strong>Costo: 30–60 BOB</strong><br>Bidones con agua pintados negro dentro de la cámara. Absorben calor de día y lo liberan de noche. Extiende el secado 3–5 horas post-puesta de sol.</p>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:0.8rem;color:var(--green)">Combos por Presupuesto</h3>
+  <div class="table-wrap" style="margin-bottom:1.5rem">
+    <table>
+      <thead><tr><th>Presupuesto Extra</th><th>Modificaciones</th><th>Capacidad en Temporada Húmeda</th></tr></thead>
+      <tbody>
+        <tr><td class="num">+300 BOB</td><td>Ventilador DC + Silica gel</td><td><span class="badge badge-gold">60% eficiencia</span></td></tr>
+        <tr><td class="num">+600 BOB</td><td>Ventilador + Silica + Doble cubierta + Masa térmica</td><td><span class="badge badge-green">75% eficiencia</span></td></tr>
+        <tr><td class="num green"><strong>+1,100 BOB</strong></td><td><strong>Todo lo anterior + Quemador biomasa</strong></td><td><span class="badge badge-green">95–100% — Opera cualquier clima</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="background:var(--gold-dim);border:1.5px solid oklch(78% 0.100 72)">
+    <h3 style="color:var(--gold)">Modelo M+ — Producto Base para Santa Cruz</h3>
+    <p>Santa Cruz tiene HR promedio anual de 72% — el Modelo M estándar solo opera bien 5 meses al año (Mayo–Septiembre). El M+ opera los 12 meses. Precio de venta: <strong>3,200 BOB</strong>. Costo: 2,100 BOB. Margen: 34%. El diferencial de 1,240 BOB sobre el estándar se recupera en la primera cosecha de mango (Noviembre–Enero) que de otro modo se perdería. Para SC, vender el M estándar sin advertencia es un error de posicionamiento — el cliente lo descubrirá en la primera temporada húmeda.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECCIÓN 5 — IMPACTO AMBIENTAL Y SOCIAL
+═══════════════════════════════════════════ -->
+<section class="section" id="impacto">
+<div class="container">
+  <div class="section-label">Sección 5</div>
+  <h2>Impacto Ambiental y Social</h2>
+  <p class="section-desc">El impacto positivo persiste incluso si el secador usa electricidad como respaldo. El criterio no es cero electricidad — es reducción neta de emisiones y mejora de vida rural.</p>
+
+  <div class="card" style="background:var(--green-dim);border:1px solid var(--green-light);margin-bottom:1.5rem;padding:1.2rem 1.6rem">
+    <p style="font-family:var(--font-serif);font-size:1.05rem;color:var(--green);font-style:italic">"Un auto híbrido usa gasolina — pero sigue siendo mejor que uno 100% gasolina. Este secador (80–90% solar + respaldo eléctrico/biomasa) es vastamente mejor que NO secar o usar un deshidratador eléctrico importado."</p>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:0.8rem;color:var(--green)">Impacto Ambiental</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Factor</th><th>Impacto</th></tr></thead>
+          <tbody>
+            <tr><td>Operación 80–90% con sol</td><td><span class="badge badge-green">Positivo</span></td></tr>
+            <tr><td>Reduce quema de cosecha perdida</td><td><span class="badge badge-green">Menos CO₂ y humo</span></td></tr>
+            <tr><td>Reemplaza deshidratador eléctrico importado</td><td><span class="badge badge-green">Menor huella de fabricación</span></td></tr>
+            <tr><td>Menos transporte (seco pesa 70–90% menos)</td><td><span class="badge badge-green">Menos flete</span></td></tr>
+            <tr><td>Reduce residuos orgánicos</td><td><span class="badge badge-green">Lo que se pudría se consume</span></td></tr>
+            <tr><td>Materiales locales, vida útil 10+ años</td><td><span class="badge badge-green">Vs. electrodoméstico 3–5 años</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:0.8rem;color:var(--green)">Impacto Social y Comunitario</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Factor</th><th>Impacto</th></tr></thead>
+          <tbody>
+            <tr><td>Ingreso adicional por familia</td><td><span class="badge badge-green">+1,400–3,500 BOB/año</span></td></tr>
+            <tr><td>Reduce dependencia del intermediario</td><td><span class="badge badge-green">Productor vende transformado</span></td></tr>
+            <tr><td>Empleo local en construcción y operación</td><td><span class="badge badge-green">Positivo</span></td></tr>
+            <tr><td>Soberanía alimentaria</td><td><span class="badge badge-green">Sin cadena de frío</span></td></tr>
+            <tr><td>Mujer productora gana autonomía</td><td><span class="badge badge-green">Proceso manejable en casa</span></td></tr>
+            <tr><td>Transferencia de tecnología local</td><td><span class="badge badge-green">Talleres DIY — conocimiento queda</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECCIÓN 6 — LÍNEA DE PRODUCTOS
+═══════════════════════════════════════════ -->
+<section class="section" id="productos">
+<div class="container">
+  <div class="section-label">Sección 6</div>
+  <h2>Línea de Productos</h2>
+  <p class="section-desc">Cinco modelos desde autoconsumo familiar hasta cooperativas exportadoras. Para Santa Cruz, el M+ es el producto base recomendado — opera los 12 meses. El M estándar es adecuado para Tarija, Cochabamba y el Altiplano.</p>
+
+  <div class="product-cards" style="margin-bottom:2rem">
+    <div class="product-card">
+      <div class="model">Modelo S</div>
+      <div class="name">Familiar</div>
+      <div class="cap">10–15 kg / batch</div>
+      <div class="price">700</div>
+      <div class="currency">BOB</div>
+      <span class="badge badge-green">Margen 30%</span>
+      <p style="font-size:0.78rem;color:var(--text-dim);margin-top:0.5rem">Autoconsumo + venta local</p>
+    </div>
+    <div class="product-card">
+      <div class="model">Modelo M</div>
+      <div class="name">Productor</div>
+      <div class="cap">30–50 kg / batch</div>
+      <div class="price">1,960</div>
+      <div class="currency">BOB</div>
+      <span class="badge badge-green">Margen 37%</span>
+      <p style="font-size:0.78rem;color:var(--text-dim);margin-top:0.5rem">Mercado local / ferias</p>
+    </div>
+    <div class="product-card plus">
+      <div class="model">Modelo M+ ⚡</div>
+      <div class="name">Productor Todo Clima</div>
+      <div class="cap">30–50 kg / batch</div>
+      <div class="price">3,200</div>
+      <div class="currency" style="color:var(--gold)">BOB</div>
+      <span class="badge badge-gold">Margen 34%</span>
+      <p style="font-size:0.78rem;color:var(--text-dim);margin-top:0.5rem">Opera en temporada húmeda</p>
+    </div>
+    <div class="product-card">
+      <div class="model">Modelo L</div>
+      <div class="name">Cooperativa</div>
+      <div class="cap">100+ kg / batch</div>
+      <div class="price">5,250</div>
+      <div class="currency">BOB</div>
+      <span class="badge badge-green">Margen 33%</span>
+      <p style="font-size:0.78rem;color:var(--text-dim);margin-top:0.5rem">Exportación / procesamiento</p>
+    </div>
+    <div class="product-card plus">
+      <div class="model">Modelo L+ ⚡</div>
+      <div class="name">Cooperativa Todo Clima</div>
+      <div class="cap">100+ kg / batch</div>
+      <div class="price">7,000</div>
+      <div class="currency" style="color:var(--gold)">BOB</div>
+      <span class="badge badge-gold">Margen 35%</span>
+      <p style="font-size:0.78rem;color:var(--text-dim);margin-top:0.5rem">Producción continua 12 meses</p>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:0.8rem;color:var(--green)">Servicios Complementarios</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Servicio</th><th>Descripción</th><th>Precio</th></tr></thead>
+      <tbody>
+        <tr><td>Servicio de secado</td><td>Productor trae cosecha, EmprendeVerde procesa</td><td class="num">2–4 BOB/kg</td></tr>
+        <tr><td>Taller DIY (1 día)</td><td>Capacitación para construir secador propio</td><td class="num">200 BOB/persona</td></tr>
+        <tr><td>Manual técnico impreso</td><td>Instrucciones por cultivo y región</td><td class="num">30 BOB</td></tr>
+        <tr><td>Mantenimiento anual</td><td>Revisión + reposición plástico UV</td><td class="num">100–150 BOB</td></tr>
+        <tr><td>Kit upgrade M → M+</td><td>Ventilador DC + silica + doble cubierta</td><td class="num">800 BOB</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECCIÓN 7 — ANÁLISIS FODA
+═══════════════════════════════════════════ -->
+<section class="section" id="swot">
+<div class="container">
+  <div class="section-label">Sección 7</div>
+  <h2>Análisis FODA — Estrategias</h2>
+  <p class="section-desc">Base situacional y 17 estrategias desarrolladas en las cuatro matrices de cruce.</p>
+
+  <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:0.8rem;color:var(--green)">Base FODA</h3>
+  <div class="foda-base" style="margin-bottom:2rem">
+    <div class="foda-cell f">
+      <h4>Fortalezas</h4>
+      <ul>
+        <li><strong>F1:</strong> Operación cero costo (sin electricidad)</li>
+        <li><strong>F2:</strong> Materiales 100% locales Bolivia</li>
+        <li><strong>F3:</strong> Tecnología simple, bajo mantenimiento</li>
+        <li><strong>F4:</strong> Modelo M+ opera todo clima</li>
+        <li><strong>F5:</strong> Multiplica valor producto 12–20×</li>
+        <li><strong>F6:</strong> Posicionamiento verde/ecológico</li>
+      </ul>
+    </div>
+    <div class="foda-cell d">
+      <h4>Debilidades</h4>
+      <ul>
+        <li><strong>D1:</strong> Dependencia climática temporada seca</li>
+        <li><strong>D2:</strong> Capacidad limitada por batch</li>
+        <li><strong>D3:</strong> Secado más lento que eléctrico</li>
+        <li><strong>D4:</strong> Sin marca establecida</li>
+        <li><strong>D5:</strong> Capital inicial limitado</li>
+        <li><strong>D6:</strong> Requiere capacitación del usuario</li>
+      </ul>
+    </div>
+    <div class="foda-cell o">
+      <h4>Oportunidades</h4>
+      <ul>
+        <li><strong>O1:</strong> Demanda creciente deshidratados naturales</li>
+        <li><strong>O2:</strong> Fondos verdes: BDP, PROBOLIVIA, COSUDE</li>
+        <li><strong>O3:</strong> Cooperativas sin tecnología de conservación</li>
+        <li><strong>O4:</strong> Escasez divisas favorece producto local</li>
+        <li><strong>O5:</strong> 6 regiones Bolivia, cultivos distintos</li>
+        <li><strong>O6:</strong> Alineación ODS — financiamiento internacional</li>
+      </ul>
+    </div>
+    <div class="foda-cell a">
+      <h4>Amenazas</h4>
+      <ul>
+        <li><strong>A1:</strong> Temporada lluviosa SC Nov–Mar</li>
+        <li><strong>A2:</strong> Deshidratadores eléctricos importados baratos</li>
+        <li><strong>A3:</strong> Copia informal del diseño</li>
+        <li><strong>A4:</strong> Resistencia al cambio del productor</li>
+        <li><strong>A5:</strong> Fluctuación precio plástico UV (importado)</li>
+        <li><strong>A6:</strong> Competencia sol directo (gratis)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:1rem;color:var(--green)">Matrices de Estrategias</h3>
+  <div class="foda-matrix">
+
+    <!-- MAXI-MAXI -->
+    <div class="foda-q mm">
+      <div class="foda-q-header">Maxi-Maxi — Fortalezas × Oportunidades (Ofensivo)</div>
+      <div class="foda-strategies">
+        <details>
+          <summary>MM-1: Penetración de Cooperativas con Argumento Financiero <span class="badge badge-green" style="font-size:10px">F1,F5 × O1,O3</span></summary>
+          <div class="details-body">
+            <p>La conversación de venta no habla de tecnología — habla de plata. Calcular con datos reales de la cooperativa: kg perdidos × precio fresco = pérdida actual. Demostrar ROI: Modelo M a 1,960 BOB se paga en 1–2 temporadas con lo que antes se tiraba.</p>
+            <ol>
+              <li>Calcular kg perdidos por temporada × precio fresco = pérdida actual de la cooperativa</li>
+              <li>Calcular ingreso potencial con producto seco al precio deshidratado (60–100 BOB/kg)</li>
+              <li>Presentar ROI: costo equipo vs. ingreso año 1 — tiempo de recuperación visual</li>
+              <li>Proponer prueba: instalar 1 unidad gratis 30 días, cooperativa retiene 20% del producto seco como pago</li>
+              <li>Si funciona, vender bloque de 5–10 unidades con descuento por volumen 10%</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> 3–5 cooperativas SC en año 1 → 15–50 unidades solo por este canal. Aliados: ANAPO, FENCA, cooperativas Buena Vista y Montero.</p>
+          </div>
+        </details>
+        <details>
+          <summary>MM-2: Fondos No Reembolsables con Argumento ODS + Local <span class="badge badge-green" style="font-size:10px">F2,F6 × O2,O6</span></summary>
+          <div class="details-body">
+            <p>Bolivia es país prioritario para COSUDE, FAO y PNUD. EmprendeVerde cumple todos los criterios: tecnología apropiada, materiales locales, seguridad alimentaria, empleo rural y reducción de emisiones.</p>
+            <ol>
+              <li>Mapear convocatorias abiertas: COSUDE Bolivia (ciclo anual), PROBOLIVIA (trimestral), FAO Bolivia</li>
+              <li>Preparar dossier con descripción, materiales bolivianos, impacto medido en piloto, alineación ODS 2, 7, 8, 13</li>
+              <li>Solicitar validación técnica de PROINPA como respaldo institucional</li>
+              <li>Pedir no más de 15,000–30,000 BOB por convocatoria — montos pequeños tienen mayor tasa de aprobación</li>
+              <li>Usar primer fondo aprobado como credencial para postular al siguiente de mayor monto</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> 1–2 fondos aprobados año 1 → 15,000–30,000 BOB capital no reembolsable para escalar producción.</p>
+          </div>
+        </details>
+        <details>
+          <summary>MM-3: Exportación de Deshidratados Bolivianos Premium <span class="badge badge-green" style="font-size:10px">F5,F6 × O1,O4</span></summary>
+          <div class="details-body">
+            <p>El mercado europeo paga precio premium por productos naturales, orgánicos, de comercio justo y origen trazable. Bolivia tiene productos únicos: mango SC, cacao Yungas, quinua Altiplano, café Caranavi. El sello "secado solar artesanal" es argumento de marketing poderoso.</p>
+            <ol>
+              <li>Identificar 1–2 cooperativas ya exportadoras (El Ceibo para cacao, cooperativas quinua Oruro)</li>
+              <li>Proponer alianza: EmprendeVerde instala secadores, cooperativa exporta bajo su marca con mención "secado solar EmprendeVerde"</li>
+              <li>Obtener certificación SENASAG para inocuidad — requisito mínimo exportación</li>
+              <li>A mediano plazo, buscar certificación ecológica (CERES, BioLatina) — abre mercados 2–3× más caros</li>
+              <li>Desarrollar empaque con narrativa: foto productor, región, cultivo, proceso solar</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> año 2–3 → 2–3 alianzas exportadoras; mayor demanda de secadores por el mercado que generan.</p>
+          </div>
+        </details>
+        <details>
+          <summary>MM-4: Expansión Nacional con Técnicos Locales <span class="badge badge-green" style="font-size:10px">F4,F2 × O5,O4</span></summary>
+          <div class="details-body">
+            <p>Cada región de Bolivia tiene clima, cultivos y materiales locales distintos. La fortaleza del diseño adaptable permite escalar sin logística costosa de transporte de unidades terminadas.</p>
+            <ol>
+              <li>Año 1: consolidar Santa Cruz, documentar lecciones de diseño, producción y venta</li>
+              <li>Año 2 Q1: visita exploratoria Cochabamba y Tarija — 1 unidad piloto gratuita por región a cambio de datos y referidos</li>
+              <li>Año 2 Q2–Q3: capacitar 1 técnico constructor local por región — modelo franquicia artesanal</li>
+              <li>Año 2 Q4: lanzamiento formal Cochabamba y Tarija con técnico local + respaldo EmprendeVerde</li>
+              <li>Año 3: replicar en Yungas/La Paz, Beni y Altiplano</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> año 3 → 6 departamentos activos, 180 unidades, técnicos locales en 4 regiones.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- MAXI-MINI -->
+    <div class="foda-q mn">
+      <div class="foda-q-header">Maxi-Mini — Fortalezas × Amenazas (Defensivo-Ofensivo)</div>
+      <div class="foda-strategies">
+        <details>
+          <summary>MN-1: Batalla de Costo Total vs. Deshidratador Eléctrico <span class="badge badge-gold" style="font-size:10px">F1,F6 × A2</span></summary>
+          <div class="details-body">
+            <p>Un eléctrico importado cuesta 800–1,500 BOB — aparentemente más barato. Pero el costo total en 5 años es radicalmente diferente.</p>
+            <ol>
+              <li>Construir comparativa "costo total 5 años" con datos reales ENDE Bolivia: eléctrico 500W × 8 hrs/día × 120 días × 5 años = 2,400 kWh × 0.50 BOB = 1,200 BOB en luz + 1,200 BOB compra = <strong>2,400 BOB total</strong></li>
+              <li>Solar M: 1,960 BOB compra + 0 BOB operación × 5 años = <strong>1,960 BOB total</strong> (dura 10+ años)</li>
+              <li>Imprimir comparativa en tarjeta plastificada — dejar en cada visita de venta</li>
+              <li>En zonas sin electricidad confiable: el eléctrico directamente no funciona — el solar es la única opción viable</li>
+              <li>Agregar argumento verde: el eléctrico usa red boliviana (mezcla térmica); el solar emite cero</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> reducir la objeción "el eléctrico es más barato" en más del 70% de los casos.</p>
+          </div>
+        </details>
+        <details>
+          <summary>MN-2: Modelo M+ como Respuesta Definitiva al Clima <span class="badge badge-gold" style="font-size:10px">F4 × A1</span></summary>
+          <div class="details-body">
+            <p>Un cliente que compra Modelo S en Beni y no puede usarlo de noviembre a marzo se va a frustrar. Una venta mal hecha en zona húmeda vale por -10 ventas futuras. La respuesta es segmentar antes de vender.</p>
+            <ol>
+              <li>Crear mapa interno: zonas rojo (HR &gt;70% más de 6 meses) = solo M+; amarillo = M con advertencia; verde = M sin restricción</li>
+              <li>Preguntar antes de cada venta: ¿dónde está ubicado? ¿en qué meses cosecha?</li>
+              <li>Si riesgo climático: presentar solo M+ — no existe otra opción en esa conversación</li>
+              <li>Framing del precio diferencial: "¿prefiere 1,240 BOB más ahora o perder 5 meses de producción cada año?"</li>
+              <li>Ofrecer upgrade posterior: kit M → M+ por 800 BOB para quienes ya compraron estándar</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> cero clientes insatisfechos por clima; ingresos adicionales por kits de upgrade.</p>
+          </div>
+        </details>
+        <details>
+          <summary>MN-3: Talleres DIY como Barrera contra la Copia <span class="badge badge-gold" style="font-size:10px">F2,F3 × A3</span></summary>
+          <div class="details-body">
+            <p>Un secador solar es copiable — es madera, aluminio y plástico. La respuesta contraintuitiva: enseñar a construirlo públicamente. Cuando EmprendeVerde dicta el taller, establece el estándar.</p>
+            <ol>
+              <li>Dictar talleres DIY de 1 día (200 BOB/persona) en comunidades y ferias agropecuarias</li>
+              <li>Entregar manual con logo EmprendeVerde — el participante lleva conocimiento y marca a casa</li>
+              <li>Crear red de "constructores certificados EmprendeVerde" con membresía simbólica 150 BOB/año</li>
+              <li>Registrar marca SENAPI antes del primer taller público — protección mínima real</li>
+              <li>Diferenciar siempre en lo incopiable: garantía, asistencia técnica, manual actualizado, comunidad de productores</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> red de 10–20 constructores certificados en año 2; EmprendeVerde como referente técnico nacional.</p>
+          </div>
+        </details>
+        <details>
+          <summary>MN-4: Gestión Estratégica del Plástico UV <span class="badge badge-gold" style="font-size:10px">F2 × A5</span></summary>
+          <div class="details-body">
+            <p>Todos los materiales del secador son locales excepto el plástico UV 200 micrones. Si sube el precio o hay desabastecimiento por escasez de divisas, la producción se para. Manejable con planificación simple.</p>
+            <ol>
+              <li>Identificar todos los proveedores de plástico UV en Santa Cruz (mínimo 3) — comparar precios trimestralmente</li>
+              <li>Mantener stock para 8–10 unidades siempre en bodega (2 meses de producción)</li>
+              <li>Investigar alternativas: vidrio reciclado, policarbonato de segunda mano, plástico de invernadero agrícola</li>
+              <li>Establecer acuerdo de precio fijo trimestral con proveedor principal a cambio de volumen garantizado</li>
+              <li>Explorar fabricante boliviano de plástico UV — mercado pequeño pero viable con volumen regional</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> cero paros de producción por desabastecimiento; costo de materiales estable y predecible.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- MINI-MAX -->
+    <div class="foda-q mM">
+      <div class="foda-q-header">Mini-Max — Debilidades × Oportunidades (Mejora)</div>
+      <div class="foda-strategies">
+        <details>
+          <summary>mM-1: Fondos Verdes Financian la Solución Climática <span class="badge badge-blue" style="font-size:10px">D1 × O2</span></summary>
+          <div class="details-body">
+            <p>La debilidad del secador estándar es que no opera bien en temporada húmeda. La solución (M+) existe pero cuesta 1,100 BOB más. Usar fondos no reembolsables para subsidiar ese diferencial en las familias que más lo necesitan.</p>
+            <ol>
+              <li>Diseñar programa: "Secador Todo Clima para Productores Vulnerables" — 10 unidades M+ subsidiadas</li>
+              <li>Presentar a COSUDE Bolivia o FAO Bolivia con enfoque de género (priorizar mujeres productoras)</li>
+              <li>EmprendeVerde aporta 50% (tecnología + mano de obra + capacitación); fondo aporta 50% (materiales premium)</li>
+              <li>Documentar rigurosamente: kg conservados, ingreso adicional, % reducción pérdida</li>
+              <li>Con datos del piloto subsidiado, vender M+ a precio completo en zonas con mayor capacidad de pago</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> 10 unidades M+ instaladas sin costo para EmprendeVerde; datos de impacto para escalar financiamiento.</p>
+          </div>
+        </details>
+        <details>
+          <summary>mM-2: Cooperativas Resuelven Límite de Capacidad <span class="badge badge-blue" style="font-size:10px">D2 × O3</span></summary>
+          <div class="details-body">
+            <p>Un Modelo M procesa 30–50 kg/batch — insuficiente para una cooperativa con 2 toneladas de cosecha. En lugar de verlo como limitación, es oportunidad de venta múltiple: una cooperativa necesita 8–10 secadores operando en paralelo.</p>
+            <ol>
+              <li>Calcular: volumen cosecha por temporada ÷ capacidad Modelo M = número de unidades necesarias</li>
+              <li>Presentar "sistema modular": 8 Modelo M = 240–400 kg/batch, operación en paralelo, sin punto único de falla</li>
+              <li>Ofrecer precio por volumen: 5+ unidades → 8% descuento; 10+ unidades → 15% descuento</li>
+              <li>Financiamiento en cuotas para cooperativa: 30% inicial + 6 cuotas mensuales respaldadas por producción</li>
+              <li>Alternativamente: Modelo L (100+ kg/batch) para cooperativas que prefieren una sola unidad grande</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> cada cooperativa vale 10,000–20,000 BOB en ventas; 3–5 cooperativas año 1.</p>
+          </div>
+        </details>
+        <details>
+          <summary>mM-3: Co-branding Institucional para Construir Marca <span class="badge badge-blue" style="font-size:10px">D4 × O2,O6</span></summary>
+          <div class="details-body">
+            <p>EmprendeVerde no tiene historia ni reputación aún. En Bolivia rural la confianza se construye lento. El atajo: asociarse a instituciones que ya tienen esa confianza — PROINPA, COSUDE, FAO.</p>
+            <ol>
+              <li>Contactar PROINPA para validación técnica — pedir carta de respaldo a cambio de incluirlos en materiales de difusión</li>
+              <li>Al postular a fondos, incluir institución como "aliado de validación" — su logo aparece en el manual y en el secador</li>
+              <li>En ferias: buscar stand conjunto con PROINPA o alcaldía local — visibilidad institucional sin costo</li>
+              <li>Cada unidad vendida lleva placa: "Tecnología validada por PROINPA / Apoyado por COSUDE"</li>
+              <li>Usar redes de comunicación institucionales (boletines, WhatsApp, radio comunitaria) para difundir</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> credibilidad institucional desde mes 3; reducción del ciclo de venta de 3 visitas a 1.</p>
+          </div>
+        </details>
+        <details>
+          <summary>mM-4: Secado Lento = Calidad Artesanal Premium <span class="badge badge-blue" style="font-size:10px">D3 × O1</span></summary>
+          <div class="details-body">
+            <p>El eléctrico seca en 4–8 horas a 60–70°C. El solar tarda 1–3 días a 40–55°C. Parece desventaja, pero en mercados de alimentos naturales premium es exactamente al revés: el secado lento preserva mejor nutrientes, color, sabor y compuestos bioactivos.</p>
+            <ol>
+              <li>Documentar la diferencia nutricional: mango solar vs. mango eléctrico — vitamina C, betacarotenos, polifenoles (con apoyo de PROINPA)</li>
+              <li>Construir argumento para el consumidor final: "secado solar lento — máximo sabor, máximos nutrientes"</li>
+              <li>Desarrollar sello "Secado Solar Artesanal EmprendeVerde" para el empaque del producto deshidratado</li>
+              <li>Comunicar al productor: su producto solar puede venderse 20–30% más caro que el industrial</li>
+              <li>Buscar tiendas naturistas y mercados orgánicos en Santa Cruz y Cochabamba como primer canal premium</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> precio del producto deshidratado solar 20–30% sobre el industrial; demanda sostenida en canales premium.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- MINI-MINI -->
+    <div class="foda-q mm2">
+      <div class="foda-q-header">Mini-Mini — Debilidades × Amenazas (Supervivencia)</div>
+      <div class="foda-strategies">
+        <details>
+          <summary>mm-1: Zona Húmeda = Solo Modelo M+ desde el Día 1 <span class="badge badge-earth" style="font-size:10px">D1 × A1</span></summary>
+          <div class="details-body">
+            <p>Vender un Modelo S estándar a un productor de Beni o Yungas es un error que destruye reputación. Una venta mal hecha vale por -10 ventas futuras.</p>
+            <ol>
+              <li>Crear mapa interno de Bolivia con zonas de riesgo climático codificadas por color</li>
+              <li>Antes de cada venta: ¿dónde está ubicado? ¿en qué meses cosecha?</li>
+              <li>Si zona/temporada de riesgo: solo ofrecer M+ — no existe otra opción en esa conversación</li>
+              <li>Comunicar honestamente la limitación del estándar antes de que el cliente la descubra solo</li>
+              <li>La honestidad construye confianza — el productor informado nunca reclama</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> cero reclamos por mal funcionamiento climático; reputación de marca técnicamente seria.</p>
+          </div>
+        </details>
+        <details>
+          <summary>mm-2: Ocupar el Nicho Artesanal antes que el Eléctrico <span class="badge badge-earth" style="font-size:10px">D3 × A2</span></summary>
+          <div class="details-body">
+            <p>El eléctrico compite en velocidad y precio de entrada. No puede competir en posicionamiento artesanal, natural, solar y de comercio justo — ese espacio está vacío en Bolivia y EmprendeVerde debe ocuparlo primero.</p>
+            <ol>
+              <li>Definir y comunicar explícitamente: "EmprendeVerde = secado solar artesanal boliviano" — no "alternativa al eléctrico"</li>
+              <li>Identidad visual: colores tierra, sol, naturaleza boliviana — no plástico ni industrial</li>
+              <li>Capacitar al vendedor para nunca entrar en guerra de precio — siempre redirigir a calidad y costo total</li>
+              <li>Publicar contenido mostrando el proceso: manos del productor, cosecha fresca, secador al sol, producto terminado</li>
+              <li>Registrar slogan e identidad visual junto con la marca — proteger el posicionamiento tan seriamente como el nombre</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> EmprendeVerde = referente de deshidratado artesanal solar en Bolivia; inaccesible para la competencia eléctrica por posicionamiento.</p>
+          </div>
+        </details>
+        <details>
+          <summary>mm-3: Registro SENAPI antes del Lanzamiento Público <span class="badge badge-earth" style="font-size:10px">D4 × A3</span></summary>
+          <div class="details-body">
+            <p>Si EmprendeVerde lanza públicamente sin registrar la marca y alguien copia el nombre, recuperarlo legalmente es lento y costoso. El registro SENAPI cuesta 500–800 BOB y toma 3–6 meses — pero la fecha de solicitud es lo que cuenta legalmente.</p>
+            <ol>
+              <li>Mes 1: definir nombre final, logo y slogan de EmprendeVerde</li>
+              <li>Mes 2: solicitar registro SENAPI — clase 7 (maquinaria agrícola) y clase 35 (servicios de comercialización)</li>
+              <li>Mientras se procesa: usar "® en trámite" en todos los materiales</li>
+              <li>Registrar dominio web emprendeverde.bo y crear perfiles en redes con nombre exacto</li>
+              <li>Documentar todo: fotos de prototipos, fechas de construcción, primeras ventas — evidencia de uso previo como protección adicional</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> protección legal de la marca desde mes 2; base para escalar con identidad propia protegida.</p>
+          </div>
+        </details>
+        <details>
+          <summary>mm-4: Stock Estratégico + Proveedores Alternativos <span class="badge badge-earth" style="font-size:10px">D5 × A5</span></summary>
+          <div class="details-body">
+            <p>Con capital limitado, una subida de precio en el único insumo importado puede romper el margen o parar la producción. La solución no es tener más capital — es usar el disponible con inteligencia de inventario.</p>
+            <ol>
+              <li>Mapear todos los proveedores de plástico UV en Bolivia: importadoras SC, La Paz, proveedores invernaderos agrícolas</li>
+              <li>Consumo mensual: 1 Modelo M usa ~4 m² → 10 unidades/mes = 40 m²/mes</li>
+              <li>Mantener stock mínimo para 2 meses = 80 m² (~400–600 BOB)</li>
+              <li>Negociar precio fijo por volumen: compra de 100 m² trimestral a cambio de precio cerrado 3 meses</li>
+              <li>Explorar plástico UV agrícola como sustituto — hasta 30% más barato y más disponible</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> producción nunca interrumpida; costo materiales estable; margen protegido.</p>
+          </div>
+        </details>
+        <details>
+          <summary>mm-5: Demo Obligatoria antes de Cada Venta <span class="badge badge-earth" style="font-size:10px">D6 × A4</span></summary>
+          <div class="details-body">
+            <p>El productor boliviano rural confía en lo que ve y toca — no en folletos. Si no ha visto el secador funcionar con su propio cultivo, la probabilidad de rechazo es alta. Si probó el producto deshidratado resultado, sube dramáticamente.</p>
+            <ol>
+              <li>Política interna: ninguna venta sin demo previa — sin excepciones</li>
+              <li>Protocolo de demo: 2 horas — mostrar secador armado, explicar proceso en 10 minutos, entregar al productor producto deshidratado de su cultivo</li>
+              <li>Dejar unidad demostrativa en cada comunidad: el vecino que muestra resultados es el mejor vendedor</li>
+              <li>Kit de demo portátil: Modelo S transportable + muestras de 5 cultivos distintos + hoja comparativa de precios</li>
+              <li>Capacitar en el momento de entrega: 2 horas prácticas en campo — carga, vents, cierre nocturno, limpieza</li>
+            </ol>
+            <p><strong>Resultado esperado:</strong> tasa de conversión demo → venta superior al 60%; cero devoluciones por mal uso; productores capacitados como promotores espontáneos.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+  </div><!-- /foda-matrix -->
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECCIÓN 8 — PLAN FINANCIERO
+═══════════════════════════════════════════ -->
+<section class="section" id="financiero">
+<div class="container">
+  <div class="section-label">Sección 8</div>
+  <h2>Plan Financiero</h2>
+  <p class="section-desc">Todos los valores en Bolivianos (BOB). Referencia: 1 USD ≈ 7 BOB (tipo oficial).</p>
+
+  <div class="kpi-row" style="margin-bottom:2rem">
+    <div class="kpi"><div class="kpi-val">13,420</div><div class="kpi-label">BOB — CAPEX total</div></div>
+    <div class="kpi"><div class="kpi-val gold">34%</div><div class="kpi-label">Margen bruto Modelo M+</div></div>
+    <div class="kpi"><div class="kpi-val">1</div><div class="kpi-label">Unidad M+/mes punto equilibrio</div></div>
+    <div class="kpi"><div class="kpi-val earth">10,990</div><div class="kpi-label">BOB utilidad año 1</div></div>
+  </div>
+
+  <div class="two-col" style="margin-bottom:1.5rem">
+    <div>
+      <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:0.8rem;color:var(--green)">Inversión Inicial (CAPEX)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Ítem</th><th style="text-align:right">BOB</th></tr></thead>
+          <tbody>
+            <tr><td>Herramientas y equipos</td><td class="num" style="text-align:right">2,100</td></tr>
+            <tr><td>Materiales prototipo (×2 unidades)</td><td class="num" style="text-align:right">1,400</td></tr>
+            <tr><td>Capital trabajo — 5 unidades M+ piloto</td><td class="num" style="text-align:right">7,500</td></tr>
+            <tr><td>Branding: logo, banners, manual</td><td class="num" style="text-align:right">700</td></tr>
+            <tr><td>Registro de marca SENAPI</td><td class="num" style="text-align:right">500</td></tr>
+            <tr><td>Imprevistos (10%)</td><td class="num" style="text-align:right">1,220</td></tr>
+            <tr style="background:var(--green-dim);font-weight:700"><td><strong>TOTAL CAPEX</strong></td><td class="num green" style="text-align:right"><strong>13,420</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:0.8rem;color:var(--green)">Costo por Unidad — Modelo M+ <span class="badge badge-green">Santa Cruz</span></h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Componente</th><th style="text-align:right">BOB</th></tr></thead>
+          <tbody>
+            <tr><td>Base Modelo M (materiales + ensamble)</td><td class="num" style="text-align:right">1,243</td></tr>
+            <tr><td>Panel solar 10W + ventilador DC 12V</td><td class="num" style="text-align:right">250</td></tr>
+            <tr><td>Doble cubierta plástico UV</td><td class="num" style="text-align:right">150</td></tr>
+            <tr><td>Silica gel 1 kg</td><td class="num" style="text-align:right">100</td></tr>
+            <tr><td>Masa térmica (2 bidones negros)</td><td class="num" style="text-align:right">45</td></tr>
+            <tr><td>Quemador biomasa básico</td><td class="num" style="text-align:right">300</td></tr>
+            <tr><td>Labor adicional + overhead</td><td class="num" style="text-align:right">194</td></tr>
+            <tr style="background:var(--green-dim)"><td><strong>Costo total M+</strong></td><td class="num green" style="text-align:right"><strong>2,282</strong></td></tr>
+            <tr><td><strong>Precio de venta</strong></td><td class="num green" style="text-align:right"><strong>3,200</strong></td></tr>
+            <tr style="background:var(--gold-dim)"><td><strong>Margen bruto</strong></td><td class="num gold" style="text-align:right"><strong>918 (29–34%)</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.8rem;color:var(--text-dim);margin-top:0.5rem">Costo baja a 2,100 BOB en escala (componentes DC a volumen).</p>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:0.8rem;color:var(--green)">Proyección Año 1 — Santa Cruz (Modelo M+)</h3>
+  <div class="table-wrap" style="margin-bottom:1.5rem">
+    <table>
+      <thead><tr><th>Período</th><th>Unidades</th><th style="text-align:right">Ingresos (BOB)</th><th style="text-align:right">Costos Var.</th><th style="text-align:right">Costos Fijos</th><th style="text-align:right">Utilidad (BOB)</th></tr></thead>
+      <tbody>
+        <tr><td>Mes 1–2 (prototipo)</td><td class="num">0</td><td class="num" style="text-align:right">0</td><td class="num" style="text-align:right">1,400</td><td class="num" style="text-align:right">2,000</td><td class="num" style="text-align:right;color:var(--red)">−3,400</td></tr>
+        <tr><td>Mes 3–4 (piloto M+)</td><td class="num">5</td><td class="num" style="text-align:right">16,000</td><td class="num" style="text-align:right">11,410</td><td class="num" style="text-align:right">2,000</td><td class="num green" style="text-align:right">+2,590</td></tr>
+        <tr><td>Mes 5–6</td><td class="num">5</td><td class="num" style="text-align:right">16,000</td><td class="num" style="text-align:right">10,500</td><td class="num" style="text-align:right">2,000</td><td class="num green" style="text-align:right">+3,500</td></tr>
+        <tr><td>Mes 7–9</td><td class="num">6</td><td class="num" style="text-align:right">19,200</td><td class="num" style="text-align:right">12,600</td><td class="num" style="text-align:right">3,000</td><td class="num green" style="text-align:right">+3,600</td></tr>
+        <tr><td>Mes 10–12</td><td class="num">7</td><td class="num" style="text-align:right">22,400</td><td class="num" style="text-align:right">14,700</td><td class="num" style="text-align:right">3,000</td><td class="num green" style="text-align:right">+4,700</td></tr>
+        <tr style="background:var(--green-dim);font-weight:700"><td><strong>TOTAL AÑO 1</strong></td><td class="num green"><strong>23</strong></td><td class="num green" style="text-align:right"><strong>73,600</strong></td><td class="num" style="text-align:right">50,610</td><td class="num" style="text-align:right">12,000</td><td class="num green" style="text-align:right"><strong>+10,990</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:0.8rem;color:var(--green)">Proyección Años 2–3</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Año</th><th>Regiones</th><th>Unidades</th><th style="text-align:right">Ingresos (BOB)</th><th style="text-align:right">Utilidad Est.</th></tr></thead>
+          <tbody>
+            <tr><td>Año 1</td><td>Santa Cruz</td><td class="num">23</td><td class="num" style="text-align:right">73,600</td><td class="num green" style="text-align:right">10,990</td></tr>
+            <tr><td>Año 2</td><td>SC + Cbba + Tarija</td><td class="num">80</td><td class="num" style="text-align:right">218,800</td><td class="num green" style="text-align:right">55,000</td></tr>
+            <tr><td>Año 3</td><td>6 departamentos</td><td class="num">180</td><td class="num" style="text-align:right">580,000</td><td class="num green" style="text-align:right">160,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:0.8rem;color:var(--green)">Fuentes de Financiamiento</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fuente</th><th style="text-align:right">BOB</th><th>Condición</th></tr></thead>
+          <tbody>
+            <tr><td>Capital propio / familia</td><td class="num" style="text-align:right">3,500</td><td>Equity</td></tr>
+            <tr><td>BDP — microcrédito productivo</td><td class="num" style="text-align:right">5,000</td><td>~6% anual</td></tr>
+            <tr><td>PROBOLIVIA / COSUDE</td><td class="num" style="text-align:right">2,500</td><td>No reembolsable</td></tr>
+            <tr><td>Preventa 2 unidades M+ (−20%)</td><td class="num" style="text-align:right">5,120</td><td>2 × 3,200 × 80%</td></tr>
+            <tr style="background:var(--green-dim);font-weight:700"><td><strong>TOTAL</strong></td><td class="num green" style="text-align:right"><strong>16,120</strong></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECCIÓN 9 — PESTEL + PORTER
+═══════════════════════════════════════════ -->
+<section class="section" id="pestel">
+<div class="container">
+  <div class="section-label">Sección 9</div>
+  <h2>PESTEL y Porter 5 Fuerzas</h2>
+  <p class="section-desc">Análisis del macroentorno boliviano y de las fuerzas competitivas del sector.</p>
+
+  <h3 style="font-family:var(--font-serif);font-size:1.3rem;margin-bottom:1rem;color:var(--green)">PESTEL Bolivia</h3>
+  <div class="pestel-grid" style="margin-bottom:2.5rem">
+    <div class="pestel-card">
+      <div class="pestel-letter">P</div>
+      <div class="pestel-name">Político</div>
+      <div class="pestel-body">Políticas de Bolivia Productiva; PROBOLIVIA apoya emprendimientos verdes; municipios con fondos para seguridad alimentaria; incentivos a tecnología apropiada nacional.</div>
+    </div>
+    <div class="pestel-card">
+      <div class="pestel-letter" style="color:var(--gold)">E</div>
+      <div class="pestel-name">Económico</div>
+      <div class="pestel-body">Escasez de divisas encarece equipos importados → ventaja para producto local. Alza tarifaria eléctrica. SMN 2025 ≈ 2,500 BOB/mes. Inflación favorece tecnología de bajo costo operativo.</div>
+    </div>
+    <div class="pestel-card">
+      <div class="pestel-letter" style="color:var(--earth)">S</div>
+      <div class="pestel-name">Social</div>
+      <div class="pestel-body">Pérdida post-cosecha estimada 30–40% en frutas. Alta ruralidad en SC y Beni. Interés creciente en alimentos naturales deshidratados. Desempleo rural como oportunidad para emprendimientos locales.</div>
+    </div>
+    <div class="pestel-card">
+      <div class="pestel-letter" style="color:var(--blue)">T</div>
+      <div class="pestel-name">Tecnológico</div>
+      <div class="pestel-body">Tecnología solar pasiva madura y de bajo costo. Plástico UV disponible en Bolivia. IoT como upgrade futuro opcional (termómetros, sensores de humedad). Sin dependencia de importación tecnológica compleja.</div>
+    </div>
+    <div class="pestel-card">
+      <div class="pestel-letter" style="color:var(--green-mid)">E</div>
+      <div class="pestel-name">Ecológico</div>
+      <div class="pestel-body">Irradiación solar excelente en todo Bolivia: 5.5–7 kWh/m²/día. Presión para reducir quema de biomasa en campo. Demanda de productos sostenibles. Altiplano boliviano = mejor irradiación de Sudamérica.</div>
+    </div>
+    <div class="pestel-card">
+      <div class="pestel-letter" style="color:var(--red)">L</div>
+      <div class="pestel-name">Legal</div>
+      <div class="pestel-body">SENASAG regula inocuidad de alimentos deshidratados. Registro de marca en SENAPI. Posible certificación ecológica CERES o BioLatina. Ley de emprendimiento productivo favorece microempresas verdes.</div>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--font-serif);font-size:1.3rem;margin-bottom:1rem;color:var(--green)">Porter 5 Fuerzas — Bolivia</h3>
+  <div class="porter-grid">
+    <!-- Fila 1 -->
+    <div></div>
+    <div class="porter-cell" style="text-align:center">
+      <div class="nivel nivel-bajo">Nivel: Bajo-Medio</div>
+      <h4>Nueva Competencia</h4>
+      <p>Pocos fabricantes locales de secadores solares. Barrera de entrada baja en diseño pero alta en marca y confianza. Estrategia: diferenciarse en calidad de servicio y validación técnica antes de que entren competidores.</p>
+    </div>
+    <div></div>
+    <!-- Fila 2 -->
+    <div class="porter-cell">
+      <div class="nivel nivel-bajo">Nivel: Bajo</div>
+      <h4>Poder Proveedores</h4>
+      <p>Madera local (pino, eucalipto), aluminio ferretería, herrajes — múltiples fuentes. Solo el plástico UV es importado pero con proveedores alternativos disponibles. Sin dependencia crítica.</p>
+    </div>
+    <div class="porter-center">
+      <h4>La Rivalidad en el Mercado Boliviano</h4>
+      <p>Secado artesanal al sol (gratuito, lento) vs. deshidratador eléctrico importado (costoso, requiere electricidad). EmprendeVerde ocupa el espacio intermedio: eficiente, sin costo operativo, artesanal, boliviano.</p>
+    </div>
+    <div class="porter-cell">
+      <div class="nivel nivel-medio">Nivel: Medio-Alto</div>
+      <h4>Poder Compradores</h4>
+      <p>Productor familiar tiene bajo poder adquisitivo → presión de precio. Mitigación: financiamiento en cuotas, esquema preventa con descuento, demostración de ROI antes de venta.</p>
+    </div>
+    <!-- Fila 3 -->
+    <div></div>
+    <div class="porter-cell" style="text-align:center">
+      <div class="nivel nivel-medio">Nivel: Medio</div>
+      <h4>Productos Sustitutos</h4>
+      <p>Sol directo (gratis pero lento e incontrolable). Deshidratador eléctrico importado (1,500–4,000 BOB, requiere electricidad). Ninguno ofrece la combinación de eficiencia + costo cero + artesanal que da EmprendeVerde.</p>
+    </div>
+    <div></div>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECCIÓN 10 — METAS DE IMPACTO
+═══════════════════════════════════════════ -->
+<section class="section" id="metas">
+<div class="container">
+  <div class="section-label">Sección 10</div>
+  <h2>Plan de Impacto</h2>
+  <p class="section-desc">Indicadores medibles de impacto social, económico y ambiental al año 1 y año 3.</p>
+
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-val">23</div>
+      <div class="impact-label">Unidades M+ instaladas Año 1</div>
+      <div class="impact-sub">→ 180 en Año 3</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-val gold">180</div>
+      <div class="impact-label">Familias beneficiadas Año 3</div>
+      <div class="impact-sub">6 departamentos</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-val">40%</div>
+      <div class="impact-label">Reducción pérdida post-cosecha</div>
+      <div class="impact-sub">→ 60% en Año 3</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-val gold">1,400</div>
+      <div class="impact-label">BOB ingreso adicional / familia / año</div>
+      <div class="impact-sub">→ 3,500 BOB en Año 3</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-val">2</div>
+      <div class="impact-label">Empleos directos creados Año 1</div>
+      <div class="impact-sub">→ 10 en Año 3</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-val gold">15</div>
+      <div class="impact-label">Toneladas CO₂ evitadas Año 3</div>
+      <div class="impact-sub">vs. deshidratador eléctrico</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-val">50%</div>
+      <div class="impact-label">Mujeres productoras beneficiadas</div>
+      <div class="impact-sub">Meta Año 3</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-val">6</div>
+      <div class="impact-label">Departamentos Bolivia Año 3</div>
+      <div class="impact-sub">SC → nacional</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SECCIÓN 11 — PRÓXIMOS PASOS
+═══════════════════════════════════════════ -->
+<section class="section" id="pasos">
+<div class="container">
+  <div class="section-label">Sección 11</div>
+  <h2>Próximos Pasos Inmediatos</h2>
+  <p class="section-desc">8 acciones concretas ordenadas por prioridad para poner en marcha EmprendeVerde en Santa Cruz.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"><span>1</span></div>
+      <div class="tl-date">Semana 1–4</div>
+      <div class="tl-title">Construir 2 prototipos y validar en campo</div>
+      <div class="tl-body">Probar con mango y locoto en Santa Cruz. Medir temperatura interna, velocidad de secado, calidad del producto. Responsable: técnico constructor.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"><span>2</span></div>
+      <div class="tl-date">Semana 2–3</div>
+      <div class="tl-title">Identificar 5 agricultores piloto</div>
+      <div class="tl-body">En Buena Vista o Montero. Priorizar productores con excedente de mango o locoto. Acuerdo: unidad gratis a cambio de datos y testimonio. Responsable: líder de proyecto.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"><span>3</span></div>
+      <div class="tl-date">Semana 1–6</div>
+      <div class="tl-title">Levantar financiamiento inicial — Bs. 9,000</div>
+      <div class="tl-body">Capital propio (2,800) + preventa 2 unidades con descuento (2,400) + solicitar crédito BDP microproductivo (3,500). Responsable: líder + responsable comercial.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"><span>4</span></div>
+      <div class="tl-date">Mes 2</div>
+      <div class="tl-title">Registrar marca EmprendeVerde en SENAPI</div>
+      <div class="tl-body">Clases 7 (maquinaria agrícola) y 35 (servicios). Registrar también dominio web y redes sociales. Costo: 500–800 BOB. Responsable: líder de proyecto.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"><span>5</span></div>
+      <div class="tl-date">Mes 2</div>
+      <div class="tl-title">Contactar PROINPA para validación técnica</div>
+      <div class="tl-body">Pedir carta de respaldo técnico. A cambio: incluirlos como aliados en materiales. Su sello multiplica la credibilidad ante productores y fondos verdes. Responsable: asesor agrícola.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"><span>6</span></div>
+      <div class="tl-date">Mes 2–3</div>
+      <div class="tl-title">Presentar a convocatoria PROBOLIVIA o COSUDE</div>
+      <div class="tl-body">Solicitar 15,000–30,000 BOB no reembolsable. Armar dossier con resultados del piloto, materiales locales, alineación ODS. Responsable: equipo completo.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"><span>7</span></div>
+      <div class="tl-date">Mes 3</div>
+      <div class="tl-title">Publicar demo en Facebook y grupos WhatsApp rurales</div>
+      <div class="tl-body">Video corto mostrando el proceso: cosecha fresca → secador al sol → producto terminado. Enfocado en el precio de venta del producto seco. Responsable: responsable comercial.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--gold)"><span>8</span></div>
+      <div class="tl-date">Mes 4–5</div>
+      <div class="tl-title">Participar en Feria del Mango de Buena Vista</div>
+      <div class="tl-body">Stand con secador demostrativo + producto deshidratado de muestra + hoja comparativa de precios. Primera aparición pública de la marca EmprendeVerde. Responsable: equipo completo.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<footer>
+  <p>Secador Solar EmprendeVerde — Santa Cruz, Bolivia — Plan formulado Mayo 2026</p>
+  <p style="margin-top:0.3rem">Moneda: Bolivianos (BOB) · Referencia 1 USD ≈ 7 BOB · Expansión nacional: 6 departamentos en 3 años</p>
+</footer>
+
+
 <script>
-(function(){
-var B='https://frelley.github.io/emprende-verde/';
-var P=['pitch1_solar_heater.html','pitch2_ac_water.html','pitch3_vermicompost.html','pitch4_solar_dryer.html','pitch5_aquaponics.html','pitch6_biodigester.html'];
-var C=['#00ff88','#00d4aa','#50dc3c','#c8e600','#00c8dc','#f59e0b'];
-var f=location.pathname.split('/').pop()||P[0];
-var cur=P.indexOf(f);if(cur<0)cur=0;
-document.documentElement.style.setProperty('--_ac',C[cur]);
-var ds=document.getElementById('_ds');
-P.forEach(function(x,i){var d=document.createElement('span');d.className='_d'+(i===cur?' _on':'');d.style.background=i===cur?C[cur]:'';d.onclick=function(){go(i);};ds.appendChild(d);});
-function go(i){if(i<0)i=P.length-1;if(i>=P.length)i=0;if(i===cur)return;location.href=P[i];}
-document.getElementById('_pv').onclick=function(){go(cur-1);};
-document.getElementById('_nx').onclick=function(){go(cur+1);};
-document.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')go(cur-1);if(e.key==='ArrowRight')go(cur+1);});
-var sx=0,sy=0;
-document.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
-document.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>Math.abs(dy)*1.2&&Math.abs(dx)>38)go(cur+(dx<0?1:-1));},{passive:true});
-var mo=document.getElementById('_mo');
-document.getElementById('_qr').onclick=function(){document.getElementById('_qi').src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(B)+'&bgcolor=0a0a0a&color=00ff88&margin=8&format=png';document.getElementById('_qu').textContent=B;mo.classList.add('_op');};
-document.getElementById('_cl').onclick=function(){mo.classList.remove('_op');};
-mo.onclick=function(e){if(e.target===mo)mo.classList.remove('_op');};
-})();
+// Scroll-reveal for sections
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.section').forEach(s => observer.observe(s));
 </script>
 </body>
 </html>

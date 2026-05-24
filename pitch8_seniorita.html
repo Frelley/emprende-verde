@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual de Cuidado — Abeja Señorita (Tetragonisca angustula)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Azeret+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#FFF8E7;--surface:#FFFDF5;--surface-2:#FEF3C7;--surface-3:#FDE68A;
+      --border:rgba(139,69,19,0.13);--border-med:rgba(139,69,19,0.22);
+      --text:#2C1810;--text-dim:#7A5C4A;--text-muted:#A88B7A;
+      --honey:#D97706;--honey-light:#F59E0B;--honey-dim:#FDE68A;--honey-bg:#FFFBEB;
+      --green:#2D7D46;--green-light:#4ADE80;--green-dim:#D1FAE5;--green-bg:#F0FDF4;
+      --brown:#92400E;--brown-light:#B45309;--brown-dim:#FEF3C7;
+      --red:#B91C1C;--red-dim:#FEE2E2;--red-bg:#FFF5F5;--blue-dim:#DBEAFE;
+      --font-body:'Plus Jakarta Sans','Trebuchet MS',sans-serif;
+      --font-serif:'Instrument Serif',Georgia,serif;
+      --font-mono:'Azeret Mono','Courier New',monospace;
+      --radius:12px;--radius-lg:18px;
+      --shadow-sm:0 1px 3px rgba(139,69,19,0.08),0 1px 2px rgba(139,69,19,0.06);
+      --shadow:0 4px 12px rgba(139,69,19,0.10),0 2px 6px rgba(139,69,19,0.07);
+      --shadow-lg:0 10px 30px rgba(139,69,19,0.12),0 4px 10px rgba(139,69,19,0.08);
+    }
+    @media(prefers-color-scheme:dark){:root{
+      --bg:#1C1409;--surface:#251A0D;--surface-2:#30220F;--surface-3:#3D2C15;
+      --border:rgba(245,166,35,0.12);--border-med:rgba(245,166,35,0.22);
+      --text:#F5EDD8;--text-dim:#C4A882;--text-muted:#8A7060;
+      --honey:#F59E0B;--honey-light:#FCD34D;--honey-dim:#451A03;--honey-bg:#1C1000;
+      --green:#4ADE80;--green-light:#86EFAC;--green-dim:#052E16;--green-bg:#042B12;
+      --brown:#FCD34D;--brown-light:#FDE68A;--brown-dim:#2C1A00;
+      --red:#F87171;--red-dim:#450A0A;--red-bg:#1F0808;--blue-dim:#1E3A5F;
+      --shadow-sm:0 1px 3px rgba(0,0,0,0.3);--shadow:0 4px 12px rgba(0,0,0,0.35);
+      --shadow-lg:0 10px 30px rgba(0,0,0,0.4);
+    }}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.65;font-size:16px;min-height:100vh;
+      background-image:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(245,166,35,0.08) 0%,transparent 60%),
+        radial-gradient(ellipse 60% 30% at 80% 80%,rgba(45,125,70,0.05) 0%,transparent 50%);}
+    .nav{position:sticky;top:0;z-index:100;background:rgba(255,248,231,0.92);backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border-med);padding:0 1.5rem;overflow-x:auto;scrollbar-width:none;}
+    .nav::-webkit-scrollbar{display:none}
+    .nav-inner{display:flex;align-items:center;gap:0.25rem;min-width:max-content;padding:0.6rem 0}
+    .nav-item{display:flex;align-items:center;gap:0.4rem;padding:0.3rem 0.75rem;border-radius:999px;font-size:0.78rem;
+      font-weight:600;color:var(--text-dim);text-decoration:none;white-space:nowrap;transition:background 0.18s,color 0.18s;letter-spacing:0.01em;}
+    .nav-item:hover{background:var(--honey-dim);color:var(--brown)}
+    .nav-num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;
+      background:var(--surface-2);font-family:var(--font-mono);font-size:0.65rem;font-weight:500;color:var(--text-dim);flex-shrink:0;}
+    .nav-item:hover .nav-num{background:var(--honey);color:white}
+    @media(prefers-color-scheme:dark){.nav{background:rgba(28,20,9,0.92)}}
+    .page{max-width:960px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
+    .hero{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;background:var(--surface);
+      border:1px solid var(--border-med);border-radius:var(--radius-lg);padding:2.5rem;margin-bottom:3rem;
+      box-shadow:var(--shadow-lg);position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(245,166,35,0.06) 0%,transparent 60%);pointer-events:none;}
+    .hero-tag{font-family:var(--font-mono);font-size:0.72rem;font-weight:500;color:var(--honey);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.6rem}
+    .hero h1{font-family:var(--font-serif);font-size:clamp(2rem,5vw,3rem);line-height:1.15;font-weight:400;color:var(--text);margin-bottom:0.4rem}
+    .hero h1 em{font-style:italic;color:var(--brown)}
+    .hero-sub{font-size:0.9rem;color:var(--text-dim);font-style:italic;margin-bottom:1.2rem}
+    .hero-pills{display:flex;flex-wrap:wrap;gap:0.5rem}
+    .pill{display:inline-flex;align-items:center;gap:0.3rem;padding:0.3rem 0.8rem;border-radius:999px;font-size:0.78rem;font-weight:600;border:1px solid transparent}
+    .pill-honey{background:var(--honey-dim);color:var(--brown);border-color:rgba(217,119,6,0.2)}
+    .pill-green{background:var(--green-dim);color:var(--green);border-color:rgba(45,125,70,0.2)}
+    .pill-brown{background:var(--brown-dim);color:var(--brown);border-color:rgba(146,64,14,0.2)}
+    .hero-img-wrap{width:200px;height:200px;border-radius:var(--radius);overflow:hidden;border:2px solid var(--border-med);flex-shrink:0;box-shadow:var(--shadow)}
+    .hero-img-wrap img{width:100%;height:100%;object-fit:cover}
+    @media(max-width:640px){.hero{grid-template-columns:1fr}.hero-img-wrap{width:100%;height:160px}}
+    .section{margin-bottom:3rem;scroll-margin-top:4rem}
+    .section-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem}
+    .section-num{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;
+      background:var(--honey);color:white;font-family:var(--font-mono);font-size:0.75rem;font-weight:500;flex-shrink:0;}
+    .section-title{font-family:var(--font-serif);font-size:1.5rem;font-weight:400;color:var(--text);line-height:1.2}
+    .section-label{font-family:var(--font-mono);font-size:0.68rem;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-left:auto}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow-sm)}
+    .card-grid{display:grid;gap:1rem}
+    .card-grid-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .card-grid-3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+    .card-accent-honey{border-left:3px solid var(--honey);background:var(--honey-bg)}
+    .card-accent-green{border-left:3px solid var(--green);background:var(--green-bg)}
+    .card-accent-red{border-left:3px solid var(--red);background:var(--red-bg)}
+    .card-accent-brown{border-left:3px solid var(--brown)}
+    .card-icon{font-size:1.8rem;margin-bottom:0.5rem;display:block}
+    .card-title{font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:0.4rem}
+    .card-body{font-size:0.88rem;color:var(--text-dim);line-height:1.6}
+    .card-body ul{list-style:none;padding:0}
+    .card-body ul li{padding:0.2rem 0;padding-left:1.1rem;position:relative}
+    .card-body ul li::before{content:'–';position:absolute;left:0;color:var(--text-muted)}
+    .card-body ul li strong{color:var(--text);font-weight:600}
+    .hero-card{background:linear-gradient(135deg,var(--honey-dim) 0%,var(--brown-dim) 100%);border:1px solid rgba(217,119,6,0.25);
+      border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);margin-bottom:1rem;}
+    .table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border-med);box-shadow:var(--shadow-sm)}
+    table{width:100%;border-collapse:collapse;font-size:0.875rem}
+    thead th{background:var(--surface-2);color:var(--text);font-weight:700;text-align:left;padding:0.75rem 1rem;
+      border-bottom:2px solid var(--border-med);font-size:0.8rem;letter-spacing:0.03em;white-space:nowrap;}
+    tbody tr{border-bottom:1px solid var(--border);transition:background 0.12s}
+    tbody tr:last-child{border-bottom:none}
+    tbody tr:hover{background:var(--surface-2)}
+    tbody tr:nth-child(even){background:rgba(254,243,199,0.4)}
+    tbody tr:nth-child(even):hover{background:var(--surface-2)}
+    td{padding:0.65rem 1rem;vertical-align:top;color:var(--text-dim);line-height:1.5}
+    td:first-child{color:var(--text);font-weight:600}
+    td small{display:block;font-size:0.78rem;color:var(--text-muted);margin-top:0.15rem}
+    .badge{display:inline-flex;align-items:center;gap:0.3rem;padding:0.2rem 0.55rem;border-radius:999px;
+      font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;}
+    .badge-green{background:var(--green-dim);color:var(--green)}
+    .badge-red{background:var(--red-dim);color:var(--red)}
+    .badge-honey{background:var(--honey-dim);color:var(--brown)}
+    .badge::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0}
+    .split-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    @media(max-width:580px){.split-2{grid-template-columns:1fr}}
+    .callout{display:flex;gap:0.85rem;padding:1rem 1.25rem;border-radius:var(--radius);margin-bottom:1rem}
+    .callout-warn{background:var(--red-bg);border:1px solid rgba(185,28,28,0.18)}
+    .callout-tip{background:var(--green-bg);border:1px solid rgba(45,125,70,0.18)}
+    .callout-info{background:var(--honey-bg);border:1px solid rgba(217,119,6,0.18)}
+    .callout-icon{font-size:1.3rem;flex-shrink:0;margin-top:0.1rem}
+    .callout-body{font-size:0.875rem;line-height:1.55}
+    .callout-body strong{color:var(--text);font-weight:700}
+    .callout-warn .callout-body{color:var(--red)}
+    .callout-tip .callout-body{color:var(--green)}
+    .callout-info .callout-body{color:var(--brown)}
+    .steps{display:flex;flex-direction:column;gap:0.75rem}
+    .step{display:flex;gap:1rem;align-items:flex-start;background:var(--surface);border:1px solid var(--border);
+      border-radius:var(--radius);padding:1rem 1.25rem;box-shadow:var(--shadow-sm);}
+    .step-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;
+      background:var(--green);color:white;font-family:var(--font-mono);font-size:0.75rem;font-weight:500;flex-shrink:0;margin-top:0.05rem;}
+    .step-content{font-size:0.875rem;color:var(--text-dim);line-height:1.55}
+    .step-content strong{color:var(--text);font-weight:700;display:block;margin-bottom:0.15rem}
+    .nodo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.75rem}
+    .nodo-item{display:flex;gap:0.75rem;align-items:flex-start;background:var(--red-bg);
+      border:1px solid rgba(185,28,28,0.15);border-radius:var(--radius);padding:0.85rem 1rem;}
+    .nodo-x{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;
+      background:var(--red);color:white;font-size:0.65rem;font-weight:900;flex-shrink:0;margin-top:0.1rem;}
+    .nodo-text{font-size:0.845rem;color:var(--text-dim);line-height:1.5}
+    .nodo-text strong{color:var(--text);font-weight:600}
+    .flower-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0.75rem;margin-bottom:1.25rem}
+    .flower-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center;box-shadow:var(--shadow-sm)}
+    .flower-card .flower-emoji{font-size:2rem;display:block;margin-bottom:0.4rem}
+    .flower-card .flower-name{font-weight:700;font-size:0.85rem;color:var(--text);margin-bottom:0.15rem}
+    .flower-card .flower-sci{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);font-style:italic}
+    .flower-card.featured{border-color:rgba(217,119,6,0.35);background:var(--honey-bg)}
+    .flower-card.featured .flower-name{color:var(--brown)}
+    .cal-table th{background:var(--green);color:white}
+    .cal-ok{background:rgba(45,125,70,0.08)}
+    .cal-warn{background:rgba(217,119,6,0.08)}
+    .cal-harvest{background:rgba(217,119,6,0.18);font-weight:600}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    .fade-up{opacity:0;animation:fadeUp 0.5s ease forwards}
+    .fade-up:nth-child(1){animation-delay:0.05s}.fade-up:nth-child(2){animation-delay:0.12s}
+    .fade-up:nth-child(3){animation-delay:0.19s}.fade-up:nth-child(4){animation-delay:0.26s}
+    .fade-up:nth-child(5){animation-delay:0.33s}.fade-up:nth-child(6){animation-delay:0.40s}
+    .fade-up:nth-child(7){animation-delay:0.47s}.fade-up:nth-child(8){animation-delay:0.54s}
+    @media(prefers-reduced-motion:reduce){.fade-up{opacity:1;animation:none}}
+    .honey-divider{display:flex;align-items:center;gap:0.75rem;margin:2rem 0;color:var(--border-med)}
+    .honey-divider::before,.honey-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+    .honey-divider span{font-size:1.1rem}
+    .footer{text-align:center;padding-top:2rem;border-top:1px solid var(--border);color:var(--text-muted);font-size:0.8rem;font-family:var(--font-mono)}
+    .footer strong{color:var(--honey)}
+  </style>
+</head>
+<body>
+
+  <nav class="nav" aria-label="Secciones">
+    <div class="nav-inner">
+      <a class="nav-item" href="#revision">    <span class="nav-num">1</span> Revisión</a>
+      <a class="nav-item" href="#plagas">      <span class="nav-num">2</span> Plagas</a>
+      <a class="nav-item" href="#auxilio">     <span class="nav-num">3</span> Primeros Auxilios</a>
+      <a class="nav-item" href="#nohacerlo">   <span class="nav-num">4</span> Nunca hacer</a>
+      <a class="nav-item" href="#alimentacion"><span class="nav-num">5</span> Alimentación</a>
+      <a class="nav-item" href="#ubicacion">   <span class="nav-num">6</span> Ubicación</a>
+      <a class="nav-item" href="#flores">      <span class="nav-num">7</span> Flores</a>
+      <a class="nav-item" href="#cosecha">     <span class="nav-num">8</span> Cosecha</a>
+      <a class="nav-item" href="#miel">        <span class="nav-num">9</span> La Miel</a>
+      <a class="nav-item" href="#calendario">  <span class="nav-num">10</span> Calendario</a>
+      <a class="nav-item" href="#intro">       <span class="nav-num">11</span> Quién es</a>
+    </div>
+  </nav>
+
+  <main class="page">
+
+    <!-- Hero -->
+    <div class="hero fade-up">
+      <div>
+        <div class="hero-tag">🐝 Guía de Meliponicultura</div>
+        <h1>Manual de la<br><em>Abeja Señorita</em></h1>
+        <p class="hero-sub">Tetragonisca angustula — Jataí · Yateí · Señorita · Mariola · Virginitas</p>
+        <div class="hero-pills">
+          <span class="pill pill-green">Sin aguijón</span>
+          <span class="pill pill-honey">Miel medicinal</span>
+          <span class="pill pill-brown">4–5 mm de tamaño</span>
+          <span class="pill pill-green">Fácil de cuidar</span>
+          <span class="pill pill-honey">Nativa de América Latina</span>
+        </div>
+      </div>
+      <div class="hero-img-wrap">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Tetragonisca_angustula_01.jpg/640px-Tetragonisca_angustula_01.jpg"
+          alt="Tetragonisca angustula"
+          onerror="this.style.display='none';this.parentElement.style.background='var(--honey-dim)';this.parentElement.style.display='flex';this.parentElement.style.alignItems='center';this.parentElement.style.justifyContent='center';this.parentElement.innerHTML='<span style=\'font-size:5rem\'>🐝</span>';">
+      </div>
+    </div>
+
+    <!-- 1. Revisión -->
+    <section class="section fade-up" id="revision">
+      <div class="section-header">
+        <span class="section-num">1</span>
+        <h2 class="section-title">Revisión Mensual Rutinaria</h2>
+        <span class="section-label">Diagnóstico</span>
+      </div>
+      <div class="callout callout-warn" style="margin-bottom:1.25rem;">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body"><strong>Regla de oro:</strong> NO abrir la caja sin motivo claro. Las revisiones se hacen observando la ENTRADA, no perturbando el interior. Abrir innecesariamente estresa la colonia y puede dañar las estructuras de cera.</div>
+      </div>
+      <div class="hero-card" style="margin-bottom:1.25rem;text-align:center;">
+        <div style="font-size:2.5rem;margin-bottom:0.5rem;">⏱️</div>
+        <div style="font-family:var(--font-serif);font-size:1.2rem;color:var(--brown);font-weight:400;">5 minutos · 1 vez al mes · Solo observar la entrada</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Señal observada</th><th>¿Qué indica?</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr><td>Abejas entrando con pelotitas de polen multicolores</td><td>Colonia activa y bien nutrida</td><td><span class="badge badge-green">Sano</span></td></tr>
+            <tr><td>Guardianas estacionadas o revoloteando en la entrada</td><td>La colonia defiende activamente — está saludable</td><td><span class="badge badge-green">Sano</span></td></tr>
+            <tr><td>Entrada limpia, con resina (cerumen) sellando bordes</td><td>Las abejas mantienen su hábitat — todo en orden</td><td><span class="badge badge-green">Sano</span></td></tr>
+            <tr><td>Mucho tráfico de vuelo en horario de mañana</td><td>Forrajeo activo, la reina está poniendo huevos</td><td><span class="badge badge-green">Sano</span></td></tr>
+            <tr><td>Poca o ninguna actividad de vuelo</td><td>Posible debilidad de colonia, frío o lluvia</td><td><span class="badge badge-honey">Vigilar</span></td></tr>
+            <tr><td>Moscas pequeñas entrando a la colmena (phoridae)</td><td>Plaga de parasitoides de larvas — actuar de inmediato</td><td><span class="badge badge-red">Urgente</span></td></tr>
+            <tr><td>Olor raro o fermentado al acercar la nariz</td><td>Posible enfermedad o miel fermentada en exceso</td><td><span class="badge badge-red">Urgente</span></td></tr>
+            <tr><td>Abejas muertas acumuladas en la entrada</td><td>Mortalidad anormal — revisar plagas o envenenamiento</td><td><span class="badge badge-red">Urgente</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="honey-divider"><span>🐜</span></div>
+
+    <!-- 2. Plagas -->
+    <section class="section fade-up" id="plagas">
+      <div class="section-header">
+        <span class="section-num">2</span>
+        <h2 class="section-title">Plagas — Qué Hacer ante Cada Amenaza</h2>
+        <span class="section-label">Control sanitario</span>
+      </div>
+
+      <div class="card" style="margin-bottom:1.25rem;border-left:4px solid var(--red);">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <span style="font-size:1.8rem;">🐜</span>
+          <div><div class="card-title" style="margin-bottom:0.1rem;">Hormigas — Enemigo número uno</div><span class="badge badge-red">Peligro Alto</span></div>
+        </div>
+        <div class="callout callout-warn" style="margin-bottom:1rem;">
+          <span class="callout-icon">👁️</span>
+          <div class="callout-body"><strong>Señales:</strong> fila de hormigas subiendo por la pared, patas de la caja o el soporte. Actividad reducida o abejas agitadas dentro.</div>
+        </div>
+        <div class="steps">
+          <div class="step"><span class="step-num" style="background:var(--red);">1</span><div class="step-content"><strong>Cortar el acceso físico de inmediato</strong>Colocar las 4 patas del soporte dentro de recipientes (tapas, latas) llenos de aceite vegetal. Las hormigas no pueden cruzar el aceite. Solución permanente más efectiva.</div></div>
+          <div class="step"><span class="step-num" style="background:var(--red);">2</span><div class="step-content"><strong>Eliminar la columna activa</strong>Verter agua hirviendo en el camino que trazan fuera de la colmena (lejos de las abejas). No usar insecticidas cerca.</div></div>
+          <div class="step"><span class="step-num" style="background:var(--red);">3</span><div class="step-content"><strong>Verificar que no hay puentes alternativos</strong>Asegurarse de que la caja no toque pared, ramas, cuerdas o cables por donde las hormigas puedan rodear la trampa de aceite.</div></div>
+          <div class="step"><span class="step-num" style="background:var(--red);">4</span><div class="step-content"><strong>Mantenimiento semanal</strong>Cambiar el aceite de los recipientes cada 7–10 días. Con el tiempo se llena de cuerpos y pierde efectividad. Rellenar si el nivel baja.</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:1.25rem;border-left:4px solid var(--red);">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <span style="font-size:1.8rem;">🪰</span>
+          <div><div class="card-title" style="margin-bottom:0.1rem;">Moscas Phoridae — Parásitas de larvas</div><span class="badge badge-red">Peligro Alto</span></div>
+        </div>
+        <div class="callout callout-warn" style="margin-bottom:1rem;">
+          <span class="callout-icon">👁️</span>
+          <div class="callout-body"><strong>Señales:</strong> moscas diminutas (≈2 mm, negras, vuelo en zig-zag errático) intentando entrar por la entrada. Pasan si la entrada es grande o la colonia está débil.</div>
+        </div>
+        <div class="steps">
+          <div class="step"><span class="step-num" style="background:var(--red);">1</span><div class="step-content"><strong>Reducir el tamaño de la entrada</strong>Tapar parcialmente con cera o cerumen de la propia colmena hasta que solo pasen 1–2 abejas a la vez. Las guardianas podrán controlar el ingreso.</div></div>
+          <div class="step"><span class="step-num" style="background:var(--red);">2</span><div class="step-content"><strong>Instalar trampa pegajosa</strong>Colocar una tira adhesiva (tipo atrapa-moscas) a 10–15 cm de la entrada, fuera del camino de vuelo de las abejas. Las phoridae quedan atrapadas antes de llegar.</div></div>
+          <div class="step"><span class="step-num" style="background:var(--red);">3</span><div class="step-content"><strong>Alimentar para fortalecer la colonia</strong>Una colonia fuerte rechaza a las phoridae. Dar azúcar 1:1 para aumentar población de obreras y guardianas. Más guardianas = mejor defensa.</div></div>
+          <div class="step"><span class="step-num" style="background:var(--red);">4</span><div class="step-content"><strong>Si la invasión ya ocurrió — inspección interna</strong>Abrir la caja con cuidado. Las larvas de phoridae se ven como gusanos blancos pequeños dentro de las celdas. Retirar panales afectados con espátula limpia y eliminarlos lejos de la colmena.</div></div>
+          <div class="step"><span class="step-num" style="background:var(--red);">5</span><div class="step-content"><strong>Monitoreo diario por 2 semanas</strong>Observar la entrada cada mañana para detectar nuevas moscas. Si persisten, repetir la trampa y mantener la entrada reducida.</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:1.25rem;border-left:4px solid var(--honey);">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <span style="font-size:1.8rem;">🪲</span>
+          <div><div class="card-title" style="margin-bottom:0.1rem;">Escarabajos — Pequeño escarabajo de la colmena</div><span class="badge badge-honey">Peligro Medio</span></div>
+        </div>
+        <div class="callout callout-info" style="margin-bottom:1rem;">
+          <span class="callout-icon">👁️</span>
+          <div class="callout-body"><strong>Señales:</strong> insectos oscuros y brillantes (3–5 mm) rondando la entrada o encontrados dentro durante inspecciones. Sus larvas destruyen panales y miel.</div>
+        </div>
+        <div class="steps">
+          <div class="step"><span class="step-num" style="background:var(--honey);">1</span><div class="step-content"><strong>Reducir y controlar la entrada</strong>Ajustar para que solo pase 1 abeja a la vez. La guardiana bloqueará el paso al escarabajo, que es más grande que la abeja.</div></div>
+          <div class="step"><span class="step-num" style="background:var(--honey);">2</span><div class="step-content"><strong>Trampa de aceite dentro de la caja</strong>En cajas racionales con cámara inferior, colocar un recipiente poco profundo con aceite vegetal. Los escarabajos caen y se ahogan. Cambiar cada 2 semanas.</div></div>
+          <div class="step"><span class="step-num" style="background:var(--honey);">3</span><div class="step-content"><strong>Retirar escarabajos adultos manualmente</strong>Con pinzas durante inspecciones. Eliminarlos lejos de la colmena. Las abejas los acorralan pero necesitan apoyo.</div></div>
+          <div class="step"><span class="step-num" style="background:var(--honey);">4</span><div class="step-content"><strong>Inspección del suelo bajo la colmena</strong>Las larvas se pupan en el suelo debajo de la caja. Remover y exponer ese suelo al sol para interrumpir su ciclo de vida.</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:1.25rem;border-left:4px solid var(--honey);">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <span style="font-size:1.8rem;">🦎</span>
+          <div><div class="card-title" style="margin-bottom:0.1rem;">Lagartijas y Arañas — Depredadores externos</div><span class="badge badge-honey">Peligro Medio</span></div>
+        </div>
+        <div class="callout callout-info" style="margin-bottom:1rem;">
+          <span class="callout-icon">👁️</span>
+          <div class="callout-body"><strong>Señales:</strong> lagartijas apostadas junto a la entrada esperando abejas. Telarañas frente a la entrada que atrapan forrajeras.</div>
+        </div>
+        <div class="steps">
+          <div class="step"><span class="step-num" style="background:var(--honey);">1</span><div class="step-content"><strong>Retirar telarañas de inmediato</strong>Usar un palo o cepillo suave. Revisar diariamente durante la primera semana.</div></div>
+          <div class="step"><span class="step-num" style="background:var(--honey);">2</span><div class="step-content"><strong>Alejar lagartijas manualmente</strong>Retirarlas del área. Si regresan, colocar el soporte sobre superficie lisa donde no puedan trepar.</div></div>
+          <div class="step"><span class="step-num" style="background:var(--honey);">3</span><div class="step-content"><strong>Despejar el entorno</strong>Eliminar escondites (ramas, tablas, objetos apilados) cerca de la colmena en un radio de 30–50 cm.</div></div>
+          <div class="step"><span class="step-num" style="background:var(--honey);">4</span><div class="step-content"><strong>Reposicionar si el problema persiste</strong>Cambiar el ángulo de vuelo de la entrada o añadir una malla a 20 cm de distancia como barrera física.</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:1rem;border-left:4px solid var(--border-med);">
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <span style="font-size:1.8rem;">🦟</span>
+          <div><div class="card-title" style="margin-bottom:0.1rem;">Ácaros — Poco frecuente en Señorita</div><span class="badge badge-green">Peligro Bajo</span></div>
+        </div>
+        <div class="callout callout-tip" style="margin-bottom:1rem;">
+          <span class="callout-icon">👁️</span>
+          <div class="callout-body"><strong>Señales:</strong> abejas con alas deformadas, vuelo errático o en espiral, abejas que caminan por el suelo sin poder volar. Es raro en T. angustula.</div>
+        </div>
+        <div class="steps">
+          <div class="step"><span class="step-num" style="background:var(--green);">1</span><div class="step-content"><strong>Confirmar el diagnóstico</strong>Capturar 10–15 abejas en un frasco y observar con lupa. Los ácaros (Varroa) se ven como puntos rojos/marrones adheridos al cuerpo.</div></div>
+          <div class="step"><span class="step-num" style="background:var(--green);">2</span><div class="step-content"><strong>NO aplicar tratamientos químicos por cuenta propia</strong>Los acaricidas usados en Apis mellifera son frecuentemente tóxicos para meliponas. Sin asesoría de especialista, no aplicar nada.</div></div>
+          <div class="step"><span class="step-num" style="background:var(--green);">3</span><div class="step-content"><strong>Consultar meliponicultor especializado</strong>La Señorita tiene mayor resistencia natural a ácaros que la abeja europea. Un experto local puede diagnosticar y guiar el tratamiento correcto.</div></div>
+        </div>
+      </div>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">🛡️</span>
+        <div class="callout-body"><strong>Prevención general:</strong> Una colonia fuerte y numerosa es la mejor defensa. Alimentar en épocas de escasez es la medida preventiva más efectiva.</div>
+      </div>
+    </section>
+
+    <div class="honey-divider"><span>🆘</span></div>
+
+    <!-- 3. Primeros Auxilios -->
+    <section class="section fade-up" id="auxilio">
+      <div class="section-header">
+        <span class="section-num">3</span>
+        <h2 class="section-title">Primeros Auxilios — Colonia Débil</h2>
+        <span class="section-label">Emergencia</span>
+      </div>
+      <div class="callout callout-warn" style="margin-bottom:1.25rem;">
+        <span class="callout-icon">🔴</span>
+        <div class="callout-body"><strong>Señales de alerta:</strong> pocas o ninguna abeja volando, sin entrada de pólenes por más de 3 días (sin que sea lluvia), silencio total en la entrada, abejas muertas acumuladas, colmena sin guardianas.</div>
+      </div>
+      <div class="steps">
+        <div class="step fade-up"><span class="step-num">1</span><div class="step-content"><strong>Alimentar de inmediato — azúcar 1:1</strong>Preparar solución de agua y azúcar en partes iguales. Colocar en vasito con palitos cerca de la entrada. Es el primer paso siempre, incluso antes de diagnosticar la causa.</div></div>
+        <div class="step fade-up"><span class="step-num">2</span><div class="step-content"><strong>Verificar plagas activamente</strong>Buscar moscas phoridae (2mm, negras, rápidas) en la entrada. Verificar que no haya filas de hormigas. Revisar si hay escarabajos. Eliminar la plaga identificada.</div></div>
+        <div class="step fade-up"><span class="step-num">3</span><div class="step-content"><strong>Inspeccionar el interior con cuidado</strong>Solo si las señales externas no explican el problema. Buscar cría (larvas y pupas), potes de miel con reservas, e indicios de la reina (huevos frescos en zona central).</div></div>
+        <div class="step fade-up"><span class="step-num">4</span><div class="step-content"><strong>Si no mejora en 2 semanas — considerar unir colonias</strong>Una colonia muy débil puede reforzarse uniendo sus abejas con otra colonia fuerte de la misma especie. Requiere guía de meliponicultor experimentado.</div></div>
+        <div class="step fade-up"><span class="step-num">5</span><div class="step-content"><strong>Consultar a un especialista local</strong>Si después de 2–3 semanas sin recuperación, contactar un meliponicultor local o grupo de apicultura nativa. Un diagnóstico presencial identifica problemas invisibles desde afuera.</div></div>
+      </div>
+      <div class="callout callout-tip" style="margin-top:1.25rem;">
+        <span class="callout-icon">💚</span>
+        <div class="callout-body"><strong>Señal de recuperación:</strong> Las abejas vuelven a forrajear, comienzan a traer pólenes de colores y las guardianas regresan a su posición. Generalmente se ve mejoría en 5–10 días si el problema era nutricional.</div>
+      </div>
+    </section>
+
+    <div class="honey-divider"><span>🚫</span></div>
+
+    <!-- 4. Nunca hacer -->
+    <section class="section fade-up" id="nohacerlo">
+      <div class="section-header">
+        <span class="section-num">4</span>
+        <h2 class="section-title">Lo que Nunca Debes Hacer</h2>
+        <span class="section-label">Reglas críticas</span>
+      </div>
+      <div class="nodo-grid">
+        <div class="nodo-item fade-up"><span class="nodo-x">✕</span><div class="nodo-text"><strong>Abrir la colmena sin motivo claro.</strong> Cada apertura estresa la colonia, interrumpe el trabajo y puede dañar las estructuras de cera.</div></div>
+        <div class="nodo-item fade-up"><span class="nodo-x">✕</span><div class="nodo-text"><strong>Usar pesticidas o insecticidas cerca.</strong> Incluso pulverizar plantas cercanas puede intoxicar a las abejas forrajeras y contaminar la miel.</div></div>
+        <div class="nodo-item fade-up"><span class="nodo-x">✕</span><div class="nodo-text"><strong>Dar miel de abeja europea.</strong> Puede transmitir patógenos y enfermedades letales para una colonia sin resistencia.</div></div>
+        <div class="nodo-item fade-up"><span class="nodo-x">✕</span><div class="nodo-text"><strong>Mover la colmena frecuentemente.</strong> Cada mudanza desorienta a las forrajeras. Una vez instalada en su lugar definitivo, no moverla más.</div></div>
+        <div class="nodo-item fade-up"><span class="nodo-x">✕</span><div class="nodo-text"><strong>Cosechar más del 30% de la miel.</strong> Sin reservas suficientes, la colonia no puede sobrevivir la época seca y colapsará.</div></div>
+        <div class="nodo-item fade-up"><span class="nodo-x">✕</span><div class="nodo-text"><strong>Exponer al sol directo todo el día.</strong> El sobrecalentamiento derrite los panales de cera y mata larvas. Sombra de tarde es indispensable.</div></div>
+        <div class="nodo-item fade-up"><span class="nodo-x">✕</span><div class="nodo-text"><strong>Ignorar señales de plaga.</strong> Las hormigas y phoridae pueden destruir una colonia completa en días si no se actúa a tiempo.</div></div>
+        <div class="nodo-item fade-up"><span class="nodo-x">✕</span><div class="nodo-text"><strong>Dejar la entrada demasiado grande.</strong> Una entrada amplia permite el ingreso de escarabajos y otras plagas que las guardianas no pueden controlar.</div></div>
+      </div>
+    </section>
+
+    <div class="honey-divider"><span>🍬</span></div>
+
+    <!-- 5. Alimentación -->
+    <section class="section fade-up" id="alimentacion">
+      <div class="section-header">
+        <span class="section-num">5</span>
+        <h2 class="section-title">Alimentación Suplementaria</h2>
+        <span class="section-label">Nutrición</span>
+      </div>
+      <div class="callout callout-tip" style="margin-bottom:1.25rem;">
+        <span class="callout-icon">🌸</span>
+        <div class="callout-body"><strong>Colonia establecida con floración disponible:</strong> NO necesita alimentación suplementaria. Las abejas son completamente autosuficientes cuando hay flores en el entorno.</div>
+      </div>
+      <div class="card-grid card-grid-2">
+        <div class="card card-accent-honey fade-up">
+          <div class="card-title">🍬 Cuándo alimentar</div>
+          <div class="card-body"><ul>
+            <li>Época seca prolongada sin flores</li>
+            <li>Colonia recién instalada o debilitada</li>
+            <li>Período de sequía o frío inusual</li>
+            <li>Primeras 2 semanas después de mover la colmena</li>
+          </ul></div>
+        </div>
+        <div class="card card-accent-green fade-up">
+          <div class="card-title">🥄 Cómo preparar el alimento</div>
+          <div class="card-body"><ul>
+            <li><strong>Receta:</strong> agua + azúcar 1:1 (iguales partes)</li>
+            <li><strong>Recipiente:</strong> vasito pequeño cerca de la entrada</li>
+            <li><strong>Seguridad:</strong> colocar palitos o esponja adentro</li>
+            <li><strong>Frecuencia:</strong> cambiar cada 2–3 días (fermenta)</li>
+          </ul></div>
+        </div>
+      </div>
+      <div class="callout callout-warn" style="margin-top:1rem;">
+        <span class="callout-icon">🚫</span>
+        <div class="callout-body"><strong>NUNCA dar miel de abeja europea (Apis mellifera).</strong> Puede transmitir enfermedades y patógenos a los que la Señorita no tiene defensas. Lo más seguro es agua con azúcar.</div>
+      </div>
+    </section>
+
+    <div class="honey-divider"><span>🍯</span></div>
+
+    <!-- 6. Ubicación -->
+    <section class="section fade-up" id="ubicacion">
+      <div class="section-header">
+        <span class="section-num">6</span>
+        <h2 class="section-title">Ubicación de la Colmena</h2>
+        <span class="section-label">Instalación</span>
+      </div>
+      <div class="callout callout-info" style="margin-bottom:1rem;">
+        <span class="callout-icon">🏛️</span>
+        <div class="callout-body"><strong>Patio interior con cielo abierto = ubicación ideal.</strong> Clima estable, protección de lluvia lateral, vuelo libre hacia el exterior y mínima exposición a depredadores.</div>
+      </div>
+      <div class="card-grid card-grid-2">
+        <div class="card card-accent-green fade-up">
+          <div class="card-title">✅ Condiciones ideales</div>
+          <div class="card-body"><ul>
+            <li><strong>Altura:</strong> 50–80 cm del suelo</li>
+            <li><strong>Luz:</strong> Sol de mañana, sombra de tarde</li>
+            <li><strong>Lluvia:</strong> Protegida de lluvia directa</li>
+            <li><strong>Entrada:</strong> Apuntando al espacio abierto</li>
+            <li><strong>Ambiente:</strong> Sin corrientes fuertes de aire</li>
+            <li><strong>Entorno:</strong> Lejos de pesticidas y químicos</li>
+          </ul></div>
+        </div>
+        <div class="card card-accent-red fade-up">
+          <div class="card-title">❌ Evitar absolutamente</div>
+          <div class="card-body"><ul>
+            <li><strong>Sol directo</strong> todo el día — recalienta la caja</li>
+            <li><strong>Zona con químicos</strong> o spray de insectos</li>
+            <li><strong>Muy cerca del suelo</strong> — facilita hormigas</li>
+            <li><strong>Zona con mucho tráfico</strong> — estrés constante</li>
+            <li><strong>Lugares oscuros y húmedos</strong> sin ventilación</li>
+          </ul></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:1rem;padding:1.25rem 1.5rem;">
+        <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+          <div style="font-size:3rem;">🏠</div>
+          <div>
+            <div class="card-title" style="margin-bottom:0.5rem;">Patio interior con cielo abierto</div>
+            <div class="card-body">Las abejas salen hacia el exterior libremente, la lluvia no entra directamente a la colmena, el microclima es estable y la vigilancia diaria es cómoda. Colocar la caja en la pared que reciba <strong>sol de mañana y sombra de tarde</strong>, con la entrada apuntando al espacio abierto.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="honey-divider"><span>🌸</span></div>
+
+    <!-- 7. Flores -->
+    <section class="section fade-up" id="flores">
+      <div class="section-header">
+        <span class="section-num">7</span>
+        <h2 class="section-title">Flores que les Encantan</h2>
+        <span class="section-label">Plantación y forrajeo</span>
+      </div>
+      <p style="color:var(--text-dim);font-size:0.9rem;margin-bottom:1.25rem;line-height:1.6;">La Señorita visita flores pequeñas con fácil acceso al néctar. La clave es plantar una <strong>variedad con floración continua</strong> para que siempre tengan recursos disponibles.</p>
+      <div class="flower-grid">
+        <div class="flower-card featured fade-up"><span class="flower-emoji">👑</span><div class="flower-name">Corona de Cristo</div><div class="flower-sci">Euphorbia milii</div><div style="margin-top:0.4rem;"><span class="badge badge-honey">Favorita</span></div></div>
+        <div class="flower-card fade-up"><span class="flower-emoji">🌻</span><div class="flower-name">Girasol</div><div class="flower-sci">Helianthus annuus</div></div>
+        <div class="flower-card fade-up"><span class="flower-emoji">🌼</span><div class="flower-name">Caléndula</div><div class="flower-sci">Calendula officinalis</div></div>
+        <div class="flower-card fade-up"><span class="flower-emoji">🌺</span><div class="flower-name">Hibisco</div><div class="flower-sci">Hibiscus rosa-sinensis</div></div>
+        <div class="flower-card fade-up"><span class="flower-emoji">🍃</span><div class="flower-name">Guayabo</div><div class="flower-sci">Psidium guajava</div></div>
+        <div class="flower-card fade-up"><span class="flower-emoji">🌿</span><div class="flower-name">Albahaca</div><div class="flower-sci">Ocimum basilicum</div></div>
+        <div class="flower-card fade-up"><span class="flower-emoji">💜</span><div class="flower-name">Lavanda</div><div class="flower-sci">Lavandula spp.</div></div>
+        <div class="flower-card fade-up"><span class="flower-emoji">🍋</span><div class="flower-name">Cítricos</div><div class="flower-sci">Citrus spp.</div></div>
+      </div>
+      <div class="card-grid card-grid-2">
+        <div class="card card-accent-honey fade-up">
+          <div class="card-title">🌿 Hierbas aromáticas</div>
+          <div class="card-body"><p>Las abejas adoran las hierbas en flor. Fáciles de cultivar en macetas, florecen casi todo el año en clima cálido.</p>
+          <ul style="margin-top:0.5rem;"><li>Albahaca, romero, tomillo</li><li>Orégano, menta, melisa</li><li>Lavanda, salvia</li></ul></div>
+        </div>
+        <div class="card card-accent-green fade-up">
+          <div class="card-title">🍎 Plantas productivas</div>
+          <div class="card-body"><p>Doble beneficio: flores para las abejas y frutos para el meliponicultor.</p>
+          <ul style="margin-top:0.5rem;"><li>Maracuyá, café, aguacate</li><li>Guayabo, cítricos</li><li>Tomate (flores pequeñas)</li></ul></div>
+        </div>
+      </div>
+      <div class="callout callout-info" style="margin-top:1rem;">
+        <span class="callout-icon">🌱</span>
+        <div class="callout-body"><strong>Consejo:</strong> Plantar al menos 3 especies con épocas de floración distintas garantiza que las abejas siempre tengan néctar disponible, especialmente en la época seca.</div>
+      </div>
+    </section>
+
+    <div class="honey-divider"><span>🏺</span></div>
+
+    <!-- 8. Cosecha -->
+    <section class="section fade-up" id="cosecha">
+      <div class="section-header">
+        <span class="section-num">8</span>
+        <h2 class="section-title">Cómo Cosechar la Miel</h2>
+        <span class="section-label">Producción</span>
+      </div>
+      <div class="callout callout-warn" style="margin-bottom:1.25rem;">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body"><strong>Paciencia, paciencia, paciencia.</strong> La Señorita produce poca miel comparada con la abeja europea. Cosechar demasiado pronto puede matar la colonia. La primera cosecha ideal es al cabo de 1–2 años de establecida.</div>
+      </div>
+      <div class="hero-card" style="margin-bottom:1.25rem;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1.25rem;text-align:center;">
+          <div><div style="font-size:2rem;margin-bottom:0.3rem;">📅</div><div style="font-weight:700;font-size:0.9rem;color:var(--brown);">Frecuencia</div><div style="font-size:0.82rem;color:var(--text-dim);margin-top:0.2rem;">Máximo 1 vez al año</div></div>
+          <div><div style="font-size:2rem;margin-bottom:0.3rem;">🏺</div><div style="font-weight:700;font-size:0.9rem;color:var(--brown);">Cantidad típica</div><div style="font-size:0.82rem;color:var(--text-dim);margin-top:0.2rem;">0.5 – 1 litro por año</div></div>
+          <div><div style="font-size:2rem;margin-bottom:0.3rem;">📊</div><div style="font-weight:700;font-size:0.9rem;color:var(--brown);">Dejar a la colonia</div><div style="font-size:0.82rem;color:var(--text-dim);margin-top:0.2rem;">Mínimo el 70% de reservas</div></div>
+          <div><div style="font-size:2rem;margin-bottom:0.3rem;">🌧️</div><div style="font-weight:700;font-size:0.9rem;color:var(--brown);">Temporada ideal</div><div style="font-size:0.82rem;color:var(--text-dim);margin-top:0.2rem;">Época de lluvias/abundancia</div></div>
+        </div>
+      </div>
+      <h3 style="font-family:var(--font-serif);font-size:1.1rem;font-weight:400;color:var(--text);margin-bottom:0.75rem;">Paso a paso para la cosecha</h3>
+      <div class="steps">
+        <div class="step fade-up"><span class="step-num">1</span><div class="step-content"><strong>Verificar que la colonia está fuerte</strong>Abundante actividad de vuelo, mucho tráfico con pólenes y reservas de miel claramente llenas.</div></div>
+        <div class="step fade-up"><span class="step-num">2</span><div class="step-content"><strong>Preparar el material</strong>Jeringa o pipeta desechable esterilizada. Frasco de vidrio oscuro esterilizado con tapa hermética. Guantes limpios. Nunca usar plástico poroso.</div></div>
+        <div class="step fade-up"><span class="step-num">3</span><div class="step-content"><strong>Extraer con jeringa o pipeta</strong>Identificar los potes de miel (cerúmenes — vasitos de cera amarilla redondos). Introducir la punta suavemente y extraer. NO presionar panales. NO tocar panales de cría.</div></div>
+        <div class="step fade-up"><span class="step-num">4</span><div class="step-content"><strong>Respetar las reservas</strong>Dejar siempre el 70% de los potes intactos. Si hay duda, dejar más. Una colonia sin reservas puede colapsar.</div></div>
+        <div class="step fade-up"><span class="step-num">5</span><div class="step-content"><strong>Cerrar y dar alimento post-cosecha</strong>Cerrar la caja con cuidado. Dar azúcar 1:1 durante 2 semanas para ayudar a la colonia a recuperar reservas.</div></div>
+      </div>
+    </section>
+
+    <div class="honey-divider"><span>✨</span></div>
+
+    <!-- 9. La Miel -->
+    <section class="section fade-up" id="miel">
+      <div class="section-header">
+        <span class="section-num">9</span>
+        <h2 class="section-title">Propiedades de la Miel</h2>
+        <span class="section-label">La joya de la colmena</span>
+      </div>
+      <div class="hero-card" style="margin-bottom:1.25rem;">
+        <p style="font-family:var(--font-serif);font-size:1.1rem;color:var(--brown);font-style:italic;line-height:1.7;">
+          La miel de Señorita es más líquida, ácida y aromática que la miel de abeja europea. Rica en flavonoides, compuestos fenólicos y ácidos orgánicos, es considerada una de las mieles más valiosas y medicinales del mundo.
+        </p>
+      </div>
+      <div class="card-grid card-grid-3">
+        <div class="card card-accent-honey fade-up">
+          <span class="card-icon">🧪</span>
+          <div class="card-title">Composición única</div>
+          <div class="card-body"><ul>
+            <li>Mayor % de humedad que miel europea</li>
+            <li>Fermentada naturalmente</li>
+            <li>Rica en flavonoides</li>
+            <li>Compuestos fenólicos activos</li>
+            <li>Ácidos orgánicos variados</li>
+          </ul></div>
+        </div>
+        <div class="card card-accent-green fade-up">
+          <span class="card-icon">💊</span>
+          <div class="card-title">Propiedades medicinales</div>
+          <div class="card-body"><ul>
+            <li><strong>Antibacteriana</strong> demostrada</li>
+            <li><strong>Antioxidante</strong> potente</li>
+            <li><strong>Antiinflamatoria</strong> natural</li>
+            <li>Cicatrizante de heridas</li>
+            <li>Refuerza el sistema inmune</li>
+          </ul></div>
+        </div>
+        <div class="card card-accent-brown fade-up">
+          <span class="card-icon">🌿</span>
+          <div class="card-title">Usos tradicionales</div>
+          <div class="card-body"><ul>
+            <li>Heridas e infecciones de piel</li>
+            <li>Llagas y aftas orales</li>
+            <li>Problemas respiratorios</li>
+            <li>Problemas oculares (diluida)</li>
+            <li>Fortalecimiento general</li>
+          </ul></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:1rem;border-color:rgba(217,119,6,0.3);">
+        <div class="card-title" style="margin-bottom:1rem;">🏺 Cómo conservar la miel</div>
+        <div class="split-2">
+          <div class="card-body"><ul>
+            <li><strong>Recipiente:</strong> frasco de vidrio oscuro con tapa hermética</li>
+            <li><strong>Esterilizar</strong> el frasco antes de usarlo</li>
+            <li><strong>Temperatura:</strong> refrigerador o lugar fresco y seco</li>
+            <li><strong>Evitar:</strong> calor, luz directa, plástico poroso</li>
+            <li><strong>Consumir</strong> en los primeros 6 meses</li>
+          </ul></div>
+          <div style="background:var(--honey-bg);border-radius:var(--radius);padding:1rem;border:1px solid rgba(217,119,6,0.2);">
+            <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;">Valor de mercado</div>
+            <div style="font-family:var(--font-serif);font-size:1.8rem;color:var(--honey);margin-bottom:0.3rem;">Muy alto</div>
+            <div style="font-size:0.82rem;color:var(--text-dim);line-height:1.5;">La miel de meliponas puede valer 10–20 veces más que la miel convencional. Rareza, propiedades medicinales y dificultad de producción la hacen extraordinariamente valiosa.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="honey-divider"><span>📅</span></div>
+
+    <!-- 10. Calendario -->
+    <section class="section fade-up" id="calendario">
+      <div class="section-header">
+        <span class="section-num">10</span>
+        <h2 class="section-title">Calendario Anual de Cuidados</h2>
+        <span class="section-label">Planificación</span>
+      </div>
+      <div class="table-wrap">
+        <table class="cal-table">
+          <thead><tr><th>Mes</th><th>Temporada</th><th>Actividades principales</th><th>Alimentar</th><th>Prioridad</th></tr></thead>
+          <tbody>
+            <tr class="cal-warn"><td><strong>Enero</strong></td><td>Época seca</td><td>Revisar entrada · Vigilar actividad · Trampa hormigas</td><td><span class="badge badge-honey">Posible</span></td><td><span class="badge badge-honey">Vigilar</span></td></tr>
+            <tr class="cal-warn"><td><strong>Febrero</strong></td><td>Época seca</td><td>Alimentación si no hay floración · Revisar plagas</td><td><span class="badge badge-honey">Posible</span></td><td><span class="badge badge-honey">Vigilar</span></td></tr>
+            <tr class="cal-ok"><td><strong>Marzo</strong></td><td>Inicio floración</td><td>Observar incremento de actividad · Suspender alimento</td><td><span class="badge badge-green">No</span></td><td><span class="badge badge-green">Bueno</span></td></tr>
+            <tr class="cal-ok"><td><strong>Abril</strong></td><td>Floración plena</td><td>Solo observar · La colonia trabaja sola · Anotar estado</td><td><span class="badge badge-green">No</span></td><td><span class="badge badge-green">Óptimo</span></td></tr>
+            <tr class="cal-ok"><td><strong>Mayo</strong></td><td>Lluvias iniciales</td><td>Revisar plagas (humedad atrae phoridae) · Verificar entrada</td><td><span class="badge badge-green">No</span></td><td><span class="badge badge-green">Bueno</span></td></tr>
+            <tr class="cal-ok"><td><strong>Junio</strong></td><td>Temporada lluviosa</td><td>Colonia muy activa · Vigilar humedad interior de la caja</td><td><span class="badge badge-green">No</span></td><td><span class="badge badge-green">Bueno</span></td></tr>
+            <tr class="cal-harvest"><td><strong>Julio</strong></td><td>Lluvias / Abundancia</td><td>Evaluar para cosecha si colonia muy fuerte · Solo si 2+ años</td><td><span class="badge badge-green">No</span></td><td><span class="badge badge-honey">Cosecha?</span></td></tr>
+            <tr class="cal-harvest"><td><strong>Agosto</strong></td><td>Pico de producción</td><td>Cosecha (si aplica) · Alimentar 2 semanas post-cosecha</td><td><span class="badge badge-honey">Post-cosecha</span></td><td><span class="badge badge-honey">Cosecha?</span></td></tr>
+            <tr class="cal-ok"><td><strong>Septiembre</strong></td><td>Transición</td><td>Revisar reservas · Verificar salud de la reina · Anotar estado</td><td><span class="badge badge-green">No</span></td><td><span class="badge badge-green">Bueno</span></td></tr>
+            <tr class="cal-warn"><td><strong>Octubre</strong></td><td>Inicio época seca</td><td>Revisar nivel de reservas · Preparar alimentación si hay sequía</td><td><span class="badge badge-honey">Si necesario</span></td><td><span class="badge badge-honey">Vigilar</span></td></tr>
+            <tr class="cal-warn"><td><strong>Noviembre</strong></td><td>Época seca</td><td>Vigilar plagas · Trampa hormigas · Alimentar si poca floración</td><td><span class="badge badge-honey">Posible</span></td><td><span class="badge badge-honey">Vigilar</span></td></tr>
+            <tr class="cal-warn"><td><strong>Diciembre</strong></td><td>Época seca</td><td>Alimentación si no hay flores · Balance del año · Planificar</td><td><span class="badge badge-honey">Posible</span></td><td><span class="badge badge-honey">Vigilar</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:0.5rem;font-family:var(--font-mono);">* El calendario es orientativo. Adaptar según el clima de la región y el ciclo de floración local.</p>
+    </section>
+
+    <div class="honey-divider"><span>🐝</span></div>
+
+    <!-- 11. Quién es -->
+    <section class="section fade-up" id="intro">
+      <div class="section-header">
+        <span class="section-num">11</span>
+        <h2 class="section-title">¿Quién es la Abeja Señorita?</h2>
+        <span class="section-label">Introducción</span>
+      </div>
+      <div class="hero-card" style="margin-bottom:1rem;">
+        <p style="font-family:var(--font-serif);font-size:1.15rem;color:var(--brown);line-height:1.7;font-style:italic;">
+          La <strong style="font-style:normal;">Tetragonisca angustula</strong> es una de las abejas nativas más pequeñas y fascinantes de América Latina. Diminuta, dócil y sin aguijón, produce una miel de extraordinarias propiedades medicinales que se cuenta entre las más valiosas del mundo.
+        </p>
+      </div>
+      <div class="card-grid card-grid-3">
+        <div class="card fade-up">
+          <span class="card-icon">🔬</span>
+          <div class="card-title">Taxonomía</div>
+          <div class="card-body"><ul>
+            <li><strong>Especie:</strong> T. angustula</li>
+            <li><strong>Familia:</strong> Apidae</li>
+            <li><strong>Tribu:</strong> Meliponini</li>
+            <li><strong>Tamaño:</strong> 4–5 mm</li>
+          </ul></div>
+        </div>
+        <div class="card fade-up">
+          <span class="card-icon">🏘️</span>
+          <div class="card-title">La Colonia</div>
+          <div class="card-body"><ul>
+            <li><strong>Obreras:</strong> 5,000–80,000</li>
+            <li><strong>1 Reina activa</strong></li>
+            <li><strong>Guardianas</strong> especializadas</li>
+            <li>División de trabajo perfecta</li>
+          </ul></div>
+        </div>
+        <div class="card fade-up">
+          <span class="card-icon">🌎</span>
+          <div class="card-title">Distribución</div>
+          <div class="card-body"><ul>
+            <li>México, C. y S. América</li>
+            <li>Urbes y zonas rurales</li>
+            <li>Adaptable al calor tropical</li>
+            <li>Nombres: Jataí, Yateí, Señorita</li>
+          </ul></div>
+        </div>
+      </div>
+      <div class="callout callout-tip" style="margin-top:1rem;">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body"><strong>¿Por qué elegirla?</strong> Sin aguijón significa cero riesgo para toda la familia — niños, adultos mayores, mascotas. Se adapta perfectamente a espacios urbanos y poliniza el jardín mientras produce su preciada miel.</div>
+      </div>
+    </section>
+
+    <div class="honey-divider"><span>🐝</span></div>
+
+    <footer class="footer">
+      <p>Manual de Cuidado · <strong>Tetragonisca angustula</strong> · Caja Racional</p>
+      <p style="margin-top:0.3rem;color:var(--text-muted);">Fuentes: ecoinsectos.com · angustula.com · Wikipedia · Minciencias Colombia · IVIC Venezuela</p>
+    </footer>
+
+  </main>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.style.animationPlayState='running'; observer.unobserve(e.target); }});
+    }, {threshold:0.1});
+    document.querySelectorAll('.fade-up').forEach(el => { el.style.animationPlayState='paused'; observer.observe(el); });
+    const navItems = document.querySelectorAll('.nav-item');
+    new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){
+        navItems.forEach(i => { i.style.background=''; i.style.color=''; });
+        const a = document.querySelector(`.nav-item[href="#${e.target.id}"]`);
+        if(a){ a.style.background='var(--honey-dim)'; a.style.color='var(--brown)'; }
+      }});
+    }, {rootMargin:'-40% 0px -50% 0px'}).observe;
+    document.querySelectorAll('section[id]').forEach(s =>
+      new IntersectionObserver((entries) => {
+        entries.forEach(e => { if(e.isIntersecting){
+          navItems.forEach(i => { i.style.background=''; i.style.color=''; });
+          const a = document.querySelector(`.nav-item[href="#${e.target.id}"]`);
+          if(a){ a.style.background='var(--honey-dim)'; a.style.color='var(--brown)'; }
+        }});
+      }, {rootMargin:'-40% 0px -50% 0px'}).observe(s)
+    );
+  </script>
+</body>
+</html>
